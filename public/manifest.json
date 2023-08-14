@@ -1,0 +1,27 @@
+{
+    "short_name": "RGL Website",
+    "name": "RGL Website",
+    "icons": [
+        {
+            "src": "favicon.svg",
+            "sizes": "256x256 128x128 96x96 64x64 32x32 24x24 16x16",
+            "type": "image/svg+xml"
+        },
+        {
+            "src": "icon192.webp",
+            "type": "image/webp",
+            "sizes": "192x192",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "icon512.png",
+            "type": "image/png",
+            "sizes": "512x512",
+            "purpose": "any maskable"
+        }
+    ],
+    "start_url": ".",
+    "display": "standalone",
+    "theme_color": "#b51c1d",
+    "background_color": "#212121"
+}

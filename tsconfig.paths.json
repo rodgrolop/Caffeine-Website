@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@apollo-client": ["src/apollo/index"],
+      "@authentication": ["src/api/authentication/index"],
+      "@queries": ["src/graphql/queries/index"],
+      "@mutations": ["src/graphql/mutations/index"],
+      "@router":["src/router/index"],
+      "@pages": ["src/pages/index"],
+      "@components":["src/components/index"],
+      "@layout":["src/layout/index"],
+      "@theme":["src/theme/index"],
+      "@assets":["src/assets/index"],  
+      "@images":["src/assets/images/index"],
+      "@hooks":["src/hooks/index"], 
+      "@utils":["src/utils/index"],
+      "@atoms": ["src/recoil/atoms/index"],
+      "@selectors": ["src/recoil/selectors/index"],
+      "@apollo-client/*": ["src/apollo/*"],
+      "@authentication/*": ["src/api/authentication/*"],
+      "@queries/*": ["src/graphql/queries/*"],
+      "@mutations/*": ["src/graphql/mutations/*"],
+      "@router/*":["src/router/*"],
+      "@pages/*": ["src/pages/*"],
+      "@components/*":["src/components/*"],
+      "@layout/*":["src/layout/*"], 
+      "@theme/*":["src/theme/*"],     
+      "@assets/*":["src/assets/*"], 
+      "@images/*":["src/assets/images/*"], 
+      "@hooks/*":["src/hooks/*"], 
+      "@utils/*":["src/utils/*"],
+      "@atoms/*": ["src/recoil/atoms/*"],
+      "@selectors/*": ["src/recoil/selectors/*"]
+    }
+  }
+}
