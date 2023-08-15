@@ -7,5 +7,7 @@ export const styles = {
     footerLinks: {
         textDecoration: 'none',
         color: 'inherit',
+        paddingLeft: 6,
+        paddingRight: 6,
     },
 }

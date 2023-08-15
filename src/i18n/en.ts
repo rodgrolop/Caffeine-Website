@@ -29,5 +29,6 @@ export const en = {
 
         // Footer links
         privacyPolicy: 'Privacy Policy',
+        termsOfService: 'Terms of Service',
     },
 }

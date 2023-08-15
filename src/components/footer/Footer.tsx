@@ -81,6 +81,12 @@ const Footer = (): ReactElement => {
                     <Link to="/privacy-policy" className={classes.footerLinks}>
                         {t('privacyPolicy')}
                     </Link>
+                    <Link
+                        to="/terms-of-service"
+                        className={classes.footerLinks}
+                    >
+                        {t('termsOfService')}
+                    </Link>
                 </Grid>
                 <Grid
                     container={true}

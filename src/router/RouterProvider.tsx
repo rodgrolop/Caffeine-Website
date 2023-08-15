@@ -18,8 +18,11 @@ const ProviderAuth = lazy(() => import('@pages/auth/provider/ProviderAuth'))
 const Home = lazy(() => import('@pages/home/Home'))
 const Blog = lazy(() => import('@pages/blog/blog/Blog'))
 const About = lazy(() => import('@pages/about/About'))
-const PrivacyPolicy = lazy(() => import('@pages/legal/privacy/PrivacyPolicy'))
 const SingleBlog = lazy(() => import('@pages/blog/single-blog/SingleBlog'))
+
+// Legal
+const PrivacyPolicy = lazy(() => import('@pages/legal/privacy/PrivacyPolicy'))
+const Terms = lazy(() => import('@pages/legal/terms/Terms'))
 
 // Private
 const Test = lazy(() => import('@pages/test/Test'))
@@ -57,6 +60,7 @@ const RouterProvider = (): ReactElement => {
                     <Route path="blog/:blogSlug" element={<SingleBlog />} />
                     <Route path="about-me" element={<About />} />
                     <Route path="privacy-policy" element={<PrivacyPolicy />} />
+                    <Route path="terms-of-service" element={<Terms />} />
                 </Route>
             </Routes>
         </div>
