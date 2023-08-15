@@ -41,7 +41,7 @@ export const blogListResponseTransformer = (
                         color: category.attributes.Color,
                     }
                 }),
-                Author: Author.data.attributes.username,
+                Author: Author?.data.attributes.username,
                 Slug,
                 users_likes: users_likes.data.map(
                     (user: { id: string }): string => user.id

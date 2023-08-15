@@ -18,7 +18,7 @@ const ProviderAuth = lazy(() => import('@pages/auth/provider/ProviderAuth'))
 const Home = lazy(() => import('@pages/home/Home'))
 const Blog = lazy(() => import('@pages/blog/blog/Blog'))
 const About = lazy(() => import('@pages/about/About'))
-const PrivacyPolicy = lazy(() => import('@pages/privacy/PrivacyPolicy'))
+const PrivacyPolicy = lazy(() => import('@pages/legal/privacy/PrivacyPolicy'))
 const SingleBlog = lazy(() => import('@pages/blog/single-blog/SingleBlog'))
 
 // Private

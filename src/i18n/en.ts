@@ -26,5 +26,8 @@ export const en = {
         somethingHappened: 'Something wrong happened',
         backLogin: 'Back to Login',
         orLoginWithProvider: 'or Sign In with',
+
+        // Footer links
+        privacyPolicy: 'Privacy Policy',
     },
 }

@@ -12,7 +12,10 @@ const ProtectedLayout = () => {
 
     useEffect(() => {
         if (!user?.authenticated) {
-            navigate('/login', { replace: true, state: { from: location } })
+            navigate('/auth/login', {
+                replace: true,
+                state: { from: location },
+            })
         }
     }, [user, navigate, location])
 

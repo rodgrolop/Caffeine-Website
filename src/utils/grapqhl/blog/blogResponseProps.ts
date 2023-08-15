@@ -34,7 +34,7 @@ export type singleBlogResponseProps = {
             }[]
         }
         Slug: string
-        Author: {
+        Author?: {
             data: {
                 attributes: {
                     username: string
@@ -67,7 +67,7 @@ export type singleBlogProps = {
     }
     Slug: string
     Categories: { name: string; color: string }[]
-    Author: string
+    Author?: string
     users_likes: string[]
     likes_count: number
     updatedAt: string

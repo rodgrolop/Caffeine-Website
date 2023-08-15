@@ -4,4 +4,8 @@ export const styles = {
         paddingBottom: 30,
     },
     logo: { display: 'flex', padding: 6, margin: 'auto' },
+    footerLinks: {
+        textDecoration: 'none',
+        color: 'inherit',
+    },
 }

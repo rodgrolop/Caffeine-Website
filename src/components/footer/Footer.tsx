@@ -4,7 +4,10 @@ import Typography from '@mui/material/Typography'
 import IconButton from '@mui/material/IconButton'
 import SvgIcon from '@mui/material/SvgIcon'
 import { MainLogo } from '@components'
+import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 
+import Button from '@mui/material/Button'
 import { makeStyles } from '@mui/styles'
 import { styles } from './styles'
 
@@ -15,6 +18,7 @@ import { footerImages, type FooterImageProps } from './footer-images'
 const useStyles = makeStyles(styles)
 
 const Footer = (): ReactElement => {
+    const { t } = useTranslation()
     const classes = useStyles()
 
     return (
@@ -64,6 +68,19 @@ const Footer = (): ReactElement => {
                             <SvgIcon>{image.icon}</SvgIcon>
                         </IconButton>
                     ))}
+                </Grid>
+                <Grid
+                    container={true}
+                    direction="row"
+                    justifyContent="center"
+                    alignItems="center"
+                    sx={{
+                        paddingBottom: 2,
+                    }}
+                >
+                    <Link to="/privacy-policy" className={classes.footerLinks}>
+                        {t('privacyPolicy')}
+                    </Link>
                 </Grid>
                 <Grid
                     container={true}
