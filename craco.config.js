@@ -44,10 +44,10 @@ module.exports = {
                     minRatio: 0.8,
                 }),
             ],
-            output: {
-                path: path.resolve(__dirname, 'build'),
-                filename: '[name].[chunkhash].bundle.js',
-            },
+            // output: {
+            //     path: path.resolve(__dirname, 'build'),
+            //     filename: '[name].[chunkhash].bundle.js',
+            // },
             optimization: {
                 minimize: true,
                 minimizer: [
