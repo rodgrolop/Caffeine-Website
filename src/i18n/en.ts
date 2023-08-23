@@ -25,7 +25,7 @@ export const en = {
         authenticating: 'Authenticating',
         somethingHappened: 'Something wrong happened',
         backLogin: 'Back to Login',
-        orLoginWithProvider: 'or Sign In with',
+        orLoginWithProvider: 'Sign in with:',
 
         // Footer links
         privacyPolicy: 'Privacy Policy',

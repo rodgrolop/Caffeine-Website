@@ -59,12 +59,11 @@ const AppBar = (): ReactElement => {
                             ({
                                 name,
                                 path,
-                                search,
                             }: AppBarLinksProps): ReactElement => (
                                 <Button
                                     key={name}
                                     component={RouterLink}
-                                    to={`${path}${search ?? ''}`}
+                                    to={path}
                                     sx={{
                                         color: 'white',
                                     }}

@@ -37,7 +37,7 @@ const Home = (): ReactElement => {
                 >
                     <Button
                         component={RouterLink}
-                        to="/blog?page=1&categories=all"
+                        to="/blog"
                         variant="contained"
                         color="secondary"
                     >

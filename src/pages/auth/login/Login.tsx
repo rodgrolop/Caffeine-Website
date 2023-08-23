@@ -1,7 +1,7 @@
 import { default as Grid } from '@mui/material/Unstable_Grid2'
 import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
-import GoogleIcon from '@mui/icons-material/Google'
+
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
@@ -11,6 +11,9 @@ import { makeStyles } from '@mui/styles'
 import { styles } from './styles'
 
 import type { ReactElement } from 'react'
+import GoogleIcon from '@components/custom-icons/GoogleIcon'
+import SvgIcon from '@mui/material/SvgIcon'
+import Button from '@mui/material/Button'
 
 const useStyles = makeStyles(styles)
 
@@ -43,16 +46,20 @@ const Login = (): ReactElement => {
                     </Typography>
                 </Grid>
                 <Grid>
-                    <IconButton
+                    <Button
                         component={Link}
                         className={classes.googleButton}
+                        size="medium"
                         to={`${process.env.REACT_APP_STRAPI_ENDPOINT}/api/connect/google`}
+                        variant="contained"
+                        startIcon={
+                            <SvgIcon className={classes.icon}>
+                                <GoogleIcon />
+                            </SvgIcon>
+                        }
                     >
-                        <GoogleIcon
-                            fontSize="small"
-                            style={{ color: 'white' }}
-                        />
-                    </IconButton>
+                        Google
+                    </Button>
                 </Grid>
             </Grid>
         </AuthPageContainer>

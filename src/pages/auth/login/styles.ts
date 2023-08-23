@@ -1,9 +1,18 @@
 export const styles = {
     formContainer: { flexGrow: 1 },
+    icon: {
+        marginRight: 8,
+        '&.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium': { fontSize: 18 },
+    },
     googleButton: {
-        '&.MuiIconButton-root': {
-            backgroundColor: '#DB4437',
-            '&:hover': { backgroundColor: '#DB4437' },
+        '&.MuiButton-root': {
+            textTransform: 'capitalize',
+            color: 'rgba(0,0,0,0.54)',
+            fontSize: 14,
+            lineHeight: '28px',
+            fontWeight: '700',
+            backgroundColor: '#fff',
+            '&:hover': { backgroundColor: '#fff' },
         },
     },
 }

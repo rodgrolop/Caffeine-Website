@@ -50,12 +50,11 @@ const Drawer = (): ReactElement => {
                             name,
                             path,
                             Icon,
-                            search,
                         }: DrawerLinksProps): ReactElement => (
                             <ListItem disablePadding key={name}>
                                 <ListItemButton
                                     component={Link}
-                                    to={`${path}${search ?? ''}`}
+                                    to={path}
                                     selected={pathname === path}
                                 >
                                     <ListItemIcon>

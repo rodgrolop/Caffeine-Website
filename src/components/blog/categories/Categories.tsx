@@ -70,7 +70,7 @@ const Categories = ({ pathname }: CategoriesProps): ReactElement | null => {
                                   backgroundColor: category.color,
                               }}
                               className={classes.categoryChip}
-                              to={`${pathname}?page=1&categories=${category.slug}`}
+                              to={`${pathname}?categories=${category.slug}`}
                               clickable
                           />
                       )

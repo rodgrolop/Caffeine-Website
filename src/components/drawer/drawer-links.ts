@@ -10,7 +10,6 @@ export type DrawerLinksProps = {
     name: string
     path: string
     Icon: OverridableComponent<SvgIconTypeMap<{}, 'svg'>> & { muiName: string }
-    search?: string
 }
 
 export const drawerLinksGlobal: DrawerLinksProps[] = [
@@ -18,7 +17,6 @@ export const drawerLinksGlobal: DrawerLinksProps[] = [
     {
         name: 'blog',
         path: '/blog',
-        search: '?page=1&categories=all',
         Icon: RssFeedIcon,
     },
     { name: 'aboutMe', path: '/about-me', Icon: AccountCircleIcon },

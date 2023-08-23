@@ -36,7 +36,9 @@ const RouterProvider = (): ReactElement => {
     const { loading } = useRecoilValue(userFetchStatusAtom)
 
     useEffect(() => {
-        !pathname.includes('/auth/') && getMe()
+        const token = localStorage.getItem('token')
+        // TODO Improve this condition
+        !pathname.includes('/auth/') && token && getMe()
     }, [])
 
     return loading ? (
