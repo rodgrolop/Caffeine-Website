@@ -16,7 +16,7 @@ const ViewLoader = (): JSX.Element => {
             alignItems="center"
             className={classes.loaderContainer}
         >
-            <CircularProgress />
+            <CircularProgress color="secondary" />
         </Grid>
     )
 }

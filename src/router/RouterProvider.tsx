@@ -1,5 +1,5 @@
 import { lazy, useEffect } from 'react'
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { AuthenticationLayout, ProtectedLayout, GlobalLayout } from '@layout'
 
 import { makeStyles } from '@mui/styles'
@@ -29,23 +29,81 @@ const Test = lazy(() => import('@pages/test/Test'))
 
 const useStyles = makeStyles(styles)
 
-const RouterProvider = (): ReactElement => {
+const router = createBrowserRouter([
+    {
+        path: 'auth',
+        element: <AuthenticationLayout />,
+        children: [
+            {
+                path: 'login',
+                element: <Login />,
+            },
+            {
+                path: 'provider/:provider',
+                element: <ProviderAuth />,
+            },
+        ],
+    },
+    {
+        path: '/',
+        element: <ProtectedLayout />,
+        children: [
+            {
+                path: 'test',
+                element: <Test />,
+            },
+        ],
+    },
+    {
+        path: '/',
+        element: <GlobalLayout />,
+        children: [
+            {
+                path: '/',
+                element: <Home />,
+                index: true,
+            },
+            {
+                path: 'blog',
+                element: <Blog />,
+            },
+            {
+                path: 'blog/:blogSlug',
+                element: <SingleBlog />,
+            },
+            {
+                path: 'about-me',
+                element: <About />,
+            },
+            {
+                path: 'privacy-policy',
+                element: <PrivacyPolicy />,
+            },
+            {
+                path: 'terms-of-service',
+                element: <Terms />,
+            },
+        ],
+    },
+])
+
+const RouterProviderWrapper = (): ReactElement => {
     const classes = useStyles()
-    const { pathname } = useLocation()
     const { getMe } = useGetMe()
     const { loading } = useRecoilValue(userFetchStatusAtom)
 
     useEffect(() => {
         const token = localStorage.getItem('token')
         // TODO Improve this condition
-        !pathname.includes('/auth/') && token && getMe()
+        token && getMe()
     }, [])
 
     return loading ? (
         <MainLoader />
     ) : (
         <div className={classes.routerContainer}>
-            <Routes>
+            <RouterProvider router={router} />
+            {/* <Routes>
                 <Route path="auth" element={<AuthenticationLayout />}>
                     <Route path="login" element={<Login />} />
                     <Route
@@ -64,9 +122,9 @@ const RouterProvider = (): ReactElement => {
                     <Route path="privacy-policy" element={<PrivacyPolicy />} />
                     <Route path="terms-of-service" element={<Terms />} />
                 </Route>
-            </Routes>
+            </Routes> */}
         </div>
     )
 }
 
-export default RouterProvider
+export default RouterProviderWrapper

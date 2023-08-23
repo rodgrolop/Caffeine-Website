@@ -4,7 +4,6 @@ import { ApolloProvider } from '@apollo/client'
 import apolloClient from '@apollo-client'
 import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
-import { BrowserRouter } from 'react-router-dom'
 
 import { theme } from '@theme'
 import RouterProvider from '@router'
@@ -23,9 +22,7 @@ const Main = (): ReactElement => {
                         defaultMode="dark"
                     >
                         <CssBaseline />
-                        <BrowserRouter basename="/">
-                            <RouterProvider />
-                        </BrowserRouter>
+                        <RouterProvider />
                     </CssVarsProvider>
                 </RecoilRoot>
             </ApolloProvider>
