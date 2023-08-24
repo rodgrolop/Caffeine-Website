@@ -4,6 +4,9 @@
     "private": true,
     "description": "Caffeine Website",
     "author": "Rodrigo Gross",
+    "sideEffects": [
+        "src/i18n/i18nProvider.ts"
+    ],
     "dependencies": {
         "@apollo/client": "^3.8.1",
         "@emotion/react": "^11.11.1",

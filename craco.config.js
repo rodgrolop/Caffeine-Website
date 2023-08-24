@@ -23,6 +23,7 @@ module.exports = {
     ],
     webpack: {
         configure: {
+            mode: 'production',
             cache: true,
             devtool: 'nosources-source-map',
             plugins: [
@@ -47,8 +48,17 @@ module.exports = {
                 filename: '[name].[chunkhash].bundle.js',
             },
             optimization: {
-                usedExports: true,
                 minimize: true,
+                concatenateModules: true,
+                flagIncludedChunks: true,
+                mangleWasmImports: true,
+                mergeDuplicateChunks: true,
+                usedExports: true,
+                removeAvailableModules: true,
+                removeEmptyChunks: true,
+                moduleIds: 'deterministic',
+                runtimeChunk: 'single',
+                sideEffects: 'flag',
                 minimizer: [
                     new TerserPlugin({
                         parallel: true,
@@ -72,14 +82,21 @@ module.exports = {
                         },
                     }),
                 ],
-                moduleIds: 'deterministic',
-                runtimeChunk: 'single',
                 splitChunks: {
                     cacheGroups: {
                         vendor: {
-                            test: /[\\/]node_modules[\\/]/,
+                            test: /.?[\\/]node_modules[\\/](?!(react|react-dom|react-router-dom|recoil)).*?/,
                             name: 'vendors',
                             chunks: 'all',
+                            reuseExistingChunk: true,
+                            usedExports: true,
+                        },
+                        reactVendor: {
+                            test: /[\\/]node_modules[\\/](react|react-dom|react-router-dom|recoil)[\\/]/,
+                            name: 'vendor-react',
+                            chunks: 'all',
+                            reuseExistingChunk: true,
+                            usedExports: true,
                         },
                     },
                 },
