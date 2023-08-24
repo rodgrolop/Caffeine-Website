@@ -2,16 +2,12 @@ import Typography from '@mui/material/Typography'
 import Skeleton from '@mui/material/Skeleton'
 import { default as Grid } from '@mui/material/Unstable_Grid2'
 import { PageContainer } from '@components'
-import { makeStyles } from '@mui/styles'
 
 import { styles } from './styles'
 
 import type { ReactElement } from 'react'
 
-const useStyles = makeStyles(styles)
-
 const SingleBlogSkelleton = (): ReactElement => {
-    const classes = useStyles()
     return (
         <PageContainer>
             <Typography variant="h3" gutterBottom>
@@ -57,14 +53,7 @@ const SingleBlogSkelleton = (): ReactElement => {
                 alignItems="center"
                 sx={{ marginBottom: 2 }}
             >
-                <Skeleton
-                    sx={{
-                        height: 32,
-                        width: 100,
-                    }}
-                    variant="rectangular"
-                    className={classes.categoryChip}
-                />
+                <Skeleton sx={styles.categoryChip} variant="rectangular" />
                 <div style={{ flexGrow: 1 }} />
                 <Skeleton
                     sx={{
@@ -82,13 +71,7 @@ const SingleBlogSkelleton = (): ReactElement => {
                     variant="circular"
                 />
             </Grid>
-            <Skeleton
-                sx={{
-                    height: 300,
-                }}
-                variant="rectangular"
-                className={classes.blogMainImage}
-            />
+            <Skeleton sx={styles.blogMainImage} variant="rectangular" />
             <Typography
                 variant="h4"
                 gutterBottom

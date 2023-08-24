@@ -14,10 +14,7 @@ import {
 } from '@utils'
 
 import type { ReactElement } from 'react'
-import { makeStyles } from '@mui/styles'
 import { styles } from './styles'
-
-const useStyles = makeStyles(styles)
 
 type CategoriesProps = {
     pathname: string
@@ -25,7 +22,6 @@ type CategoriesProps = {
 
 const Categories = ({ pathname }: CategoriesProps): ReactElement | null => {
     const { t } = useTranslation()
-    const classes = useStyles()
     const [categories, setCategories] = useState<singleCategoryProps[] | null>(
         null
     )
@@ -54,7 +50,7 @@ const Categories = ({ pathname }: CategoriesProps): ReactElement | null => {
             xs={12}
             justifyContent="center"
             alignItems="center"
-            className={classes.categoriesContainer}
+            sx={styles.categoriesContainer}
         >
             {loading ? <ChipsSkelleton /> : null}
             {error ? <QueryError message={t('errorCategories')} /> : null}
@@ -66,10 +62,9 @@ const Categories = ({ pathname }: CategoriesProps): ReactElement | null => {
                               label={category.name}
                               component={RouterLink}
                               sx={{
-                                  color: 'white',
                                   backgroundColor: category.color,
+                                  ...styles.categoryChip,
                               }}
-                              className={classes.categoryChip}
                               to={`${pathname}?categories=${category.slug}`}
                               clickable
                           />

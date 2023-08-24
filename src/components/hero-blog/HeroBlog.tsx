@@ -2,28 +2,26 @@ import { default as Grid } from '@mui/material/Unstable_Grid2'
 
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
-import { makeStyles } from '@mui/styles'
 import { styles } from './styles'
 
 import type { ReactElement } from 'react'
 import type { HeroBlogProps } from './HeroBlogProps'
-
-const useStyles = makeStyles(styles)
 
 const HeroBlog = ({
     heroImageUrl,
     title,
     excerpt,
 }: HeroBlogProps): ReactElement => {
-    const classes = useStyles()
     return (
         <Grid
             container={true}
             direction="column"
             justifyContent="center"
             alignItems="flex-start"
-            className={classes.heroBackground}
-            sx={{ backgroundImage: `url('${heroImageUrl}')` }}
+            sx={{
+                backgroundImage: `url('${heroImageUrl}')`,
+                ...styles.heroBackground,
+            }}
         >
             <Container maxWidth="lg">
                 <Grid>

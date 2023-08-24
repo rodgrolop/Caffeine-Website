@@ -1,7 +1,7 @@
 export const styles = {
     formContainer: { flexGrow: 1 },
     icon: {
-        marginRight: 8,
+        marginRight: '8px',
         '&.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium': { fontSize: 18 },
     },
     googleButton: {

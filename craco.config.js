@@ -30,8 +30,7 @@ module.exports = {
                     filename: '[path][base].gz',
                     algorithm: 'gzip',
                     test: /\.js(\?.*)?$/i,
-                    threshold: 10240,
-                    minRatio: 0.8,
+                    minRatio: Infinity,
                 }),
                 new CompressionPlugin({
                     filename: '[path][base].br',
@@ -40,8 +39,7 @@ module.exports = {
                     compressionOptions: {
                         level: 11,
                     },
-                    threshold: 10240,
-                    minRatio: 0.8,
+                    minRatio: Infinity,
                 }),
             ],
             output: {
@@ -49,6 +47,7 @@ module.exports = {
                 filename: '[name].[chunkhash].bundle.js',
             },
             optimization: {
+                usedExports: true,
                 minimize: true,
                 minimizer: [
                     new TerserPlugin({

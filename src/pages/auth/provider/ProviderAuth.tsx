@@ -13,12 +13,9 @@ import { AuthPageContainer } from '@components'
 import { useProviderAuthentication } from '@authentication'
 import { userLoginStatusAtom, userFetchStatusAtom } from '@atoms'
 
-import { makeStyles } from '@mui/styles'
 import { styles } from './styles'
 
 import type { ReactElement } from 'react'
-
-const useStyles = makeStyles(styles)
 
 const getProviderLogo = (provider?: string): ReactElement | null => {
     switch (provider) {
@@ -30,7 +27,6 @@ const getProviderLogo = (provider?: string): ReactElement | null => {
 }
 
 const ProviderAuth = (): ReactElement => {
-    const classes = useStyles()
     const { t } = useTranslation()
     const { loading, errors } = useRecoilValue(userLoginStatusAtom)
     const { loading: getMeLoading } = useRecoilValue(userFetchStatusAtom)
@@ -57,7 +53,7 @@ const ProviderAuth = (): ReactElement => {
                 direction="column"
                 justifyContent="center"
                 alignItems="center"
-                className={classes.formContainer}
+                sx={styles.formContainer}
                 spacing={2}
             >
                 <Grid>{getProviderLogo(provider)}</Grid>

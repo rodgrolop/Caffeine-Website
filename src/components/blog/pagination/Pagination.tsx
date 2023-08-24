@@ -4,10 +4,7 @@ import { default as MUIPagination } from '@mui/material/Pagination'
 import PaginationItem from '@mui/material/PaginationItem'
 
 import type { ReactElement } from 'react'
-import { makeStyles } from '@mui/styles'
 import { styles } from './styles'
-
-const useStyles = makeStyles(styles)
 
 type PaginationProps = {
     pathname: string
@@ -18,7 +15,6 @@ type PaginationProps = {
 }
 
 const Pagination = ({ meta, pathname }: PaginationProps): ReactElement => {
-    const classes = useStyles()
     const { page, pageCount } = meta
     return (
         <Grid
@@ -27,7 +23,7 @@ const Pagination = ({ meta, pathname }: PaginationProps): ReactElement => {
             spacing={2}
             justifyContent="center"
             alignItems="center"
-            className={classes.paginationContainer}
+            sx={styles.paginationContainer}
         >
             <MUIPagination
                 count={pageCount}

@@ -8,7 +8,7 @@ const AuthPageContainer = (props: PageContainerProps): ReactElement => {
         <Container
             maxWidth="lg"
             sx={{
-                paddingTop: 8,
+                paddingTop: 9,
                 paddingBottom: 12,
                 display: 'flex',
                 flex: '1 1 auto',

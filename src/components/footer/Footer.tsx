@@ -7,19 +7,14 @@ import { MainLogo } from '@components'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
-import Button from '@mui/material/Button'
-import { makeStyles } from '@mui/styles'
 import { styles } from './styles'
 
 import type { ReactElement } from 'react'
 
 import { footerImages, type FooterImageProps } from './footer-images'
 
-const useStyles = makeStyles(styles)
-
 const Footer = (): ReactElement => {
     const { t } = useTranslation()
-    const classes = useStyles()
 
     return (
         <Grid
@@ -27,7 +22,7 @@ const Footer = (): ReactElement => {
             direction="column"
             justifyContent="center"
             alignItems="center"
-            className={classes.footerContainer}
+            sx={styles.footerContainer}
         >
             <Container maxWidth="xl">
                 <Grid
@@ -38,14 +33,7 @@ const Footer = (): ReactElement => {
                         paddingTop: 2,
                     }}
                 >
-                    <MainLogo
-                        styles={{
-                            width: 64,
-                            height: 64,
-                            display: 'flex',
-                            margin: 'auto',
-                        }}
-                    />
+                    <MainLogo styles={styles.mainLogo} />
                 </Grid>
                 <Grid
                     container={true}
@@ -78,13 +66,10 @@ const Footer = (): ReactElement => {
                         paddingBottom: 2,
                     }}
                 >
-                    <Link to="/privacy-policy" className={classes.footerLinks}>
+                    <Link to="/privacy-policy" style={styles.footerLinks}>
                         {t('privacyPolicy')}
                     </Link>
-                    <Link
-                        to="/terms-of-service"
-                        className={classes.footerLinks}
-                    >
+                    <Link to="/terms-of-service" style={styles.footerLinks}>
                         {t('termsOfService')}
                     </Link>
                 </Grid>

@@ -1,23 +1,15 @@
 import { default as Grid } from '@mui/material/Unstable_Grid2'
 
 import { MainLogo } from '@components'
-import { makeStyles } from '@mui/styles'
 import { styles } from './styles'
 
 import type { ReactElement } from 'react'
 import type { HeroImageProps } from './HeroImageProps'
 import Typography from '@mui/material/Typography'
 
-const useStyles = makeStyles(styles)
-
 const HeroImage = ({ title, subTitle }: HeroImageProps): ReactElement => {
-    const classes = useStyles()
     return (
-        <Grid
-            container={true}
-            direction="column"
-            className={classes.heroBackground}
-        >
+        <Grid container={true} direction="column" sx={styles.heroBackground}>
             <Grid
                 container
                 direction="column"

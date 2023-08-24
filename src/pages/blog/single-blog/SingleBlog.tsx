@@ -3,7 +3,6 @@ import { useLazyQuery } from '@apollo/client'
 import { GET_SINGLE_BLOG } from '@queries'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { makeStyles } from '@mui/styles'
 import Typography from '@mui/material/Typography'
 import IconButton from '@mui/material/IconButton'
 import ShareIcon from '@mui/icons-material/Share'
@@ -28,10 +27,7 @@ import {
 
 import type { ReactElement, MouseEvent } from 'react'
 
-const useStyles = makeStyles(styles)
-
 const SingleBlog = (): ReactElement => {
-    const classes = useStyles()
     const { t, i18n } = useTranslation()
     const navigate = useNavigate()
     const { blogSlug } = useParams()
@@ -155,13 +151,28 @@ const SingleBlog = (): ReactElement => {
                     <img
                         src={blogEntry.Hero.url}
                         alt={blogEntry.Title}
-                        className={classes.blogMainImage}
+                        style={styles.blogMainImage}
                     />
                     {blogEntry.Content && (
-                        <ReactMarkdown
-                            children={blogEntry.Content}
-                            className={classes.markdownContent}
-                        />
+                        <div style={styles.markdownContent}>
+                            <ReactMarkdown
+                                children={blogEntry.Content}
+                                components={{
+                                    pre: ({ node, ...props }) => (
+                                        <pre
+                                            style={styles.markdownContentPre}
+                                            {...props}
+                                        />
+                                    ),
+                                    code: ({ node, ...props }) => (
+                                        <code
+                                            style={styles.markdownContentCode}
+                                            {...props}
+                                        />
+                                    ),
+                                }}
+                            />
+                        </div>
                     )}
                 </>
             )}

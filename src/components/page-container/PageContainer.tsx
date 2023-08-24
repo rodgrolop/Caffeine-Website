@@ -8,7 +8,7 @@ const PageContainer = (props: PageContainerProps): ReactElement => {
         <Container
             maxWidth="lg"
             sx={{
-                paddingTop: 5,
+                paddingTop: 6,
                 paddingBottom: 10,
             }}
         >

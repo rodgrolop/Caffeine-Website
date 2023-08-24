@@ -15,12 +15,9 @@ import { getFNSLocale, sharePost, type singleBlogProps } from '@utils'
 import type { MouseEvent, ReactElement } from 'react'
 import { Link } from 'react-router-dom'
 
-import { makeStyles } from '@mui/styles'
 import { styles } from './styles'
 import { LikeButton } from '@components'
 import Stack from '@mui/material/Stack'
-
-const useStyles = makeStyles(styles)
 
 type BlogCardProps = {
     blog: singleBlogProps
@@ -38,10 +35,9 @@ const BlogCard = ({ blog }: BlogCardProps): ReactElement => {
         Categories,
     } = blog
     const [elevation, setElevation] = useState<number>(3)
-    const classes = useStyles()
 
     return (
-        <Link to={`/blog/${Slug}`} className={classes.cardLink}>
+        <Link to={`/blog/${Slug}`} style={styles.cardLink}>
             <Card
                 onMouseEnter={() => setElevation(6)}
                 onMouseLeave={() => setElevation(3)}

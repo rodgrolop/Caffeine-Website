@@ -2,7 +2,6 @@ import { lazy, useEffect } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { AuthenticationLayout, ProtectedLayout, GlobalLayout } from '@layout'
 
-import { makeStyles } from '@mui/styles'
 import { styles } from './styles'
 import type { ReactElement } from 'react'
 import { useGetMe } from '@authentication'
@@ -26,8 +25,6 @@ const Terms = lazy(() => import('@pages/legal/terms/Terms'))
 
 // Private
 const Test = lazy(() => import('@pages/test/Test'))
-
-const useStyles = makeStyles(styles)
 
 const router = createBrowserRouter([
     {
@@ -88,7 +85,6 @@ const router = createBrowserRouter([
 ])
 
 const RouterProviderWrapper = (): ReactElement => {
-    const classes = useStyles()
     const { getMe } = useGetMe()
     const { loading } = useRecoilValue(userFetchStatusAtom)
 
@@ -101,28 +97,8 @@ const RouterProviderWrapper = (): ReactElement => {
     return loading ? (
         <MainLoader />
     ) : (
-        <div className={classes.routerContainer}>
+        <div style={styles.routerContainer}>
             <RouterProvider router={router} />
-            {/* <Routes>
-                <Route path="auth" element={<AuthenticationLayout />}>
-                    <Route path="login" element={<Login />} />
-                    <Route
-                        path="provider/:provider"
-                        element={<ProviderAuth />}
-                    />
-                </Route>
-                <Route path="/" element={<ProtectedLayout />}>
-                    <Route path="test" element={<Test />} />
-                </Route>
-                <Route path="/" element={<GlobalLayout />}>
-                    <Route index element={<Home />} />
-                    <Route path="blog" element={<Blog />} />
-                    <Route path="blog/:blogSlug" element={<SingleBlog />} />
-                    <Route path="about-me" element={<About />} />
-                    <Route path="privacy-policy" element={<PrivacyPolicy />} />
-                    <Route path="terms-of-service" element={<Terms />} />
-                </Route>
-            </Routes> */}
         </div>
     )
 }

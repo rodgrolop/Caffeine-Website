@@ -3,19 +3,15 @@ import { Helmet } from 'react-helmet-async'
 import Button from '@mui/material/Button'
 import { Link as RouterLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { makeStyles } from '@mui/styles'
 import { styles } from './styles'
 
 import type { ReactElement } from 'react'
 import { HeroImage, BlogList, PageContainer } from '@components'
 
-const useStyles = makeStyles(styles)
-
 const homeLayoutProps = { title: 'Home' }
 
 const Home = (): ReactElement => {
     const { t } = useTranslation()
-    const classes = useStyles()
 
     return (
         <>
@@ -33,7 +29,7 @@ const Home = (): ReactElement => {
                     container
                     justifyContent="center"
                     alignItems="center"
-                    className={classes.seeMoreContainer}
+                    sx={styles.seeMoreContainer}
                 >
                     <Button
                         component={RouterLink}

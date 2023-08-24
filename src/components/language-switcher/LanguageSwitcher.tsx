@@ -2,18 +2,14 @@ import IconButton from '@mui/material/IconButton'
 import MenuItem from '@mui/material/MenuItem'
 import Menu from '@mui/material/Menu'
 import TranslateIcon from '@mui/icons-material/Translate'
-import { makeStyles } from '@mui/styles'
 import { styles } from './styles'
 import { useTranslation } from 'react-i18next'
 import { type ReactElement, useState } from 'react'
 import { changeLanguage } from 'i18next'
 import { sanitizeLanguage } from '@utils'
 
-const useStyles = makeStyles(styles)
-
 const LanguageSwitcher = (): ReactElement => {
     const { t } = useTranslation()
-    const classes = useStyles()
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
 
     const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -58,14 +54,14 @@ const LanguageSwitcher = (): ReactElement => {
                 <MenuItem
                     onClick={(): void => setLang('en')}
                     selected={sanitizeLanguage() === 'en'}
-                    className={classes.languageButton}
+                    sx={styles.languageButton}
                 >
                     {t('english')}
                 </MenuItem>
                 <MenuItem
                     onClick={(): void => setLang('es')}
                     selected={sanitizeLanguage() === 'es'}
-                    className={classes.languageButton}
+                    sx={styles.languageButton}
                 >
                     {t('spanish')}
                 </MenuItem>

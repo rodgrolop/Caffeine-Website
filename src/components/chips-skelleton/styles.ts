@@ -1,3 +1,9 @@
 export const styles = {
-    categoryChip: { marginLeft: 5, marginRight: 5, borderRadius: 16 },
+    categoryChip: {
+        marginLeft: '5px',
+        marginRight: '5px',
+        borderRadius: 16,
+        height: 32,
+        width: 100,
+    },
 }

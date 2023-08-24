@@ -10,7 +10,6 @@ import FormControl from '@mui/material/FormControl'
 import InputLabel from '@mui/material/InputLabel'
 import Typography from '@mui/material/Typography'
 
-import { makeStyles } from '@mui/styles'
 import { styles } from './styles'
 
 import type { ReactElement, ChangeEvent } from 'react'
@@ -20,10 +19,7 @@ import { userLoginStatusAtom } from '@atoms'
 import SendIcon from '@mui/icons-material/Send'
 import CircularProgress from '@mui/material/CircularProgress'
 
-const useStyles = makeStyles(styles)
-
 const LoginForm = (): ReactElement => {
-    const classes = useStyles()
     const { logIn } = useLogin()
     const { loading, errors } = useRecoilValue(userLoginStatusAtom)
     const [inputErrors, setInputErrors] = useState<string | undefined>(
@@ -57,7 +53,7 @@ const LoginForm = (): ReactElement => {
             <Typography variant="h2" gutterBottom component="div">
                 Login
             </Typography>
-            <Grid xs={10} className={classes.inputGrid}>
+            <Grid xs={10} sx={styles.inputGrid}>
                 <FormControl
                     variant="outlined"
                     fullWidth={true}
@@ -76,7 +72,7 @@ const LoginForm = (): ReactElement => {
                     />
                 </FormControl>
             </Grid>
-            <Grid xs={10} className={classes.inputGrid}>
+            <Grid xs={10} sx={styles.inputGrid}>
                 <FormControl
                     variant="outlined"
                     fullWidth={true}
