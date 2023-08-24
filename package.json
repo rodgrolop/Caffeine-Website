@@ -4,7 +4,6 @@
     "private": true,
     "description": "Caffeine Website",
     "author": "Rodrigo Gross",
-    "sideEffects": false,
     "dependencies": {
         "@apollo/client": "^3.8.1",
         "@emotion/react": "^11.11.1",
