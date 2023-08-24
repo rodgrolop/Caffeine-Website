@@ -8,14 +8,12 @@ import { styles } from './styles'
 import type { ReactElement } from 'react'
 import { HeroImage, BlogList, PageContainer } from '@components'
 
-const homeLayoutProps = { title: 'Home' }
-
 const Home = (): ReactElement => {
     const { t } = useTranslation()
 
     return (
         <>
-            <HeroImage {...homeLayoutProps} />
+            <HeroImage />
             <PageContainer>
                 <Helmet>
                     <meta charSet="utf-8" />

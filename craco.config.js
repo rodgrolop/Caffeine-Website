@@ -23,7 +23,6 @@ module.exports = {
     ],
     webpack: {
         configure: {
-            mode: 'production',
             cache: true,
             devtool: 'nosources-source-map',
             plugins: [

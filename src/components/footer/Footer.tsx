@@ -49,7 +49,6 @@ const Footer = (): ReactElement => {
                         <IconButton
                             aria-label={image.name}
                             key={image.name}
-                            sx={{ fontSize: 30 }}
                             size="large"
                             onClick={() => window.open(image.link, '_blank')}
                         >
