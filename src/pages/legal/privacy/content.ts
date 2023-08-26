@@ -1,4 +1,4 @@
-export const aboutContentES = `Rodrigo Gross López's website Privacy Policy
+export const privacyContentES = `Rodrigo Gross López's website Privacy Policy
 -------------------------------
 
 ### Our Privacy Policy is fueled by our commitment to these Privacy Principles:
@@ -176,9 +176,9 @@ For personal data subject to the GDPR, we rely on several legal bases to process
 -   The processing is necessary to comply with a legal obligation, a court order or to exercise or defend legal claims
 
 
-Last updated: August 15th, 2023`
+Last updated: August 15th, 2023`;
 
-export const aboutContentEN = `Rodrigo Gross López's website Privacy Policy
+export const privacyContentEN = `Rodrigo Gross López's website Privacy Policy
 -------------------------------
 
 ### Our Privacy Policy is fueled by our commitment to these Privacy Principles:
@@ -356,4 +356,4 @@ For personal data subject to the GDPR, we rely on several legal bases to process
 -   The processing is necessary to comply with a legal obligation, a court order or to exercise or defend legal claims
 
 
-Last updated: August 15th, 2023`
+Last updated: August 15th, 2023`;

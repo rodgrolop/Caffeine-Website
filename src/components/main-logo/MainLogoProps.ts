@@ -1,6 +1,6 @@
-import { CSSProperties } from 'react'
+import { CSSProperties } from "preact/compat";
 
 export type LogoLoaderProps = {
-    fillColor?: string
-    styles?: CSSProperties
-}
+  fillColor?: string;
+  styles?: CSSProperties;
+};

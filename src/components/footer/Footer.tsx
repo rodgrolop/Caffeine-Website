@@ -1,93 +1,92 @@
-import { default as Grid } from '@mui/material/Unstable_Grid2'
-import Container from '@mui/material/Container'
-import Typography from '@mui/material/Typography'
-import IconButton from '@mui/material/IconButton'
-import SvgIcon from '@mui/material/SvgIcon'
-import { MainLogo } from '@components'
-import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
+import { default as Grid } from "@mui/material/Unstable_Grid2";
+import Container from "@mui/material/Container";
+import Typography from "@mui/material/Typography";
+import IconButton from "@mui/material/IconButton";
+import SvgIcon from "@mui/material/SvgIcon";
+import { MainLogo } from "@components";
+import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
-import { styles } from './styles'
+import { footerImages, type FooterImageProps } from "./footer-images";
+import type { VNode } from "preact";
 
-import type { ReactElement } from 'react'
+import { styles } from "./styles";
 
-import { footerImages, type FooterImageProps } from './footer-images'
+const Footer = (): VNode => {
+  const { t } = useTranslation();
 
-const Footer = (): ReactElement => {
-    const { t } = useTranslation()
-
-    return (
+  return (
+    <Grid
+      container={true}
+      direction="column"
+      justifyContent="center"
+      alignItems="center"
+      sx={styles.footerContainer}
+    >
+      <Container maxWidth="xl">
         <Grid
-            container={true}
-            direction="column"
-            justifyContent="center"
-            alignItems="center"
-            sx={styles.footerContainer}
+          direction="column"
+          justifyContent="center"
+          alignItems="center"
+          sx={{
+            paddingTop: 2,
+          }}
         >
-            <Container maxWidth="xl">
-                <Grid
-                    direction="column"
-                    justifyContent="center"
-                    alignItems="center"
-                    sx={{
-                        paddingTop: 2,
-                    }}
-                >
-                    <MainLogo styles={styles.mainLogo} />
-                </Grid>
-                <Grid
-                    container={true}
-                    direction="row"
-                    justifyContent="center"
-                    alignItems="center"
-                    sx={{
-                        paddingTop: 2,
-                        paddingBottom: 4,
-                    }}
-                >
-                    {footerImages.map((image: FooterImageProps) => (
-                        <IconButton
-                            aria-label={image.name}
-                            key={image.name}
-                            size="large"
-                            onClick={() => window.open(image.link, '_blank')}
-                        >
-                            <SvgIcon>{image.icon}</SvgIcon>
-                        </IconButton>
-                    ))}
-                </Grid>
-                <Grid
-                    container={true}
-                    direction="row"
-                    justifyContent="center"
-                    alignItems="center"
-                    sx={{
-                        paddingBottom: 2,
-                    }}
-                >
-                    <Link to="/privacy-policy" style={styles.footerLinks}>
-                        {t('privacyPolicy')}
-                    </Link>
-                    <Link to="/terms-of-service" style={styles.footerLinks}>
-                        {t('termsOfService')}
-                    </Link>
-                </Grid>
-                <Grid
-                    container={true}
-                    direction="row"
-                    justifyContent="center"
-                    alignItems="center"
-                    sx={{
-                        paddingBottom: 2,
-                    }}
-                >
-                    <Typography align="center" variant="caption">
-                        © 2023 Rodrigo Gross López
-                    </Typography>
-                </Grid>
-            </Container>
+          <MainLogo styles={styles.mainLogo} />
         </Grid>
-    )
-}
+        <Grid
+          container={true}
+          direction="row"
+          justifyContent="center"
+          alignItems="center"
+          sx={{
+            paddingTop: 2,
+            paddingBottom: 4,
+          }}
+        >
+          {footerImages.map((image: FooterImageProps) => (
+            <IconButton
+              aria-label={image.name}
+              key={image.name}
+              size="large"
+              onClick={() => window.open(image.link, "_blank")}
+            >
+              <SvgIcon>{image.icon}</SvgIcon>
+            </IconButton>
+          ))}
+        </Grid>
+        <Grid
+          container={true}
+          direction="row"
+          justifyContent="center"
+          alignItems="center"
+          sx={{
+            paddingBottom: 2,
+          }}
+        >
+          <Link to="/privacy-policy" style={styles.footerLinks}>
+            {t("privacyPolicy")}
+          </Link>
+          <Link to="/terms-of-service" style={styles.footerLinks}>
+            {t("termsOfService")}
+          </Link>
+        </Grid>
+        <Grid
+          container={true}
+          direction="row"
+          justifyContent="center"
+          alignItems="center"
+          sx={{
+            paddingBottom: 2,
+          }}
+        >
+          <Typography align="center" variant="caption">
+            © 2023 Rodrigo Gross López
+          </Typography>
+        </Grid>
+      </Container>
+    </Grid>
+  );
+};
 
-export default Footer
+export default Footer;

@@ -1,34 +1,36 @@
-import { Suspense, useEffect } from 'react'
-import { useLocation, useNavigate, Outlet } from 'react-router-dom'
+import { Suspense, useEffect } from "preact/compat";
+import { useLocation, useNavigate, Outlet } from "react-router-dom";
+import { useRecoilValue } from "recoil";
 
-import { ViewLoader, AppBar, Drawer, Footer } from '@components'
-import { useRecoilValue } from 'recoil'
-import { userAtom } from '@atoms'
+import { ViewLoader, AppBar, Drawer, Footer } from "@components";
+import { userAtom } from "@atoms";
 
-const ProtectedLayout = () => {
-    const location = useLocation()
-    const navigate = useNavigate()
-    const user = useRecoilValue(userAtom)
+import type { VNode } from "preact";
 
-    useEffect(() => {
-        if (!user?.authenticated) {
-            navigate('/auth/login', {
-                replace: true,
-                state: { from: location },
-            })
-        }
-    }, [user, navigate, location])
+const ProtectedLayout = (): VNode => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const user = useRecoilValue(userAtom);
 
-    return (
-        <>
-            <AppBar />
-            <Drawer />
-            <Suspense fallback={<ViewLoader />}>
-                <Outlet />
-            </Suspense>
-            <Footer />
-        </>
-    )
-}
+  useEffect(() => {
+    if (!user?.authenticated) {
+      navigate("/auth/login", {
+        replace: true,
+        state: { from: location },
+      });
+    }
+  }, [user, navigate, location]);
 
-export default ProtectedLayout
+  return (
+    <>
+      <AppBar />
+      <Drawer />
+      <Suspense fallback={<ViewLoader />}>
+        <Outlet />
+      </Suspense>
+      <Footer />
+    </>
+  );
+};
+
+export default ProtectedLayout;

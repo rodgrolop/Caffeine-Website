@@ -1,97 +1,39 @@
 {
-    "name": "caffeine-website",
-    "version": "1.0.0",
-    "private": true,
-    "description": "Caffeine Website",
-    "author": "Rodrigo Gross",
-    "sideEffects": [
-        "src/i18n/i18nProvider.ts"
-    ],
-    "dependencies": {
-        "@apollo/client": "^3.8.1",
-        "@emotion/react": "^11.11.1",
-        "@emotion/styled": "^11.11.0",
-        "@fontsource/roboto": "^5.0.8",
-        "@mui/icons-material": "^5.14.3",
-        "@mui/material": "^5.14.5",
-        "axios": "^1.4.0",
-        "date-fns": "^2.30.0",
-        "graphql": "^16.8.0",
-        "i18next": "^23.4.5",
-        "i18next-browser-languagedetector": "^7.1.0",
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0",
-        "react-helmet-async": "^1.3.0",
-        "react-i18next": "^13.2.0",
-        "react-markdown": "^8.0.7",
-        "react-router-dom": "^6.15.0",
-        "react-scripts": "5.0.1",
-        "recoil": "^0.7.7"
-    },
-    "devDependencies": {
-        "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-        "@craco/craco": "^7.1.0",
-        "@testing-library/jest-dom": "^6.1.2",
-        "@testing-library/react": "^14.0.0",
-        "@testing-library/user-event": "^14.4.3",
-        "@types/jest": "^29.5.4",
-        "@types/lodash": "^4.14.197",
-        "@types/node": "^20.5.4",
-        "@types/react": "^18.2.21",
-        "@types/react-dom": "^18.2.7",
-        "@types/react-helmet": "^6.1.6",
-        "@typescript-eslint/eslint-plugin": "^6.4.1",
-        "@typescript-eslint/parser": "^6.4.1",
-        "compression-webpack-plugin": "^10.0.0",
-        "eslint": "^8.47.0",
-        "eslint-config-prettier": "^9.0.0",
-        "eslint-plugin-prettier": "^5.0.0",
-        "eslint-plugin-react": "^7.33.2",
-        "eslint-plugin-react-hooks": "^5.0.0-next-4fcc9184a-20230217",
-        "image-minimizer-webpack-plugin": "^3.8.3",
-        "prettier": "^3.0.2",
-        "react-app-alias": "^2.2.2",
-        "sharp": "^0.32.5",
-        "terser-webpack-plugin": "^5.3.9",
-        "tslint-config-prettier": "^1.18.0",
-        "typescript": "^5.1.6",
-        "web-vitals": "^3.4.0",
-        "workbox-background-sync": "^7.0.0",
-        "workbox-broadcast-update": "^7.0.0",
-        "workbox-cacheable-response": "^7.0.0",
-        "workbox-core": "^7.0.0",
-        "workbox-expiration": "^7.0.0",
-        "workbox-google-analytics": "^7.0.0",
-        "workbox-navigation-preload": "^7.0.0",
-        "workbox-precaching": "^7.0.0",
-        "workbox-range-requests": "^7.0.0",
-        "workbox-routing": "^7.0.0",
-        "workbox-strategies": "^7.0.0",
-        "workbox-streams": "^7.0.0"
-    },
-    "scripts": {
-        "start": "craco start",
-        "develop": "NODE_ENV=development craco start",
-        "build": "craco build",
-        "test": "craco test",
-        "eject": "react-scripts eject"
-    },
-    "eslintConfig": {
-        "extends": [
-            "react-app",
-            "react-app/jest"
-        ]
-    },
-    "browserslist": {
-        "production": [
-            ">0.2%",
-            "not dead",
-            "not op_mini all"
-        ],
-        "development": [
-            "last 1 chrome version",
-            "last 1 firefox version",
-            "last 1 safari version"
-        ]
-    }
+  "name": "vite-project",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.8.1",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@fontsource/roboto": "^5.0.8",
+    "@mui/icons-material": "^5.14.6",
+    "@mui/material": "^5.14.6",
+    "axios": "^1.4.0",
+    "date-fns": "^2.30.0",
+    "graphql": "^16.8.0",
+    "i18next": "^23.4.6",
+    "i18next-browser-languagedetector": "^7.1.0",
+    "preact": "10.17.1",
+    "react-helmet": "^6.1.0",
+    "react-i18next": "^13.2.0",
+    "react-remark": "^2.1.0",
+    "react-router-dom": "^6.15.0",
+    "recoil": "^0.7.7"
+  },
+  "devDependencies": {
+    "@preact/preset-vite": "2.5.0",
+    "@rollup/plugin-terser": "^0.4.3",
+    "@types/node": "^20.5.6",
+    "@types/react-helmet": "^6.1.6",
+    "rollup-plugin-gzip": "^3.1.0",
+    "typescript": "5.2.2",
+    "vite": "4.4.9"
+  }
 }

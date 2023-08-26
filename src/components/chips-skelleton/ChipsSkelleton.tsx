@@ -1,22 +1,16 @@
-import { ReactElement } from 'react'
-import Skeleton from '@mui/material/Skeleton'
+import Skeleton from "@mui/material/Skeleton";
 
-import { styles } from './styles'
+import type { VNode } from "preact";
+import { styles } from "./styles";
 
-const ChipsSkelleton = (): ReactElement => {
-    return (
-        <>
-            {Array.from(new Array(3)).map(
-                (_item, index): ReactElement => (
-                    <Skeleton
-                        sx={styles.categoryChip}
-                        variant="rectangular"
-                        key={index}
-                    />
-                )
-            )}
-        </>
-    )
-}
+const ChipsSkelleton = (): VNode => (
+  <>
+    {Array.from(new Array(3)).map(
+      (_item, index): VNode => (
+        <Skeleton sx={styles.categoryChip} variant="rectangular" key={index} />
+      )
+    )}
+  </>
+);
 
-export default ChipsSkelleton
+export default ChipsSkelleton;

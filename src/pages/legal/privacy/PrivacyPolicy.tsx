@@ -1,37 +1,36 @@
-import { ReactElement, useEffect, useState } from 'react'
-import { PageContainer, SocialGrid } from '@components'
-import ReactMarkdown from 'react-markdown'
-import { Helmet } from 'react-helmet-async'
-import { aboutContentES, aboutContentEN } from './content'
-import { sanitizeLanguage } from '@utils'
-import { styles } from './styles'
+import { useEffect } from "preact/compat";
+import { PageContainer, SocialGrid } from "@components";
+import { Helmet } from "react-helmet";
+import { privacyContentES, privacyContentEN } from "./content";
+import { sanitizeLanguage } from "@utils";
+import { useTranslation } from "react-i18next";
+import { useRemark } from "react-remark";
 
-import { useTranslation } from 'react-i18next'
+import type { VNode } from "preact";
 
-const PrivacyPolicy = (): ReactElement => {
-    const { i18n } = useTranslation()
-    const [translatedContent, setTranslatedContent] = useState<string>('')
+import { styles } from "./styles";
 
-    useEffect(() => {
-        setTranslatedContent(
-            sanitizeLanguage() === 'es' ? aboutContentES : aboutContentEN
-        )
-    }, [i18n.language])
+const PrivacyPolicy = (): VNode => {
+  const { i18n } = useTranslation();
+  const [reactContent, setMarkdownSource] = useRemark();
 
-    return (
-        <PageContainer>
-            <Helmet>
-                <title>
-                    🔒 Privacy Policy | Rodrigo Gross Lopez - Senior React
-                    Developer
-                </title>
-            </Helmet>
-            <div style={styles.markdownContent}>
-                <ReactMarkdown children={translatedContent} />
-            </div>
-            <SocialGrid />
-        </PageContainer>
-    )
-}
+  useEffect(() => {
+    setMarkdownSource(
+      sanitizeLanguage() === "es" ? privacyContentES : privacyContentEN
+    );
+  }, [i18n.language]);
 
-export default PrivacyPolicy
+  return (
+    <PageContainer>
+      <Helmet>
+        <title>
+          🔒 Privacy Policy | Rodrigo Gross Lopez - Senior React Developer
+        </title>
+      </Helmet>
+      <div style={styles.markdownContent}>{reactContent}</div>
+      <SocialGrid />
+    </PageContainer>
+  );
+};
+
+export default PrivacyPolicy;

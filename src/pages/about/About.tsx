@@ -1,36 +1,37 @@
-import { ReactElement, useEffect, useState } from 'react'
-import { PageContainer, SocialGrid } from '@components'
-import ReactMarkdown from 'react-markdown'
-import { Helmet } from 'react-helmet-async'
-import { aboutContentES, aboutContentEN } from './content'
-import { sanitizeLanguage } from '@utils'
-import { styles } from './styles'
+import { useEffect } from "preact/compat";
+import { PageContainer, SocialGrid } from "@components";
+import { Helmet } from "react-helmet";
+import { aboutContentES, aboutContentEN } from "./content";
+import { sanitizeLanguage } from "@utils";
+import { useRemark } from "react-remark";
 
-import { useTranslation } from 'react-i18next'
+import type { VNode } from "preact";
 
-const About = (): ReactElement => {
-    const { i18n } = useTranslation()
-    const [translatedContent, setTranslatedContent] = useState<string>('')
+import { styles } from "./styles";
 
-    useEffect(() => {
-        setTranslatedContent(
-            sanitizeLanguage() === 'es' ? aboutContentES : aboutContentEN
-        )
-    }, [i18n.language])
+import { useTranslation } from "react-i18next";
 
-    return (
-        <PageContainer>
-            <Helmet>
-                <title>
-                    👨‍💻 About me | Rodrigo Gross Lopez - Senior React Developer
-                </title>
-            </Helmet>
-            <div style={styles.markdownContent}>
-                <ReactMarkdown children={translatedContent} />
-            </div>
-            <SocialGrid />
-        </PageContainer>
-    )
-}
+const About = (): VNode => {
+  const { i18n } = useTranslation();
+  const [reactContent, setMarkdownSource] = useRemark();
 
-export default About
+  useEffect(() => {
+    setMarkdownSource(
+      sanitizeLanguage() === "es" ? aboutContentES : aboutContentEN
+    );
+  }, [i18n.language]);
+
+  return (
+    <PageContainer>
+      <Helmet>
+        <title>
+          👨‍💻 About me | Rodrigo Gross Lopez - Senior React Developer
+        </title>
+      </Helmet>
+      <div style={styles.markdownContent}>{reactContent}</div>
+      <SocialGrid />
+    </PageContainer>
+  );
+};
+
+export default About;

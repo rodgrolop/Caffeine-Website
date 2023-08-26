@@ -1,18 +1,16 @@
-import { HeroImage } from '@components'
-import Container from '@mui/material/Container'
-import type { ReactElement } from 'react'
+import { HeroImage } from "@components";
+import Container from "@mui/material/Container";
+import type { VNode } from "preact";
 
-const testLayoutProps = { title: 'Test' }
+const Test = (): VNode => {
+  return (
+    <>
+      <HeroImage />
+      <Container maxWidth="lg">
+        <h1>Home</h1>
+      </Container>
+    </>
+  );
+};
 
-const Test = (): ReactElement => {
-    return (
-        <>
-            <HeroImage {...testLayoutProps} />
-            <Container maxWidth="lg">
-                <h1>Home</h1>
-            </Container>
-        </>
-    )
-}
-
-export default Test
+export default Test;

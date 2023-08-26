@@ -1,25 +1,22 @@
-import { BlogList, HeroImage, PageContainer } from '@components'
+import { Helmet } from "react-helmet";
 
-import { Helmet } from 'react-helmet-async'
-import type { ReactElement } from 'react'
+import { BlogList, HeroImage, PageContainer } from "@components";
 
-const homeLayoutProps = { title: 'Blog' }
+import type { VNode } from "preact";
 
-const Blog = (): ReactElement => {
-    return (
-        <>
-            <HeroImage {...homeLayoutProps} />{' '}
-            <Helmet>
-                <meta charSet="utf-8" />
-                <title>
-                    📰 Blog | Rodrigo Gross Lopez - Senior React Developer
-                </title>
-            </Helmet>
-            <PageContainer>
-                <BlogList pageSize={12} categories={true} pagination={true} />
-            </PageContainer>
-        </>
-    )
-}
+const Blog = (): VNode => {
+  return (
+    <>
+      <HeroImage />
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>📰 Blog | Rodrigo Gross Lopez - Senior React Developer</title>
+      </Helmet>
+      <PageContainer>
+        <BlogList pageSize={12} categories={true} pagination={true} />
+      </PageContainer>
+    </>
+  );
+};
 
-export default Blog
+export default Blog;

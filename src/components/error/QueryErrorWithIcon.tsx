@@ -1,27 +1,28 @@
-import { ReactElement } from 'react'
-import { default as Grid } from '@mui/material/Unstable_Grid2'
-import Typography from '@mui/material/Typography'
-import SearchOffIcon from '@mui/icons-material/SearchOff'
+import { default as Grid } from "@mui/material/Unstable_Grid2";
+import Typography from "@mui/material/Typography";
+import SearchOffIcon from "@mui/icons-material/SearchOff";
+
+import type { VNode } from "preact";
 
 type NoResultsProps = {
-    message: string
-}
+  message: string;
+};
 
-const QueryErrorWithIcon = ({ message }: NoResultsProps): ReactElement => (
-    <Grid
-        container
-        spacing={2}
-        justifyContent="center"
-        alignItems="center"
-        direction="column"
-    >
-        <Grid>
-            <Typography variant="body2">{message}</Typography>
-        </Grid>
-        <Grid>
-            <SearchOffIcon fontSize="large" />
-        </Grid>
+const QueryErrorWithIcon = ({ message }: NoResultsProps): VNode => (
+  <Grid
+    container
+    spacing={2}
+    justifyContent="center"
+    alignItems="center"
+    direction="column"
+  >
+    <Grid>
+      <Typography variant="body2">{message}</Typography>
     </Grid>
-)
+    <Grid>
+      <SearchOffIcon fontSize="large" />
+    </Grid>
+  </Grid>
+);
 
-export default QueryErrorWithIcon
+export default QueryErrorWithIcon;

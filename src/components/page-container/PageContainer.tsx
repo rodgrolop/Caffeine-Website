@@ -1,20 +1,18 @@
-import type { ReactElement, ReactNode } from 'react'
-import Container from '@mui/material/Container'
+import Container from "@mui/material/Container";
 
-type PageContainerProps = { children: ReactNode }
+import type { VNode } from "preact";
+import type { PageContainerProps } from "./PageContainerProps";
 
-const PageContainer = (props: PageContainerProps): ReactElement => {
-    return (
-        <Container
-            maxWidth="lg"
-            sx={{
-                paddingTop: 6,
-                paddingBottom: 10,
-            }}
-        >
-            {props.children}
-        </Container>
-    )
-}
+const PageContainer = (props: PageContainerProps): VNode => (
+  <Container
+    maxWidth="lg"
+    sx={{
+      paddingTop: 6,
+      paddingBottom: 10,
+    }}
+  >
+    {props.children}
+  </Container>
+);
 
-export default PageContainer
+export default PageContainer;

@@ -1,18 +1,18 @@
-import { Suspense } from 'react'
-import { Outlet } from 'react-router-dom'
-import { ViewLoader, AppBar, Drawer, Footer } from '@components'
+import { Suspense } from "preact/compat";
+import { Outlet } from "react-router-dom";
+import { ViewLoader, AppBar, Drawer, Footer } from "@components";
 
-const GlobalLayout = () => {
-    return (
-        <>
-            <AppBar />
-            <Drawer />
-            <Suspense fallback={<ViewLoader />}>
-                <Outlet />
-            </Suspense>
-            <Footer />
-        </>
-    )
-}
+import type { VNode } from "preact";
 
-export default GlobalLayout
+const GlobalLayout = (): VNode => (
+  <>
+    <AppBar />
+    <Drawer />
+    <Suspense fallback={<ViewLoader />}>
+      <Outlet />
+    </Suspense>
+    <Footer />
+  </>
+);
+
+export default GlobalLayout;
