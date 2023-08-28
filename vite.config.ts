@@ -5,11 +5,51 @@ import terser from "@rollup/plugin-terser";
 import { promisify } from "util";
 import { brotliCompress } from "zlib";
 import gzipPlugin from "rollup-plugin-gzip";
+import { VitePWA } from "vite-plugin-pwa";
 
 const brotliPromise = promisify(brotliCompress);
 
 export default defineConfig({
-  plugins: [preact()],
+  plugins: [
+    preact(),
+    VitePWA({
+      registerType: "autoUpdate",
+      includeAssets: ["favicon.ico", "apple-touch-icon.png", "mask-icon.svg"],
+      manifest: {
+        name: "rgl-website",
+        short_name: "RGL Website",
+        description:
+          "Rodrigo Gross Lopez, a seasoned React Developer with 9+ years of experience. 🌟 Specializing in speed, performance, and scalability, Rodrigo delivers top-tier web applications",
+        start_url: ".",
+        theme_color: "#b51c1d",
+        background_color: "#212121",
+        icons: [
+          {
+            src: "pwa-64x64.png",
+            sizes: "64x64",
+            type: "image/png",
+          },
+          {
+            src: "pwa-192x192.png",
+            sizes: "192x192",
+            type: "image/png",
+          },
+          {
+            src: "pwa-512x512.png",
+            sizes: "512x512",
+            type: "image/png",
+            purpose: "any",
+          },
+          {
+            src: "maskable-icon-512x512.png",
+            sizes: "512x512",
+            type: "image/png",
+            purpose: "maskable",
+          },
+        ],
+      },
+    }),
+  ],
   build: {
     rollupOptions: {
       plugins: [
