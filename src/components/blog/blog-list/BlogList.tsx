@@ -1,7 +1,6 @@
 import { useEffect, useState } from "preact/compat";
 import { useLazyQuery } from "@apollo/client";
 import { GET_BLOGS } from "@queries";
-import { useLocation, useSearchParams } from "react-router-dom";
 import { default as Grid } from "@mui/material/Unstable_Grid2";
 import {
   BlogListSkelleton,
@@ -23,6 +22,7 @@ import BlogGrid from "../blog-grid/BlogGrid";
 import Categories from "../categories/Categories";
 import Pagination from "../pagination/Pagination";
 import { useTranslation } from "react-i18next";
+import { useSearch } from "@tanstack/react-router";
 
 type BlogListProps = {
   pageSize?: number;
@@ -32,18 +32,16 @@ type BlogListProps = {
 
 const BlogList = ({
   pageSize = 3,
-  categories = false,
+  categories: showCategories = false,
   pagination = false,
 }: BlogListProps): VNode => {
   const { i18n, t } = useTranslation();
-  const { pathname } = useLocation();
-  const [searchParams] = useSearchParams();
+  const { pathname } = window.location;
+  const { page, categories } = useSearch();
   const [blogEntries, setBlogEntries] = useState<singleBlogProps[] | null>(
     null
   );
   const [meta, setMeta] = useState<metaProps | null>(null);
-  const page = parseInt(searchParams.get("page") ?? "1");
-  const categoriesParam = searchParams.get("categories") ?? "";
 
   const [getBlogList, { loading, error, data }] = useLazyQuery(GET_BLOGS, {
     variables: {
@@ -52,8 +50,8 @@ const BlogList = ({
         pageSize,
       },
       filters:
-        categoriesParam !== "" && categoriesParam !== "all"
-          ? { Categories: { Slug: { eq: categoriesParam } } }
+        categories !== "" && categories !== "all"
+          ? { Categories: { Slug: { eq: categories } } }
           : null,
       locale: sanitizeLanguage(),
     },
@@ -68,11 +66,11 @@ const BlogList = ({
 
   useEffect(() => {
     getBlogList();
-  }, [getBlogList, searchParams, i18n.language]);
+  }, [getBlogList, page, categories, i18n.language]);
 
   return (
     <Grid container spacing={2} justifyContent="center" alignItems="center">
-      {categories && <Categories pathname={pathname} />}
+      {showCategories && <Categories pathname={pathname} />}
       {loading ? <BlogListSkelleton amount={3} /> : null}
       {error ? <QueryErrorWithIcon message={t("errorBlogs")} /> : null}
       {blogEntries?.length && !loading && !error ? (

@@ -1,6 +1,6 @@
 import { useRecoilState } from "recoil";
 import { userAtom } from "@atoms";
-import { Link } from "react-router-dom";
+import { Link } from "@tanstack/react-router";
 
 import IconButton from "@mui/material/IconButton";
 import AccountCircle from "@mui/icons-material/AccountCircle";

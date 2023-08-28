@@ -1,5 +1,4 @@
 import { useRecoilState } from "recoil";
-import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import { layoutAtom } from "@atoms";
@@ -22,11 +21,13 @@ import {
   type DrawerLinksProps,
 } from "./drawer-links";
 
+import { Link } from "@tanstack/react-router";
+
 import type { VNode } from "preact";
 
 const Drawer = (): VNode => {
   const { t } = useTranslation();
-  const { pathname } = useLocation();
+  const { pathname } = window.location;
   const [layout, setLayout] = useRecoilState(layoutAtom);
 
   const handleClose = (): void => setLayout({ ...layout, isDrawerOpen: false });

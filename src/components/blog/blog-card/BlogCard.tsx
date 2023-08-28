@@ -12,7 +12,7 @@ import { format } from "date-fns";
 
 import { getFNSLocale, sharePost, type singleBlogProps } from "@utils";
 
-import { Link } from "react-router-dom";
+import { Link } from "@tanstack/react-router";
 
 import { styles } from "./styles";
 import { LikeButton } from "@components";

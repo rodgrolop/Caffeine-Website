@@ -5,7 +5,7 @@ import IconButton from "@mui/material/IconButton";
 import SvgIcon from "@mui/material/SvgIcon";
 import { MainLogo } from "@components";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import { Link } from "@tanstack/react-router";
 
 import { footerImages, type FooterImageProps } from "./footer-images";
 import type { VNode } from "preact";

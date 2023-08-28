@@ -951,7 +951,7 @@
   resolved "https://registry.yarnpkg.com/@babel/regjsgen/-/regjsgen-0.8.0.tgz#f0ba69b075e1f05fb2825b7fad991e7adbb18310"
   integrity sha512-x/rqGMdzj+fWZvCOYForTghzbtqPDZ5gPwaoNGHdgDfF2QA/XZbCBp4Moo5scrkAMPhB7z26XM/AaHuIJdgauA==
 
-"@babel/runtime@^7.11.2", "@babel/runtime@^7.12.5", "@babel/runtime@^7.18.3", "@babel/runtime@^7.19.4", "@babel/runtime@^7.21.0", "@babel/runtime@^7.22.10", "@babel/runtime@^7.22.5", "@babel/runtime@^7.5.5", "@babel/runtime@^7.8.4", "@babel/runtime@^7.8.7":
+"@babel/runtime@^7.11.2", "@babel/runtime@^7.12.5", "@babel/runtime@^7.16.7", "@babel/runtime@^7.18.3", "@babel/runtime@^7.19.4", "@babel/runtime@^7.21.0", "@babel/runtime@^7.22.10", "@babel/runtime@^7.22.5", "@babel/runtime@^7.5.5", "@babel/runtime@^7.8.4", "@babel/runtime@^7.8.7":
   version "7.22.11"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.22.11.tgz#7a9ba3bbe406ad6f9e8dd4da2ece453eb23a77a4"
   integrity sha512-ee7jVNlWN09+KftVOu9n7S8gQzD/Z6hN/I8VBRXW4P1+Xe7kJGXMwu8vds4aGIMHZnNbdpSWCfZZtinytpcAvA==
@@ -1246,6 +1246,11 @@
   resolved "https://registry.yarnpkg.com/@fontsource/roboto/-/roboto-5.0.8.tgz#613b477a56f21b5705db1a67e995c033ef317f76"
   integrity sha512-XxPltXs5R31D6UZeLIV1td3wTXU3jzd3f2DLsXI8tytMGBkIsGcc9sIyiupRtA8y73HAhuSCeweOoBqf6DbWCA==
 
+"@gisatcz/cross-package-react-context@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@gisatcz/cross-package-react-context/-/cross-package-react-context-0.2.0.tgz#e8626ed8693e053b858353e2253143201fabc30c"
+  integrity sha512-E7aR/o1ArpXETO8bQi+Hltj3duHeZiLjR+x1VZrCDs3jplSLGoy+oqCcqNNE1BamTBa0YQTs8Go1Q1dtt3LEUg==
+
 "@graphql-typed-document-node/core@^3.1.1":
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/@graphql-typed-document-node/core/-/core-3.2.0.tgz#5f3d96ec6b2354ad6d8a28bf216a1d97b5426861"
@@ -1526,6 +1531,42 @@
     json5 "^2.2.0"
     magic-string "^0.25.0"
     string.prototype.matchall "^4.0.6"
+
+"@tanstack/react-router@^0.0.1-beta.169":
+  version "0.0.1-beta.169"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-router/-/react-router-0.0.1-beta.169.tgz#32625741cefa350e0cb50eb905176e772e9cee5a"
+  integrity sha512-K5WM0G3Utiq19YZBxTUBRHfR+G9g0AzPRRuxOQxdxZ1BO1PIu9Low3AfgOIq6so8/JM4hnTartzJ6y73LsQksg==
+  dependencies:
+    "@babel/runtime" "^7.16.7"
+    "@gisatcz/cross-package-react-context" "^0.2.0"
+    "@tanstack/react-store" "0.0.1-beta.169"
+    "@tanstack/router-core" "0.0.1-beta.169"
+    tiny-invariant "^1.3.1"
+    tiny-warning "^1.0.3"
+
+"@tanstack/react-store@0.0.1-beta.169":
+  version "0.0.1-beta.169"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-store/-/react-store-0.0.1-beta.169.tgz#0f2a4ba9127fabf80641d29c024bea116417abb1"
+  integrity sha512-BRybpDE4q0o3UhSbwNv1fJfIJd16ZSRZripiMRhoTE1FL4cyK5Ls4OYjtqc9mKHuUee+lHhC32ejEEpsi6+YNQ==
+  dependencies:
+    "@tanstack/store" "0.0.1-beta.169"
+    use-sync-external-store "^1.2.0"
+
+"@tanstack/router-core@0.0.1-beta.169":
+  version "0.0.1-beta.169"
+  resolved "https://registry.yarnpkg.com/@tanstack/router-core/-/router-core-0.0.1-beta.169.tgz#e24ed814694d17638712069b33673f62b6a9f90e"
+  integrity sha512-O2APiLY5Gg5srjdSjOjqon5jDOlIjEo91Zmc+LEpB7id5+UJQs4f727Q1V+7nXbmGo1b1HGygdR5r9bLZPf1Zg==
+  dependencies:
+    "@babel/runtime" "^7.16.7"
+    "@gisatcz/cross-package-react-context" "^0.2.0"
+    "@tanstack/react-store" "0.0.1-beta.169"
+    tiny-invariant "^1.3.1"
+    tiny-warning "^1.0.3"
+
+"@tanstack/store@0.0.1-beta.169":
+  version "0.0.1-beta.169"
+  resolved "https://registry.yarnpkg.com/@tanstack/store/-/store-0.0.1-beta.169.tgz#66ac8bc666bd8fbed137459791499931a7ff1ddc"
+  integrity sha512-VTkRJmky+Isz+6wcWl7Tm/vrxFABBmp9sdcZVoMTEX87KkCZjmNKdChbqAP8g8+R2hChGkyre+SFiQxNCWDkpw==
 
 "@types/estree@0.0.39":
   version "0.0.39"
@@ -3831,6 +3872,16 @@ terser@^5.0.0, terser@^5.17.4:
     commander "^2.20.0"
     source-map-support "~0.5.20"
 
+tiny-invariant@^1.3.1:
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/tiny-invariant/-/tiny-invariant-1.3.1.tgz#8560808c916ef02ecfd55e66090df23a4b7aa642"
+  integrity sha512-AD5ih2NlSssTCwsMznbvwMZpJ1cbhkGd2uueNxzv2jDlEeZdU04JQfRnggJQ8DrcVBGjAsCKwFBbDlVNtEMlzw==
+
+tiny-warning@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/tiny-warning/-/tiny-warning-1.0.3.tgz#94a30db453df4c643d0fd566060d60a875d84754"
+  integrity sha512-lBN9zLN/oAf68o3zNXYrdCt1kP8WsiGW8Oo2ka41b2IM5JL/S1CTyX1rW0mb/zSuJun0ZUrDxx4sqvYS2FWzPA==
+
 to-data-view@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/to-data-view/-/to-data-view-1.1.0.tgz#08d6492b0b8deb9b29bdf1f61c23eadfa8994d00"
@@ -4082,6 +4133,11 @@ uri-js@^4.2.2:
   integrity sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==
   dependencies:
     punycode "^2.1.0"
+
+use-sync-external-store@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/use-sync-external-store/-/use-sync-external-store-1.2.0.tgz#7dbefd6ef3fe4e767a0cf5d7287aacfb5846928a"
+  integrity sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==
 
 util-deprecate@^1.0.1:
   version "1.0.2"

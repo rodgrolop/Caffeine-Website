@@ -1,5 +1,5 @@
 import { default as Grid } from "@mui/material/Unstable_Grid2";
-import { Link } from "react-router-dom";
+import { Link } from "@tanstack/react-router";
 import { default as MUIPagination } from "@mui/material/Pagination";
 import PaginationItem from "@mui/material/PaginationItem";
 

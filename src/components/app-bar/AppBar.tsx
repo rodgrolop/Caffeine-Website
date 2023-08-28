@@ -12,7 +12,7 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import { default as MuiAppBar } from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import { Link as RouterLink } from "react-router-dom";
+import { Link } from "@tanstack/react-router";
 
 import ElevationScroll from "./ElevationScroll";
 import { appBarLinks } from "./app-bar-links";
@@ -39,11 +39,11 @@ const AppBar = (): VNode => {
           <IconButton
             color="inherit"
             aria-label="open drawer"
-            onClick={handleMenuClick}
+            onClick={() => handleMenuClick()}
           >
             <MenuIcon />
           </IconButton>
-          <RouterLink to="/" aria-label="Caffeine logo">
+          <Link to="/" aria-label="Caffeine logo">
             <MainLogo
               styles={{
                 width: 48,
@@ -53,7 +53,7 @@ const AppBar = (): VNode => {
                 marginTop: 6,
               }}
             />
-          </RouterLink>
+          </Link>
           <div style={{ flexGrow: 1 }} />
           <Box
             sx={{
@@ -63,7 +63,7 @@ const AppBar = (): VNode => {
             {appBarLinks.map(({ name, path }: AppBarLinksProps) => (
               <Button
                 key={name}
-                component={RouterLink}
+                component={Link}
                 to={path}
                 sx={{
                   color: "white",

@@ -5,7 +5,6 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import EmailIcon from "@mui/icons-material/Email";
 
 import type { VNode } from "preact";
-import { Link } from "react-router-dom";
 
 const SocialGrid = (): VNode => (
   <Grid
@@ -37,11 +36,12 @@ const SocialGrid = (): VNode => (
       <LinkedInIcon />
     </IconButton>
     <IconButton
-      component={Link}
       aria-label={"Github"}
       sx={{ fontSize: 30 }}
       size="large"
-      to="mailto:rodrigogrosslopez@gmail.com"
+      onClick={() =>
+        window.open("mailto:rodrigogrosslopez@gmail.com", "_blank")
+      }
     >
       <EmailIcon />
     </IconButton>

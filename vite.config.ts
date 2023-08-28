@@ -79,7 +79,12 @@ export default defineConfig({
           }) as any,
         ],
         manualChunks: {
-          "react-libs": ["preact", "react-router-dom", "recoil"],
+          "react-libs": [
+            "preact",
+            "react-router-dom",
+            "recoil",
+            "@tanstack/react-router",
+          ],
           "mui-libs": ["@mui/material", "@emotion/react", "@emotion/styled"],
         },
         compact: true,

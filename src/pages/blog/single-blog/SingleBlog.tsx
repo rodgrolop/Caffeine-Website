@@ -1,7 +1,7 @@
 import { useEffect, useState } from "preact/compat";
 import { useLazyQuery } from "@apollo/client";
 import { GET_SINGLE_BLOG } from "@queries";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
@@ -53,14 +53,14 @@ const SingleBlog = (): VNode => {
     const langSlug = blogEntry?.localizations?.find(
       (locale: any): any => locale.locale === i18n.language
     )?.Slug;
-    langSlug && navigate(`/blog/${langSlug}`);
+    langSlug && navigate({ to: `/blog/${langSlug}` });
   }, [blogEntry?.localizations, i18n.language, navigate]);
 
   useEffect(() => {
     if (data) {
       const post = blogSingleResponseTransformer(data);
       setBlogEntry(post);
-      setMarkdownSource(post.Content);
+      setMarkdownSource(post?.Content);
     }
   }, [data]);
 
@@ -167,7 +167,9 @@ const SingleBlog = (): VNode => {
           </>
         ) : null}
         {loading ? <SingleBlogSkelleton /> : null}
-        {error ? <NoResultsWithIcon message={t("errorBlog")} /> : null}
+        {error || !blogEntry ? (
+          <NoResultsWithIcon message={t("errorBlog")} />
+        ) : null}
       </>
     </PageContainer>
   );

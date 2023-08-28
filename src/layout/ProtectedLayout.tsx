@@ -1,21 +1,22 @@
 import { Suspense } from "preact/compat";
-import { Navigate, Outlet, useLocation } from "react-router-dom";
-import { useRecoilValue } from "recoil";
+// import { Navigate, Outlet, useLocation } from "react-router-dom";
+// import { useRecoilValue } from "recoil";
 
 import { ViewLoader, AppBar, Drawer, Footer } from "@components";
-import { userAtom } from "@atoms";
+// import { userAtom } from "@atoms";
+import { Outlet } from "@tanstack/react-router";
 
 import type { VNode } from "preact";
 
 const ProtectedLayout = (): VNode => {
-  const location = useLocation();
-  const user = useRecoilValue(userAtom);
+  // const location = useLocation();
+  // const user = useRecoilValue(userAtom);
 
-  if (!user?.authenticated) {
-    return (
-      <Navigate to="/auth/login" replace={true} state={{ from: location }} />
-    );
-  }
+  // if (!user?.authenticated) {
+  //   return (
+  //     <Navigate to="/auth/login" replace={true} state={{ from: location }} />
+  //   );
+  // }
 
   return (
     <>
