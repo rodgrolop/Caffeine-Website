@@ -1,5 +1,5 @@
-import { Suspense, useEffect } from "preact/compat";
-import { useLocation, useNavigate, Outlet } from "react-router-dom";
+import { Suspense } from "preact/compat";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 
 import { ViewLoader, AppBar, Drawer, Footer } from "@components";
@@ -9,17 +9,13 @@ import type { VNode } from "preact";
 
 const ProtectedLayout = (): VNode => {
   const location = useLocation();
-  const navigate = useNavigate();
   const user = useRecoilValue(userAtom);
 
-  useEffect(() => {
-    if (!user?.authenticated) {
-      navigate("/auth/login", {
-        replace: true,
-        state: { from: location },
-      });
-    }
-  }, [user, navigate, location]);
+  if (!user?.authenticated) {
+    return (
+      <Navigate to="/auth/login" replace={true} state={{ from: location }} />
+    );
+  }
 
   return (
     <>

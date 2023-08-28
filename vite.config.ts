@@ -53,7 +53,7 @@ export default defineConfig({
   build: {
     rollupOptions: {
       plugins: [
-        gzipPlugin(),
+        gzipPlugin() as any,
         gzipPlugin({
           customCompression: (content) => brotliPromise(Buffer.from(content)),
           fileName: ".br",
@@ -76,7 +76,7 @@ export default defineConfig({
               conditionals: true,
               evaluate: true,
             },
-          }),
+          }) as any,
         ],
         manualChunks: {
           "react-libs": ["preact", "react-router-dom", "recoil"],

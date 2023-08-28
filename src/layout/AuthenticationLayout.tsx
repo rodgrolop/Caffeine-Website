@@ -1,6 +1,6 @@
-import { Suspense, useEffect } from "preact/compat";
-import { Outlet } from "react-router-dom";
-import { useNavigate, useLocation } from "react-router";
+import { Suspense } from "preact/compat";
+import { Navigate, Outlet } from "react-router-dom";
+import { useLocation } from "react-router";
 
 import { ViewLoader, AppBar, Drawer, Footer } from "@components";
 import { useRecoilValue } from "recoil";
@@ -10,13 +10,13 @@ import type { VNode } from "preact";
 
 const AuthenticationLayout = (): VNode => {
   const { state } = useLocation();
-  const navigate = useNavigate();
   const user = useRecoilValue(userAtom);
-  useEffect(() => {
-    if (user?.authenticated) {
-      navigate((state as any)?.from?.pathname ?? "/", { replace: true });
-    }
-  }, [user, navigate, state]);
+
+  if (user?.authenticated) {
+    return (
+      <Navigate to={(state as any)?.from?.pathname ?? "/"} replace={true} />
+    );
+  }
 
   return (
     <>
