@@ -54,10 +54,10 @@ export default defineConfig({
     rollupOptions: {
       plugins: [
         gzipPlugin() as any,
-        gzipPlugin({
-          customCompression: (content) => brotliPromise(Buffer.from(content)),
-          fileName: ".br",
-        }),
+        // gzipPlugin({
+        //   customCompression: (content) => brotliPromise(Buffer.from(content)),
+        //   fileName: ".br",
+        // }),
       ],
       treeshake: {
         preset: "smallest",
