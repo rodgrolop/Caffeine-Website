@@ -62,7 +62,6 @@ export default defineConfig({
       treeshake: {
         preset: "smallest",
         moduleSideEffects: true,
-        tryCatchDeoptimization: false,
       },
       output: {
         format: "es",
@@ -70,12 +69,6 @@ export default defineConfig({
           terser({
             sourceMap: false,
             ecma: 2020,
-            compress: {
-              unused: true,
-              dead_code: true,
-              conditionals: true,
-              evaluate: true,
-            },
           }) as any,
         ],
         manualChunks: {
@@ -84,11 +77,6 @@ export default defineConfig({
         },
         compact: true,
         minifyInternalExports: true,
-        generatedCode: {
-          arrowFunctions: true,
-          constBindings: true,
-          objectShorthand: true,
-        },
       },
     },
   },

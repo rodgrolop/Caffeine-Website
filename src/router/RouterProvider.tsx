@@ -96,7 +96,6 @@ const RouterProviderWrapper = (): VNode => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    // TODO Improve this condition
     token && getMe();
   }, []);
 

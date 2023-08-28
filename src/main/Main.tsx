@@ -19,7 +19,7 @@ const Main = (): VNode => (
         defaultMode="dark"
       >
         <CssBaseline />
-          <RouterProvider />
+        <RouterProvider />
       </CssVarsProvider>
     </RecoilRoot>
   </ApolloProvider>

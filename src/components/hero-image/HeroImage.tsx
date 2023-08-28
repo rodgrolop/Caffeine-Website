@@ -7,7 +7,11 @@ import type { VNode } from "preact";
 import { styles } from "./styles";
 
 const HeroImage = (): VNode => (
-  <Grid container={true} direction="column" sx={styles.heroBackground}>
+  <Grid
+    container={true}
+    direction="column"
+    sx={{ minHeight: { xs: 360, sm: 480 }, ...styles.heroBackground }}
+  >
     <Grid
       container
       direction="column"
