@@ -1,10 +1,10 @@
-import { useEffect } from "preact/compat";
+import { useEffect, useState } from "preact/compat";
 import { PageContainer, SocialGrid } from "@components";
 import { Helmet } from "react-helmet";
 import { privacyContentES, privacyContentEN } from "./content";
 import { sanitizeLanguage } from "@utils";
 import { useTranslation } from "react-i18next";
-import { useRemark } from "react-remark";
+import Markdown from "preact-markdown";
 
 import type { VNode } from "preact";
 
@@ -12,10 +12,10 @@ import { styles } from "./styles";
 
 const PrivacyPolicy = (): VNode => {
   const { i18n } = useTranslation();
-  const [reactContent, setMarkdownSource] = useRemark();
+  const [privacyContent, setPrivacyContent] = useState<string>("");
 
   useEffect(() => {
-    setMarkdownSource(
+    setPrivacyContent(
       sanitizeLanguage() === "es" ? privacyContentES : privacyContentEN
     );
   }, [i18n.language]);
@@ -27,7 +27,9 @@ const PrivacyPolicy = (): VNode => {
           🔒 Privacy Policy | Rodrigo Gross Lopez - Senior React Developer
         </title>
       </Helmet>
-      <div style={styles.markdownContent}>{reactContent}</div>
+      <div style={styles.markdownContent}>
+        {Markdown(privacyContent, { markupOpts: {}, markedOpts: {} })}
+      </div>
       <SocialGrid />
     </PageContainer>
   );

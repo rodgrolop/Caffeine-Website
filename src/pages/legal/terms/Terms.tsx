@@ -1,9 +1,9 @@
-import { useEffect } from "preact/compat";
+import { useEffect, useState } from "preact/compat";
 import { PageContainer, SocialGrid } from "@components";
 import { Helmet } from "react-helmet";
-import { aboutContentES, aboutContentEN } from "./content";
+import { termsContentES, termsContentEN } from "./content";
 import { sanitizeLanguage } from "@utils";
-import { useRemark } from "react-remark";
+import Markdown from "preact-markdown";
 
 import { useTranslation } from "react-i18next";
 
@@ -13,11 +13,11 @@ import { styles } from "./styles";
 
 const Terms = (): VNode => {
   const { i18n } = useTranslation();
-  const [reactContent, setMarkdownSource] = useRemark();
+  const [termsContent, setTermsContent] = useState<string>("");
 
   useEffect(() => {
-    setMarkdownSource(
-      sanitizeLanguage() === "es" ? aboutContentES : aboutContentEN
+    setTermsContent(
+      sanitizeLanguage() === "es" ? termsContentES : termsContentEN
     );
   }, [i18n.language]);
 
@@ -28,7 +28,9 @@ const Terms = (): VNode => {
           🔒 Privacy Policy | Rodrigo Gross Lopez - Senior React Developer
         </title>
       </Helmet>
-      <div style={styles.markdownContent}>{reactContent}</div>
+      <div style={styles.markdownContent}>
+        {Markdown(termsContent, { markupOpts: {}, markedOpts: {} })}
+      </div>
       <SocialGrid />
     </PageContainer>
   );

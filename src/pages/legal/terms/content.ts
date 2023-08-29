@@ -1,4 +1,4 @@
-export const aboutContentES = `Rodrigo Gross López's website Terms and Conditions
+export const termsContentES = `Rodrigo Gross López's website Terms and Conditions
 -------------------------------
 
 ### Agreement to terms
@@ -312,9 +312,9 @@ Rodrigo Gross López
 rodrigogrosslopez@gmail.com
 
 
-Last updated: August 15th, 2023`
+Last updated: August 15th, 2023`;
 
-export const aboutContentEN = `Rodrigo Gross López's website Terms and Conditions
+export const termsContentEN = `Rodrigo Gross López's website Terms and Conditions
 -------------------------------
 
 ### Agreement to terms
@@ -628,4 +628,4 @@ Rodrigo Gross López
 rodrigogrosslopez@gmail.com
 
 
-Last updated: August 15th, 2023`
+Last updated: August 15th, 2023`;

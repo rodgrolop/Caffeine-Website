@@ -61,14 +61,13 @@ export default defineConfig({
         warn(warning);
       },
       plugins: [
-        gzipPlugin() as any,
         gzipPlugin({
           customCompression: (content) =>
             brotliPromise(Buffer.from(content), {
               params: { [zlib.constants.BROTLI_PARAM_QUALITY]: 11 },
             }),
           fileName: ".br",
-        }),
+        }) as any,
       ],
       treeshake: {
         preset: "smallest",
@@ -85,6 +84,11 @@ export default defineConfig({
         manualChunks: {
           "react-libs": ["preact", "react-router-dom", "recoil"],
           "mui-libs": ["@mui/material"],
+          i18next: [
+            "i18next",
+            "i18next-browser-languagedetector",
+            "react-i18next",
+          ],
         },
         compact: true,
         minifyInternalExports: true,

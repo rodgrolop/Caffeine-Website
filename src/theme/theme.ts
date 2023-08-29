@@ -1,19 +1,6 @@
 import { red } from "@mui/material/colors";
 import { createTheme } from "@mui/material/styles";
 
-declare module "@mui/material/styles" {
-  interface Theme {
-    status: {
-      danger: string;
-    };
-  }
-  interface ThemeOptions {
-    status?: {
-      danger?: string;
-    };
-  }
-}
-
 export const theme = createTheme({
   typography: {
     fontFamily: ["Roboto", '"Helvetica Neue"', "Arial", "sans-serif"].join(","),

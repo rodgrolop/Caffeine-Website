@@ -1,9 +1,9 @@
-import { useEffect } from "preact/compat";
+import { useEffect, useState } from "preact/compat";
 import { PageContainer, SocialGrid } from "@components";
 import { Helmet } from "react-helmet";
 import { aboutContentES, aboutContentEN } from "./content";
 import { sanitizeLanguage } from "@utils";
-import { useRemark } from "react-remark";
+import Markdown from "preact-markdown";
 
 import type { VNode } from "preact";
 
@@ -13,10 +13,10 @@ import { useTranslation } from "react-i18next";
 
 const About = (): VNode => {
   const { i18n } = useTranslation();
-  const [reactContent, setMarkdownSource] = useRemark();
+  const [aboutContent, setAboutContent] = useState<string>("");
 
   useEffect(() => {
-    setMarkdownSource(
+    setAboutContent(
       sanitizeLanguage() === "es" ? aboutContentES : aboutContentEN
     );
   }, [i18n.language]);
@@ -28,7 +28,9 @@ const About = (): VNode => {
           👨‍💻 About me | Rodrigo Gross Lopez - Senior React Developer
         </title>
       </Helmet>
-      <div style={styles.markdownContent}>{reactContent}</div>
+      <div style={styles.markdownContent}>
+        {Markdown(aboutContent, { markupOpts: {}, markedOpts: {} })}
+      </div>
       <SocialGrid />
     </PageContainer>
   );

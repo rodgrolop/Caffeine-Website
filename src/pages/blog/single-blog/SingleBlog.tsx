@@ -8,7 +8,7 @@ import IconButton from "@mui/material/IconButton";
 import ShareIcon from "@mui/icons-material/Share";
 import { default as Grid } from "@mui/material/Unstable_Grid2";
 import Chip from "@mui/material/Chip";
-import { useRemark } from "react-remark";
+import Markdown from "preact-markdown";
 
 import {
   PageContainer,
@@ -33,7 +33,6 @@ const SingleBlog = (): VNode => {
   const navigate = useNavigate();
   const { blogSlug } = useParams();
   const [blogEntry, setBlogEntry] = useState<singleItemBlogProps | null>(null);
-  const [reactContent, setMarkdownSource] = useRemark();
 
   const [getSingleBlog, { loading, error, data }] = useLazyQuery(
     GET_SINGLE_BLOG,
@@ -57,9 +56,7 @@ const SingleBlog = (): VNode => {
 
   useEffect(() => {
     if (data) {
-      const post = blogSingleResponseTransformer(data);
-      setBlogEntry(post);
-      setMarkdownSource(post.Content);
+      setBlogEntry(blogSingleResponseTransformer(data));
     }
   }, [data]);
 
@@ -159,7 +156,12 @@ const SingleBlog = (): VNode => {
               style={styles.blogMainImage}
             />
             {blogEntry.Content && (
-              <div style={styles.markdownContent}>{reactContent}</div>
+              <div style={styles.markdownContent}>
+                {Markdown(blogEntry.Content, {
+                  markupOpts: {},
+                  markedOpts: {},
+                })}
+              </div>
             )}
           </>
         ) : null}

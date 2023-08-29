@@ -28,7 +28,7 @@ Mi conjunto de habilidades técnicas incluye, pero no se limita a:
 
 ## 📬 Contáctame
 
-Si tienes alguna pregunta o simplemente quieres charlar sobre tecnología, no dudes en ponerte en contacto conmigo.`
+Si tienes alguna pregunta o simplemente quieres charlar sobre tecnología, no dudes en ponerte en contacto conmigo.`;
 
 export const aboutContentEN = `# 👋 Hello! I'm Rodrigo Gross López
 
@@ -60,4 +60,4 @@ My technical skill set includes, but is not limited to:
 
 ## 📬 Contact me
 
-If you have any questions or just want to chat about technology, feel free to contact me.`
+If you have any questions or just want to chat about technology, feel free to contact me.`;
