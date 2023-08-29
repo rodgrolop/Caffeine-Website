@@ -1,6 +1,5 @@
 import { Suspense } from "preact/compat";
-import { Navigate, Outlet } from "react-router-dom";
-import { useLocation } from "react-router";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 
 import { ViewLoader, AppBar, Drawer, Footer } from "@components";
 import { useRecoilValue } from "recoil";

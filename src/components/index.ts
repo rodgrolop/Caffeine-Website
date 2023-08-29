@@ -17,7 +17,6 @@ export { default as QueryError } from "./error/QueryError";
 export { default as QueryErrorWithIcon } from "./error/QueryErrorWithIcon";
 export { default as PageContainer } from "./page-container/PageContainer";
 export { default as AuthPageContainer } from "./page-container/AuthPageContainer";
-export { default as ModeSwitcher } from "./mode-switcher/ModeSwitcher";
 export { default as LanguageSwitcher } from "./language-switcher/LanguageSwitcher";
 export { default as MainLogo } from "./main-logo/MainLogo";
 export { default as LikeButton } from "./like-button/LikeButton";

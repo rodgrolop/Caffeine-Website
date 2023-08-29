@@ -8,7 +8,6 @@ import IconButton from "@mui/material/IconButton";
 import ShareIcon from "@mui/icons-material/Share";
 import { default as Grid } from "@mui/material/Unstable_Grid2";
 import Chip from "@mui/material/Chip";
-import { format } from "date-fns";
 import { useRemark } from "react-remark";
 
 import {
@@ -19,7 +18,7 @@ import {
 } from "@components";
 
 import {
-  getFNSLocale,
+  customDateFormat,
   blogSingleResponseTransformer,
   sharePost,
   type singleItemBlogProps,
@@ -100,9 +99,7 @@ const SingleBlog = (): VNode => {
             >
               <Grid>
                 <Typography variant="body1" fontSize={"small"}>
-                  {format(new Date(blogEntry.updatedAt), "PPP", {
-                    locale: getFNSLocale(),
-                  })}
+                  {customDateFormat(blogEntry.updatedAt)}
                 </Typography>
               </Grid>
               <Grid>

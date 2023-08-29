@@ -6,6 +6,7 @@ import { promisify } from "util";
 import { brotliCompress } from "zlib";
 import gzipPlugin from "rollup-plugin-gzip";
 import { VitePWA } from "vite-plugin-pwa";
+import zlib from "zlib";
 
 const brotliPromise = promisify(brotliCompress);
 
@@ -21,7 +22,7 @@ export default defineConfig({
         description:
           "Rodrigo Gross Lopez, a seasoned React Developer with 9+ years of experience. 🌟 Specializing in speed, performance, and scalability, Rodrigo delivers top-tier web applications",
         start_url: ".",
-        theme_color: "#b51c1d",
+        theme_color: "#212121",
         background_color: "#212121",
         icons: [
           {
@@ -51,13 +52,23 @@ export default defineConfig({
     }),
   ],
   build: {
+    target: "esnext",
     rollupOptions: {
+      onwarn(warning, warn) {
+        if (warning.code === "MODULE_LEVEL_DIRECTIVE") {
+          return;
+        }
+        warn(warning);
+      },
       plugins: [
         gzipPlugin() as any,
-        // gzipPlugin({
-        //   customCompression: (content) => brotliPromise(Buffer.from(content)),
-        //   fileName: ".br",
-        // }),
+        gzipPlugin({
+          customCompression: (content) =>
+            brotliPromise(Buffer.from(content), {
+              params: { [zlib.constants.BROTLI_PARAM_QUALITY]: 11 },
+            }),
+          fileName: ".br",
+        }),
       ],
       treeshake: {
         preset: "smallest",
@@ -73,7 +84,7 @@ export default defineConfig({
         ],
         manualChunks: {
           "react-libs": ["preact", "react-router-dom", "recoil"],
-          "mui-libs": ["@mui/material", "@emotion/react", "@emotion/styled"],
+          "mui-libs": ["@mui/material"],
         },
         compact: true,
         minifyInternalExports: true,

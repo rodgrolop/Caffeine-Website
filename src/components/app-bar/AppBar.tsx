@@ -1,11 +1,6 @@
 import { useRecoilState } from "recoil";
 import { layoutAtom } from "@atoms";
-import {
-  ModeSwitcher,
-  LanguageSwitcher,
-  UserMenu,
-  MainLogo,
-} from "@components";
+import { LanguageSwitcher, UserMenu, MainLogo } from "@components";
 import { useTranslation } from "react-i18next";
 
 import IconButton from "@mui/material/IconButton";
@@ -75,7 +70,6 @@ const AppBar = (): VNode => {
           </Box>
           <UserMenu />
           <LanguageSwitcher />
-          <ModeSwitcher />
         </Toolbar>
       </MuiAppBar>
     </ElevationScroll>

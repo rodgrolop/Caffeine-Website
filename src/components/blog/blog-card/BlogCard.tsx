@@ -8,9 +8,8 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Chip from "@mui/material/Chip";
 import ShareIcon from "@mui/icons-material/Share";
-import { format } from "date-fns";
 
-import { getFNSLocale, sharePost, type singleBlogProps } from "@utils";
+import { customDateFormat, sharePost, type singleBlogProps } from "@utils";
 
 import { Link } from "react-router-dom";
 
@@ -39,9 +38,7 @@ const BlogCard = ({ blog }: BlogCardProps): VNode => {
           title={<Typography variant="body1">{Title}</Typography>}
           subheader={
             <Typography variant="caption" color="text.secondary">
-              {format(new Date(updatedAt), "PPP", {
-                locale: getFNSLocale(),
-              })}
+              {customDateFormat(updatedAt)}
             </Typography>
           }
           disableTypography
