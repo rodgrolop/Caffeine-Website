@@ -1,6 +1,8 @@
 import { RecoilRoot } from "recoil";
 import { ApolloProvider } from "@apollo/client";
 import apolloClient from "@apollo-client";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { queryClient } from "@react-query-client";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 
@@ -11,12 +13,14 @@ import type { VNode } from "preact";
 
 const Main = (): VNode => (
   <ApolloProvider client={apolloClient}>
-    <RecoilRoot>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <RouterProvider />
-      </ThemeProvider>
-    </RecoilRoot>
+    <QueryClientProvider client={queryClient}>
+      <RecoilRoot>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <RouterProvider />
+        </ThemeProvider>
+      </RecoilRoot>
+    </QueryClientProvider>
   </ApolloProvider>
 );
 export default Main;

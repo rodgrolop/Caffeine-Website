@@ -1,7 +1,9 @@
-export { layoutAtom } from './layout'
+export { layoutAtom } from "./layout";
 export {
-    userAtom,
-    userFetchStatusAtom,
-    userLoginStatusAtom,
-    type userFetchErrorProps,
-} from './user'
+  userAtom,
+  userFetchStatusAtom,
+  userLoginStatusAtom,
+  type userFetchErrorProps,
+  type userAtomProps,
+  type userQueryErrorProps,
+} from "./user";

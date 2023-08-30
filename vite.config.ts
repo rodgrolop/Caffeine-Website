@@ -98,6 +98,10 @@ export default defineConfig({
   resolve: {
     alias: {
       "@apollo-client": `${path.resolve(__dirname, "src/apollo/index")}`,
+      "@react-query-client": `${path.resolve(
+        __dirname,
+        "src/react_query/index"
+      )}`,
       "@authentication": `${path.resolve(
         __dirname,
         "src/api/authentication/index"
