@@ -11,6 +11,8 @@ const ProtectedLayout = (): VNode => {
   const location = useLocation();
   const user = useRecoilValue(userAtom);
 
+  console.log(user);
+
   if (!user?.authenticated) {
     return (
       <Navigate to="/auth/login" replace={true} state={{ from: location }} />

@@ -10,9 +10,7 @@ import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import Typography from "@mui/material/Typography";
 
-import { useLogin, type loginInputProps } from "@authentication";
-import { useRecoilValue } from "recoil";
-import { userLoginStatusAtom } from "@atoms";
+import { useLogin, type loginInputProps } from "@api";
 import SendIcon from "@mui/icons-material/Send";
 import CircularProgress from "@mui/material/CircularProgress";
 
@@ -21,31 +19,30 @@ import type { VNode } from "preact";
 import { styles } from "./styles";
 
 const LoginForm = (): VNode => {
-  const { logIn } = useLogin();
-  const { loading, errors } = useRecoilValue(userLoginStatusAtom);
-  const [inputErrors, setInputErrors] = useState<string | undefined>(undefined);
+  const { mutate, error, isLoading } = useLogin();
+  const [inputErrors, setInputErrors] = useState<boolean>(false);
 
   const [formState, setFormState] = useState<loginInputProps>({
     identifier: "",
     password: "",
   });
-  const [showPassword, setShowPassword] = useState<Boolean>(false);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const handleClickShowPassword = (): void => setShowPassword((show) => !show);
 
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setInputErrors(undefined);
+    setInputErrors(false);
     const { name, value } = event.target as HTMLInputElement;
     setFormState({ ...formState, [name]: value });
   };
 
   const onSubmit = () => {
-    logIn(formState);
+    mutate(formState);
   };
 
   useEffect(() => {
-    setInputErrors(errors?.message);
-  }, [errors]);
+    setInputErrors(Boolean(error));
+  }, [error]);
 
   return (
     <>
@@ -60,7 +57,7 @@ const LoginForm = (): VNode => {
           <OutlinedInput
             id="outlined-adornment-user"
             name="identifier"
-            error={Boolean(inputErrors)}
+            error={inputErrors}
             onChange={onChange}
             value={formState.identifier}
             label={"Email/Username"}
@@ -75,7 +72,7 @@ const LoginForm = (): VNode => {
           <OutlinedInput
             id="outlined-adornment-password"
             name="password"
-            error={Boolean(inputErrors)}
+            error={inputErrors}
             onChange={onChange}
             value={formState.password}
             label={"Password"}
@@ -94,7 +91,7 @@ const LoginForm = (): VNode => {
         </FormControl>
       </Grid>
       <Grid sx={{ height: "52px" }}>
-        {loading ? (
+        {isLoading ? (
           <CircularProgress color="secondary" size={30} />
         ) : (
           <Button

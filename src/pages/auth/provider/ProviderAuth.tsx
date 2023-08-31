@@ -1,4 +1,3 @@
-import { useEffect } from "preact/compat";
 import { default as Grid } from "@mui/material/Unstable_Grid2";
 import CircularProgress from "@mui/material/CircularProgress";
 import Typography from "@mui/material/Typography";
@@ -6,12 +5,10 @@ import Button from "@mui/material/Button";
 import GoogleIcon from "@mui/icons-material/Google";
 import { Link } from "react-router-dom";
 import { useParams, useSearchParams } from "react-router-dom";
-import { useRecoilValue } from "recoil";
 import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet";
 import { AuthPageContainer } from "@components";
-import { useProviderAuthentication } from "@authentication";
-import { userLoginStatusAtom, userFetchStatusAtom } from "@atoms";
+import { useProviderAuthentication } from "@api";
 
 import type { VNode } from "preact";
 
@@ -28,18 +25,13 @@ const getProviderLogo = (provider?: string): VNode | null => {
 
 const ProviderAuth = (): VNode => {
   const { t } = useTranslation();
-  const { loading, errors } = useRecoilValue(userLoginStatusAtom);
-  const { loading: getMeLoading } = useRecoilValue(userFetchStatusAtom);
   const { provider } = useParams();
-  const { authWithToken } = useProviderAuthentication();
   const [searchParams] = useSearchParams();
-
-  useEffect(() => {
-    const token = searchParams.get("access_token");
-    if (!getMeLoading && token && provider) {
-      authWithToken(token, provider as string);
-    }
-  }, [getMeLoading]);
+  const token = searchParams.get("access_token");
+  const { error, isFetching, providerError } = useProviderAuthentication(
+    token,
+    provider as string
+  );
 
   return (
     <AuthPageContainer>
@@ -58,7 +50,7 @@ const ProviderAuth = (): VNode => {
       >
         <Grid>{getProviderLogo(provider)}</Grid>
         <Grid>
-          {errors?.message ? (
+          {error?.message || providerError?.message ? (
             <Typography variant="h5" component="div">
               {t("somethingHappened")}
             </Typography>
@@ -68,26 +60,28 @@ const ProviderAuth = (): VNode => {
             </Typography>
           )}
         </Grid>
-        <Grid>{loading ? <CircularProgress color="secondary" /> : null}</Grid>
         <Grid>
-          {errors?.message ? (
-            <Typography variant="caption" gutterBottom component="div">
-              {errors.message}
-            </Typography>
-          ) : null}
+          {isFetching ? <CircularProgress color="secondary" /> : null}
         </Grid>
-        <Grid>
-          {errors?.message ? (
-            <Button
-              variant="contained"
-              color="secondary"
-              component={Link}
-              to="/auth/login"
-            >
-              {t("backLogin")}
-            </Button>
-          ) : null}
-        </Grid>
+        {error?.message || providerError?.message ? (
+          <>
+            <Grid>
+              <Typography variant="caption" gutterBottom component="div">
+                {error?.message ?? providerError?.message}
+              </Typography>
+            </Grid>
+            <Grid>
+              <Button
+                variant="contained"
+                color="secondary"
+                component={Link}
+                to="/auth/login"
+              >
+                {t("backLogin")}
+              </Button>
+            </Grid>
+          </>
+        ) : null}
       </Grid>
     </AuthPageContainer>
   );

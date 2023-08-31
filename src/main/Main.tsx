@@ -2,7 +2,7 @@ import { RecoilRoot } from "recoil";
 import { ApolloProvider } from "@apollo/client";
 import apolloClient from "@apollo-client";
 import { QueryClientProvider } from "@tanstack/react-query";
-import { queryClient } from "@react-query-client";
+import { queryClient } from "@api";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 

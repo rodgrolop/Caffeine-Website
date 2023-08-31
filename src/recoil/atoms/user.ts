@@ -1,5 +1,4 @@
 import { atom } from "recoil";
-import recoilPersist from "../recoil-persist";
 
 const USER_KEY = "user";
 
@@ -20,22 +19,6 @@ export type userAtomProps = {
   };
 };
 
-export type userFetchErrorProps = {
-  message?: string;
-  name?: string;
-  path?: string[];
-};
-
-export type userQueryErrorProps = {
-  errors: userFetchErrorProps[];
-  message?: string;
-} | null;
-
-type userFetchStatusProps = {
-  loading: boolean;
-  errors: userQueryErrorProps;
-};
-
 const defaultUserFetchStatus = {
   loading: false,
   errors: null,
@@ -44,15 +27,19 @@ const defaultUserFetchStatus = {
 export const userAtom = atom<userAtomProps | null>({
   key: USER_KEY,
   default: null,
-  effects: [recoilPersist(USER_KEY)],
 });
 
-export const userFetchStatusAtom = atom<userFetchStatusProps>({
-  key: "userFetchStatus",
-  default: defaultUserFetchStatus,
-});
-
-export const userLoginStatusAtom = atom<userFetchStatusProps>({
+export const userLoginStatusAtom = atom<{
+  loading: boolean;
+  errors: {
+    errors: {
+      message?: string;
+      name?: string;
+      path?: string[];
+    }[];
+    message?: string;
+  } | null;
+}>({
   key: "userLoginStatus",
   default: defaultUserFetchStatus,
 });

@@ -1,5 +1,5 @@
 import { gql } from "graphql-request";
-import { graphQLClient } from "../reactQueryClient";
+import { graphQLClient } from "@api";
 
 export const GET_ME = gql`
   query meQuery {
@@ -23,6 +23,4 @@ export const GET_ME = gql`
   }
 `;
 
-export const getMeQuery = async () => {
-  return await graphQLClient.request(GET_ME);
-};
+export const getMeQuery = async () => await graphQLClient.request(GET_ME);

@@ -98,14 +98,7 @@ export default defineConfig({
   resolve: {
     alias: {
       "@apollo-client": `${path.resolve(__dirname, "src/apollo/index")}`,
-      "@react-query-client": `${path.resolve(
-        __dirname,
-        "src/react_query/index"
-      )}`,
-      "@authentication": `${path.resolve(
-        __dirname,
-        "src/api/authentication/index"
-      )}`,
+      "@api": `${path.resolve(__dirname, "src/api/index")}`,
       "@queries": `${path.resolve(__dirname, "src/graphql/queries/index")}`,
       "@mutations": `${path.resolve(__dirname, "src/graphql/mutations/index")}`,
       "@router": `${path.resolve(__dirname, "src/router/index")}`,
