@@ -1,15 +1,13 @@
-import { lazy, useEffect } from "preact/compat";
+import { lazy } from "preact/compat";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { AuthenticationLayout, ProtectedLayout, GlobalLayout } from "@layout";
 
-import { useGetMe } from "@authentication";
 import { MainLoader } from "@components";
-import { useRecoilValue } from "recoil";
-import { userFetchStatusAtom } from "@atoms";
 
 import type { VNode } from "preact";
 
 import { styles } from "./styles";
+import { useGetMeQuery } from "@api";
 
 // Auth
 const Login = lazy(() => import("./../pages/auth/login/Login"));
@@ -91,15 +89,10 @@ const router = createBrowserRouter([
 ]);
 
 const RouterProviderWrapper = (): VNode => {
-  const { getMe } = useGetMe();
-  const { loading } = useRecoilValue(userFetchStatusAtom);
+  const token = localStorage.getItem("token");
+  const { isFetching } = useGetMeQuery(token);
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    token && getMe();
-  }, []);
-
-  return loading ? (
+  return isFetching ? (
     <MainLoader />
   ) : (
     <div style={styles.routerContainer}>

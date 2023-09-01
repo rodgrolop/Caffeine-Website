@@ -1,6 +1,4 @@
 import { useState, useEffect } from "preact/compat";
-import { useLazyQuery } from "@apollo/client";
-import { GET_BLOGS_CATEGORIES } from "@queries";
 import { Link as RouterLink } from "react-router-dom";
 import { default as Grid } from "@mui/material/Unstable_Grid2";
 import Chip from "@mui/material/Chip";
@@ -15,6 +13,7 @@ import {
 
 import type { VNode } from "preact";
 import { styles } from "./styles";
+import { useGetCategoriesQuery } from "@api";
 
 type CategoriesProps = {
   pathname: string;
@@ -25,24 +24,16 @@ const Categories = ({ pathname }: CategoriesProps): VNode => {
   const [categories, setCategories] = useState<singleCategoryProps[] | null>(
     null
   );
-  const [getCategories, { loading, error, data }] = useLazyQuery(
-    GET_BLOGS_CATEGORIES,
-    {
-      variables: {
-        locale: sanitizeLanguage(),
-      },
-    }
-  );
+
+  const { data, error, isFetching } = useGetCategoriesQuery({
+    locale: sanitizeLanguage(),
+  });
 
   useEffect(() => {
     if (data) {
       setCategories(categoriesResponseTransformer(data));
     }
   }, [data]);
-
-  useEffect(() => {
-    getCategories();
-  }, [getCategories]);
 
   return (
     <Grid
@@ -52,9 +43,9 @@ const Categories = ({ pathname }: CategoriesProps): VNode => {
       alignItems="center"
       sx={styles.categoriesContainer}
     >
-      {loading ? <ChipsSkelleton /> : null}
+      {isFetching ? <ChipsSkelleton /> : null}
       {error ? <QueryError message={t("errorCategories")} /> : null}
-      {categories?.length && !loading && !error
+      {categories?.length && !isFetching && !error
         ? categories.map(
             (category: singleCategoryProps): VNode => (
               <Chip
@@ -71,7 +62,7 @@ const Categories = ({ pathname }: CategoriesProps): VNode => {
             )
           )
         : null}
-      {categories?.length === 0 && !loading && !error ? (
+      {categories?.length === 0 && !isFetching && !error ? (
         <NoResults message={t("noResultsCategories")} />
       ) : null}
     </Grid>

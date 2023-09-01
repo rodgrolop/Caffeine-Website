@@ -84,11 +84,6 @@ export default defineConfig({
         manualChunks: {
           "react-libs": ["preact", "react-router-dom", "recoil"],
           "mui-libs": ["@mui/material"],
-          i18next: [
-            "i18next",
-            "i18next-browser-languagedetector",
-            "react-i18next",
-          ],
         },
         compact: true,
         minifyInternalExports: true,
@@ -98,10 +93,7 @@ export default defineConfig({
   resolve: {
     alias: {
       "@apollo-client": `${path.resolve(__dirname, "src/apollo/index")}`,
-      "@authentication": `${path.resolve(
-        __dirname,
-        "src/api/authentication/index"
-      )}`,
+      "@api": `${path.resolve(__dirname, "src/api/index")}`,
       "@queries": `${path.resolve(__dirname, "src/graphql/queries/index")}`,
       "@mutations": `${path.resolve(__dirname, "src/graphql/mutations/index")}`,
       "@router": `${path.resolve(__dirname, "src/router/index")}`,
@@ -114,7 +106,6 @@ export default defineConfig({
       "@hooks": `${path.resolve(__dirname, "src/hooks/index")}`,
       "@utils": `${path.resolve(__dirname, "src/utils/index")}`,
       "@atoms": `${path.resolve(__dirname, "src/recoil/atoms/index")}`,
-      "@selectors": `${path.resolve(__dirname, "src/recoil/selectors/index")}`,
     },
   },
 });
