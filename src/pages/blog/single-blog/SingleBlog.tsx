@@ -1,6 +1,4 @@
 import { useEffect, useState } from "preact/compat";
-import { useLazyQuery } from "@apollo/client";
-import { GET_SINGLE_BLOG } from "@queries";
 import { useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Typography from "@mui/material/Typography";
@@ -27,6 +25,7 @@ import {
 import type { VNode, h } from "preact";
 
 import { styles } from "./styles";
+import { useGetSingleBlogQuery } from "@api";
 
 const SingleBlog = (): VNode => {
   const { t, i18n } = useTranslation();
@@ -34,18 +33,13 @@ const SingleBlog = (): VNode => {
   const { blogSlug } = useParams();
   const [blogEntry, setBlogEntry] = useState<singleItemBlogProps | null>(null);
 
-  const [getSingleBlog, { loading, error, data }] = useLazyQuery(
-    GET_SINGLE_BLOG,
-    {
-      variables: {
-        filters: { Slug: { eq: blogSlug } },
-        pagination: {
-          page: 1,
-          pageSize: 1,
-        },
-      },
-    }
-  );
+  const { data, error, isFetching } = useGetSingleBlogQuery({
+    filters: { Slug: { eq: blogSlug } },
+    pagination: {
+      page: 1,
+      pageSize: 1,
+    },
+  });
 
   useEffect(() => {
     const langSlug = blogEntry?.localizations?.find(
@@ -59,10 +53,6 @@ const SingleBlog = (): VNode => {
       setBlogEntry(blogSingleResponseTransformer(data));
     }
   }, [data]);
-
-  useEffect(() => {
-    getSingleBlog();
-  }, [getSingleBlog]);
 
   return (
     <PageContainer>
@@ -165,7 +155,7 @@ const SingleBlog = (): VNode => {
             )}
           </>
         ) : null}
-        {loading ? <SingleBlogSkelleton /> : null}
+        {isFetching ? <SingleBlogSkelleton /> : null}
         {error ? <NoResultsWithIcon message={t("errorBlog")} /> : null}
       </>
     </PageContainer>

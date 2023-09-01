@@ -5,19 +5,17 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "tsc && pwa-assets-generator && vite build",
     "preview": "vite preview",
     "generate-pwa-assets": "pwa-assets-generator"
   },
   "dependencies": {
-    "@apollo/client": "^3.8.1",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@fontsource/roboto": "^5.0.8",
     "@mui/icons-material": "^5.14.6",
     "@mui/material": "^5.14.6",
     "@tanstack/react-query": "^4.33.0",
-    "axios": "^1.5.0",
     "graphql": "^16.8.0",
     "graphql-request": "^6.1.0",
     "i18next": "^23.4.6",

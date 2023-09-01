@@ -7,5 +7,9 @@ export const providerAuthQuery = async (
       import.meta.env.VITE_STRAPI_ENDPOINT
     }/api/auth/${provider}/callback?access_token=${token}`
   );
+  // TODO
+  // if (!response.ok) {
+  //   throw new Error('Error')
+  // }
   return response.json();
 };

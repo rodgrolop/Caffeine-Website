@@ -18,7 +18,6 @@
       "@hooks":["src/hooks/index"], 
       "@utils":["src/utils/index"],
       "@atoms": ["src/recoil/atoms/index"],
-      "@selectors": ["src/recoil/selectors/index"],
     }
   }
 }

@@ -26,6 +26,5 @@ export const LOGIN_MUTATION = gql`
   }
 `;
 
-export const loginMutation = async (loginInput: loginInputProps) => {
-  return await graphQLClient.request(LOGIN_MUTATION, { input: loginInput });
-};
+export const loginMutation = async (loginInput: loginInputProps) =>
+  await graphQLClient.request(LOGIN_MUTATION, { input: loginInput });

@@ -1,4 +1,4 @@
-import { userAtom, userLoginStatusAtom } from "@atoms";
+import { userAtom } from "@atoms";
 import { useSetRecoilState } from "recoil";
 import type {
   getMeQueryDataProps,
@@ -13,7 +13,6 @@ import { loginMutation } from "../mutations/login-mutation";
 
 export const useLogin = () => {
   const setUser = useSetRecoilState(userAtom);
-  const setUserLoginStatus = useSetRecoilState(userLoginStatusAtom);
 
   const { mutate, data, error, isLoading } = useMutation({
     mutationFn: (loginInput: loginInputProps) => loginMutation(loginInput),
@@ -22,7 +21,6 @@ export const useLogin = () => {
   if (data) {
     const { login } = data as loginResponseProps;
     localStorage.setItem("token", login.jwt);
-    setUserLoginStatus({ errors: null, loading: false });
     setUser({
       authenticated: true,
       jwt: login.jwt,

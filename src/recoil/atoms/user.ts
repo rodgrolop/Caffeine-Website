@@ -19,27 +19,7 @@ export type userAtomProps = {
   };
 };
 
-const defaultUserFetchStatus = {
-  loading: false,
-  errors: null,
-};
-
 export const userAtom = atom<userAtomProps | null>({
   key: USER_KEY,
   default: null,
-});
-
-export const userLoginStatusAtom = atom<{
-  loading: boolean;
-  errors: {
-    errors: {
-      message?: string;
-      name?: string;
-      path?: string[];
-    }[];
-    message?: string;
-  } | null;
-}>({
-  key: "userLoginStatus",
-  default: defaultUserFetchStatus,
 });
