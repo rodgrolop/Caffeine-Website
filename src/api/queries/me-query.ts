@@ -1,5 +1,5 @@
 import { gql } from "graphql-request";
-import { graphQLClient } from "@api";
+import { graphQLClient } from "../client/reactQueryClient";
 
 export const GET_ME = gql`
   query meQuery {

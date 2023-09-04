@@ -1,5 +1,3 @@
-import { useRecoilState } from "recoil";
-import { layoutAtom } from "@atoms";
 import { LanguageSwitcher, UserMenu, MainLogo } from "@components";
 import { useTranslation } from "react-i18next";
 
@@ -15,14 +13,12 @@ import type { AppBarLinksProps } from "./app-bar-links";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import type { VNode } from "preact";
+import { useContext } from "preact/hooks";
+import { LayoutContext } from "@context";
 
 const AppBar = (): VNode => {
   const { t } = useTranslation();
-  const [layout, setLayout] = useRecoilState(layoutAtom);
-
-  const handleMenuClick = (): void => {
-    setLayout({ ...layout, isDrawerOpen: !layout.isDrawerOpen });
-  };
+  const { toggleDrawer } = useContext(LayoutContext);
 
   return (
     <ElevationScroll>
@@ -34,7 +30,7 @@ const AppBar = (): VNode => {
           <IconButton
             color="inherit"
             aria-label="open drawer"
-            onClick={handleMenuClick}
+            onClick={() => toggleDrawer?.()}
           >
             <MenuIcon />
           </IconButton>

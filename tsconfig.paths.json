@@ -17,7 +17,7 @@
       "@images":["src/assets/images/index"],
       "@hooks":["src/hooks/index"], 
       "@utils":["src/utils/index"],
-      "@atoms": ["src/recoil/atoms/index"],
+      "@context": ["src/context/index"],
     }
   }
 }

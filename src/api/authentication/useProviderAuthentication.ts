@@ -1,19 +1,21 @@
-import { userAtom } from "@atoms";
-import { useSetRecoilState } from "recoil";
 import { userBloglikesTransformer } from "@utils";
 import { useQuery } from "@tanstack/react-query";
-import { getMeQuery, graphQLClient, providerAuthQuery } from "@api";
 import type {
   getMeQueryDataProps,
   providerUserQueryProps,
   userQueryErrorProps,
 } from "./useAuthenticationProps";
+import { useContext } from "preact/hooks";
+import { UserContextSetter } from "@context";
+import { providerAuthQuery } from "../queries/provider-auth-query";
+import { graphQLClient } from "../client/reactQueryClient";
+import { getMeQuery } from "../queries/me-query";
 
 export const useProviderAuthentication = (
   token: string | null,
   provider: string
 ) => {
-  const setUser = useSetRecoilState(userAtom);
+  const { setUser } = useContext(UserContextSetter);
   const { data: providerAuthData } = useQuery<
     unknown,
     userQueryErrorProps,

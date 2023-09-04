@@ -1,15 +1,15 @@
 import { Suspense } from "preact/compat";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
+import { useContext } from "preact/hooks";
 
 import { ViewLoader, AppBar, Drawer, Footer } from "@components";
-import { useRecoilValue } from "recoil";
-import { userAtom } from "@atoms";
 
 import type { VNode } from "preact";
+import { UserContext } from "@context";
 
 const AuthenticationLayout = (): VNode => {
   const { state } = useLocation();
-  const user = useRecoilValue(userAtom);
+  const user = useContext(UserContext);
 
   if (user?.authenticated) {
     return (

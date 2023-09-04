@@ -1,12 +1,11 @@
 import IconButton from "@mui/material/IconButton";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
-import { userAtom } from "@atoms";
-import { useRecoilState } from "recoil";
 
 import type { h, VNode } from "preact";
 import { blogLikeResponseProps, useBlogLike } from "@api";
-import { useEffect } from "preact/hooks";
+import { useContext, useEffect } from "preact/hooks";
+import { UserContext, UserContextSetter } from "@context";
 
 type LikeIconProps = {
   blogId: string;
@@ -15,7 +14,8 @@ type LikeIconProps = {
 
 const LikeButton = (props: LikeIconProps): VNode | null => {
   const { blogId } = props;
-  const [user, setUser] = useRecoilState(userAtom);
+  const user = useContext(UserContext);
+  const { setUser } = useContext(UserContextSetter);
   const { mutate, data } = useBlogLike();
   const likedByUser = user?.user.id && user.user.blog_likes.includes(blogId);
 

@@ -1,12 +1,12 @@
 import { cloneElement } from "preact";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
 import { ElevationScrollProps } from "./ElevationScrollProps";
-import { useRecoilValue } from "recoil";
-import { layoutAtom } from "@atoms";
 import type { VNode } from "preact";
+import { useContext } from "preact/hooks";
+import { LayoutContext } from "@context";
 
 const ElevationScroll = (props: ElevationScrollProps): VNode => {
-  const { isDrawerOpen } = useRecoilValue(layoutAtom);
+  const { isDrawerOpen } = useContext(LayoutContext);
   const { children } = props;
 
   const trigger = useScrollTrigger({

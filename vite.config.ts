@@ -82,7 +82,7 @@ export default defineConfig({
           }) as any,
         ],
         manualChunks: {
-          "react-libs": ["preact", "react-router-dom", "recoil"],
+          "react-libs": ["preact", "react-router-dom"],
           "mui-libs": ["@mui/material"],
         },
         compact: true,
@@ -105,7 +105,7 @@ export default defineConfig({
       "@images": `${path.resolve(__dirname, "src/assets/images/index")}`,
       "@hooks": `${path.resolve(__dirname, "src/hooks/index")}`,
       "@utils": `${path.resolve(__dirname, "src/utils/index")}`,
-      "@atoms": `${path.resolve(__dirname, "src/recoil/atoms/index")}`,
+      "@context": `${path.resolve(__dirname, "src/context/index")}`,
     },
   },
 });

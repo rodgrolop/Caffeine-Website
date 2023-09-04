@@ -1,6 +1,5 @@
-import { useRecoilState } from "recoil";
-import { userAtom } from "@atoms";
 import { Link } from "react-router-dom";
+import { useContext } from "preact/hooks";
 
 import IconButton from "@mui/material/IconButton";
 import AccountCircle from "@mui/icons-material/AccountCircle";
@@ -11,9 +10,12 @@ import Button from "@mui/material/Button";
 import { useState } from "preact/compat";
 
 import type { h, VNode } from "preact";
+import { UserContext, UserContextSetter } from "@context";
 
 const UserMenu = (): VNode => {
-  const [user, setUser] = useRecoilState(userAtom);
+  const user = useContext(UserContext);
+  const { setUser } = useContext(UserContextSetter);
+
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const handleMenu = (event: h.JSX.TargetedEvent<HTMLInputElement>) => {

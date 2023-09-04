@@ -1,5 +1,3 @@
-import { userAtom } from "@atoms";
-import { useSetRecoilState } from "recoil";
 import type {
   getMeQueryDataProps,
   loginInputProps,
@@ -8,11 +6,14 @@ import type {
 } from "./useAuthenticationProps";
 import { userBloglikesTransformer } from "@utils";
 import { useQuery, useMutation } from "@tanstack/react-query";
-import { getMeQuery } from "@api";
 import { loginMutation } from "../mutations/login-mutation";
+import { UserContextSetter } from "@context";
+import { useContext } from "preact/hooks";
+import { graphQLClient } from "../client/reactQueryClient";
+import { getMeQuery } from "../queries/me-query";
 
 export const useLogin = () => {
-  const setUser = useSetRecoilState(userAtom);
+  const { setUser } = useContext(UserContextSetter);
 
   const { mutate, data, error, isLoading } = useMutation({
     mutationFn: (loginInput: loginInputProps) => loginMutation(loginInput),
@@ -20,6 +21,7 @@ export const useLogin = () => {
 
   if (data) {
     const { login } = data as loginResponseProps;
+    graphQLClient.setHeader(`authorization`, `Bearer ${login.jwt}`);
     localStorage.setItem("token", login.jwt);
     setUser({
       authenticated: true,
@@ -35,7 +37,7 @@ export const useLogin = () => {
 };
 
 export const useGetMeQuery = (token: string | null) => {
-  const setUser = useSetRecoilState(userAtom);
+  const { setUser } = useContext(UserContextSetter);
   const { data, error, isFetching } = useQuery<
     unknown,
     userQueryErrorProps,

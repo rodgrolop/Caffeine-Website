@@ -1,8 +1,5 @@
-import { useRecoilState } from "recoil";
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-
-import { layoutAtom } from "@atoms";
 
 import { default as MuiDrawer } from "@mui/material/Drawer";
 import Box from "@mui/material/Box";
@@ -23,16 +20,18 @@ import {
 } from "./drawer-links";
 
 import type { VNode } from "preact";
+import { useContext } from "preact/hooks";
+import { LayoutContext } from "@context";
 
 const Drawer = (): VNode => {
   const { t } = useTranslation();
   const { pathname } = useLocation();
-  const [layout, setLayout] = useRecoilState(layoutAtom);
+  const { isDrawerOpen, toggleDrawer } = useContext(LayoutContext);
 
-  const handleClose = (): void => setLayout({ ...layout, isDrawerOpen: false });
+  const handleClose = (): void => toggleDrawer?.();
 
   return (
-    <MuiDrawer open={layout.isDrawerOpen} onClose={handleClose}>
+    <MuiDrawer open={isDrawerOpen} onClose={handleClose}>
       <Toolbar />
       <Box
         sx={{

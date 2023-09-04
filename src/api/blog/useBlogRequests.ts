@@ -15,6 +15,7 @@ export const useGetBlogsQuery = (variables: BlogsQueryInputProps) => {
     queryKey: ["get-blogs", variables],
     queryFn: () => getBlogsQuery(variables),
     keepPreviousData: true,
+    staleTime: 5 * 60 * 1000,
   });
 
   return { data, error, isFetching };
@@ -29,6 +30,7 @@ export const useGetSingleBlogQuery = (variables: SingleBlogQueryInputProps) => {
     queryKey: ["get-blogs", variables],
     queryFn: () => getSingleBlogQuery(variables),
     keepPreviousData: true,
+    staleTime: 60 * 60 * 1000,
   });
 
   return { data, error, isFetching };

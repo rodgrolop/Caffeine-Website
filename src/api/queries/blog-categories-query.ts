@@ -1,5 +1,5 @@
 import { gql } from "graphql-request";
-import { graphQLClient } from "@api";
+import { graphQLClient } from "../client/reactQueryClient";
 
 export const GET_BLOGS_CATEGORIES = gql`
   query categoriesQuery(

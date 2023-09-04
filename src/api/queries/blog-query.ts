@@ -1,9 +1,9 @@
 import { gql } from "graphql-request";
-import { graphQLClient } from "@api";
 import type {
   BlogsQueryInputProps,
   SingleBlogQueryInputProps,
 } from "../blog/useBlogRequestsProps";
+import { graphQLClient } from "../client/reactQueryClient";
 
 export const GET_BLOGS = gql`
   query blogsQuery(

@@ -1,5 +1,6 @@
 import { gql } from "graphql-request";
-import { graphQLClient, loginInputProps } from "@api";
+import type { loginInputProps } from "../authentication/useAuthenticationProps";
+import { graphQLClient } from "../client/reactQueryClient";
 
 export const LOGIN_MUTATION = gql`
   mutation loginMutation($input: UsersPermissionsLoginInput!) {

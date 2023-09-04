@@ -1,6 +1,6 @@
 import { gql } from "graphql-request";
-import { graphQLClient } from "@api";
 import type { blogLikeRequestInputProps } from "../blog/useBlogLikeRequestProps";
+import { graphQLClient } from "../client/reactQueryClient";
 
 export const BLOG_LIKE_MUTATION = gql`
   mutation blogLikeMutation($id: ID!, $data: UsersPermissionsUserInput!) {
