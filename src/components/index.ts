@@ -21,3 +21,4 @@ export { default as LanguageSwitcher } from "./language-switcher/LanguageSwitche
 export { default as MainLogo } from "./main-logo/MainLogo";
 export { default as LikeButton } from "./like-button/LikeButton";
 export { default as SocialGrid } from "./social-grid/SocialGrid";
+export { default as DocumentHead } from "./document-head/DocumentHead";

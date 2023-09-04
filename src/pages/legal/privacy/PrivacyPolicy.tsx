@@ -1,6 +1,5 @@
 import { useEffect, useState } from "preact/compat";
-import { PageContainer, SocialGrid } from "@components";
-import { Helmet } from "react-helmet";
+import { DocumentHead, PageContainer, SocialGrid } from "@components";
 import { privacyContentES, privacyContentEN } from "./content";
 import { sanitizeLanguage } from "@utils";
 import { useTranslation } from "react-i18next";
@@ -22,11 +21,11 @@ const PrivacyPolicy = (): VNode => {
 
   return (
     <PageContainer>
-      <Helmet>
+      <DocumentHead>
         <title>
           🔒 Privacy Policy | Rodrigo Gross Lopez - Senior React Developer
         </title>
-      </Helmet>
+      </DocumentHead>
       <div style={styles.markdownContent}>
         {Markdown(privacyContent, { markupOpts: {}, markedOpts: {} })}
       </div>

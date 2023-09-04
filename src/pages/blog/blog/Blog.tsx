@@ -1,17 +1,14 @@
-import { Helmet } from "react-helmet";
-
-import { BlogList, HeroImage, PageContainer } from "@components";
+import { BlogList, DocumentHead, HeroImage, PageContainer } from "@components";
 
 import type { VNode } from "preact";
 
 const Blog = (): VNode => {
   return (
     <>
-      <HeroImage />
-      <Helmet>
-        <meta charSet="utf-8" />
+      <DocumentHead>
         <title>📰 Blog | Rodrigo Gross Lopez - Senior React Developer</title>
-      </Helmet>
+      </DocumentHead>
+      <HeroImage />
       <PageContainer>
         <BlogList pageSize={12} categories={true} pagination={true} />
       </PageContainer>

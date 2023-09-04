@@ -6,8 +6,7 @@ import GoogleIcon from "@mui/icons-material/Google";
 import { Link } from "react-router-dom";
 import { useParams, useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { Helmet } from "react-helmet";
-import { AuthPageContainer } from "@components";
+import { AuthPageContainer, DocumentHead } from "@components";
 import { useProviderAuthentication } from "@api";
 
 import type { VNode } from "preact";
@@ -35,11 +34,11 @@ const ProviderAuth = (): VNode => {
 
   return (
     <AuthPageContainer>
-      <Helmet>
+      <DocumentHead>
         <title>
           {`🔓 Login with ${provider} | Rodrigo Gross Lopez - Senior React Developer`}
         </title>
-      </Helmet>
+      </DocumentHead>
       <Grid
         container={true}
         direction="column"

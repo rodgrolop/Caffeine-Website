@@ -1,7 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet";
-import { LoginForm, AuthPageContainer } from "@components";
+import { LoginForm, AuthPageContainer, DocumentHead } from "@components";
 
 import { default as Grid } from "@mui/material/Unstable_Grid2";
 import Typography from "@mui/material/Typography";
@@ -18,9 +17,9 @@ const Login = (): VNode => {
 
   return (
     <AuthPageContainer>
-      <Helmet>
+      <DocumentHead>
         <title>🔓 Login | Rodrigo Gross Lopez - Senior React Developer</title>
-      </Helmet>
+      </DocumentHead>
       <Grid
         container={true}
         direction="column"

@@ -22,7 +22,6 @@
     "i18next-browser-languagedetector": "^7.1.0",
     "preact": "10.17.1",
     "preact-markdown": "^2.1.0",
-    "react-helmet": "^6.1.0",
     "react-i18next": "^13.2.2",
     "react-router-dom": "^6.15.0"
   },

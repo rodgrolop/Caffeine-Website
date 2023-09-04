@@ -1,6 +1,5 @@
 import { useEffect, useState } from "preact/compat";
-import { PageContainer, SocialGrid } from "@components";
-import { Helmet } from "react-helmet";
+import { DocumentHead, PageContainer, SocialGrid } from "@components";
 import { aboutContentES, aboutContentEN } from "./content";
 import { sanitizeLanguage } from "@utils";
 import Markdown from "preact-markdown";
@@ -23,11 +22,11 @@ const About = (): VNode => {
 
   return (
     <PageContainer>
-      <Helmet>
+      <DocumentHead>
         <title>
           👨‍💻 About me | Rodrigo Gross Lopez - Senior React Developer
         </title>
-      </Helmet>
+      </DocumentHead>
       <div style={styles.markdownContent}>
         {Markdown(aboutContent, { markupOpts: {}, markedOpts: {} })}
       </div>
