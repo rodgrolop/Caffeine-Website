@@ -1,4 +1,4 @@
-import { useEffect, useState } from "preact/compat";
+import { Suspense, useContext, useEffect, useState } from "preact/compat";
 import { useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Typography from "@mui/material/Typography";
@@ -26,8 +26,10 @@ import type { VNode, h } from "preact";
 
 import { styles } from "./styles";
 import { useGetSingleBlogQuery } from "@api";
+import { UserContext } from "@context";
 
 const SingleBlog = (): VNode => {
+  const user = useContext(UserContext);
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const { blogSlug } = useParams();
@@ -127,10 +129,18 @@ const SingleBlog = (): VNode => {
                 )
               )}
               <div style={{ flexGrow: 1 }} />
-              <LikeButton
-                blogId={blogEntry.id}
-                likes_count={blogEntry.likes_count}
-              />
+              <Suspense fallback={null}>
+                {!!user?.authenticated && user.user ? (
+                  <LikeButton
+                    blogId={blogEntry.id}
+                    likes_count={blogEntry.likes_count}
+                    userData={{
+                      id: user.user.id,
+                      blog_likes: user.user.blog_likes,
+                    }}
+                  />
+                ) : null}
+              </Suspense>
               <IconButton
                 aria-label="share"
                 onClick={(event: h.JSX.TargetedEvent<HTMLInputElement>): void =>

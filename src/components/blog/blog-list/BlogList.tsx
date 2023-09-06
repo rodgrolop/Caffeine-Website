@@ -1,11 +1,7 @@
-import { useEffect, useState } from "preact/compat";
+import { Suspense, lazy, useContext, useEffect, useState } from "preact/compat";
 import { useLocation, useSearchParams } from "react-router-dom";
 import { default as Grid } from "@mui/material/Unstable_Grid2";
-import {
-  BlogListSkelleton,
-  NoResultsWithIcon,
-  QueryErrorWithIcon,
-} from "@components";
+import { BlogListSkelleton } from "@components";
 
 import {
   blogListResponseTransformer,
@@ -22,6 +18,14 @@ import Categories from "../categories/Categories";
 import Pagination from "../pagination/Pagination";
 import { useTranslation } from "react-i18next";
 import { useGetBlogsQuery } from "@api";
+import { UserContext } from "@context";
+
+const NoResultsWithIcon = lazy(
+  () => import("./../../no-results/NoResultsWithIcon")
+);
+const QueryErrorWithIcon = lazy(
+  () => import("./../../error/QueryErrorWithIcon")
+);
 
 type BlogListProps = {
   pageSize?: number;
@@ -34,6 +38,7 @@ const BlogList = ({
   categories = false,
   pagination = false,
 }: BlogListProps): VNode => {
+  const user = useContext(UserContext);
   const { t } = useTranslation();
   const { pathname } = useLocation();
   const [searchParams] = useSearchParams();
@@ -67,13 +72,17 @@ const BlogList = ({
     <Grid container spacing={2} justifyContent="center" alignItems="center">
       {categories && <Categories pathname={pathname} />}
       {isFetching ? <BlogListSkelleton amount={3} /> : null}
-      {error ? <QueryErrorWithIcon message={t("errorBlogs")} /> : null}
+      <Suspense fallback={null}>
+        {error ? <QueryErrorWithIcon message={t("errorBlogs")} /> : null}
+      </Suspense>
       {blogEntries?.length && !isFetching && !error ? (
-        <BlogGrid blogs={blogEntries} />
+        <BlogGrid blogs={blogEntries} user={user} />
       ) : null}
-      {blogEntries?.length === 0 && !isFetching && !error ? (
-        <NoResultsWithIcon message={t("noResultsBlogs")} />
-      ) : null}
+      <Suspense fallback={null}>
+        {blogEntries?.length === 0 && !isFetching && !error ? (
+          <NoResultsWithIcon message={t("noResultsBlogs")} />
+        ) : null}
+      </Suspense>
       {pagination && meta?.pageCount ? (
         <Pagination meta={meta} pathname={pathname} />
       ) : null}

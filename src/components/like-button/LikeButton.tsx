@@ -7,34 +7,41 @@ import { blogLikeResponseProps, useBlogLike } from "@api";
 import { useContext, useEffect } from "preact/hooks";
 import { UserContext, UserContextSetter } from "@context";
 
+type userDataProps = {
+  id: string;
+  blog_likes: string[];
+};
+
 type LikeIconProps = {
   blogId: string;
   likes_count: number;
+  userData: userDataProps;
 };
 
 const LikeButton = (props: LikeIconProps): VNode | null => {
-  const { blogId } = props;
+  const { blogId, userData } = props;
+  const { id, blog_likes } = userData;
   const user = useContext(UserContext);
   const { setUser } = useContext(UserContextSetter);
   const { mutate, data } = useBlogLike();
-  const likedByUser = user?.user.id && user.user.blog_likes.includes(blogId);
+  const likedByUser = blog_likes.includes(blogId);
 
   const likeUnlike = (newLikesArray: string[]) => {
     mutate({
-      id: user?.user.id,
+      id,
       data: { blog_likes: newLikesArray },
     });
   };
 
   const likeClick = (event: h.JSX.TargetedEvent<HTMLInputElement>): void => {
     event.preventDefault();
-    if (likedByUser && user?.user.id) {
-      const newLikesArray = user.user.blog_likes.filter(
+    if (likedByUser) {
+      const newLikesArray = blog_likes.filter(
         (id: string): boolean => id !== blogId
       );
       likeUnlike(newLikesArray);
-    } else if (!likedByUser && user?.user.id) {
-      const newLikesArray = [...user.user.blog_likes, blogId];
+    } else if (!likedByUser) {
+      const newLikesArray = [...blog_likes, blogId];
       likeUnlike(newLikesArray);
     }
   };
@@ -54,7 +61,7 @@ const LikeButton = (props: LikeIconProps): VNode | null => {
     }
   }, [data]);
 
-  return user?.authenticated ? (
+  return (
     <IconButton
       aria-label="add to favorites"
       onClick={(event: h.JSX.TargetedEvent<HTMLInputElement>): void =>
@@ -67,7 +74,7 @@ const LikeButton = (props: LikeIconProps): VNode | null => {
         <FavoriteBorderOutlinedIcon color="secondary" />
       )}
     </IconButton>
-  ) : null;
+  );
 };
 
 export default LikeButton;

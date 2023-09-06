@@ -1,4 +1,4 @@
-import { useState } from "preact/compat";
+import { lazy, Suspense, useState } from "preact/compat";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
@@ -14,15 +14,23 @@ import { customDateFormat, sharePost, type singleBlogProps } from "@utils";
 import { Link } from "react-router-dom";
 
 import { styles } from "./styles";
-import { LikeButton } from "@components";
 import Stack from "@mui/material/Stack";
 import type { h, VNode } from "preact";
 
-type BlogCardProps = {
-  blog: singleBlogProps;
+const LikeButton = lazy(() => import("./../../like-button/LikeButton"));
+
+type userDataProps = {
+  id: string;
+  blog_likes: string[];
 };
 
-const BlogCard = ({ blog }: BlogCardProps): VNode => {
+type BlogCardProps = {
+  blog: singleBlogProps;
+  userData: userDataProps | null;
+  isAuth: boolean;
+};
+
+const BlogCard = ({ blog, userData, isAuth }: BlogCardProps): VNode => {
   const { id, Title, Excerpt, updatedAt, Hero, likes_count, Slug, Categories } =
     blog;
   const [elevation, setElevation] = useState<number>(3);
@@ -73,7 +81,15 @@ const BlogCard = ({ blog }: BlogCardProps): VNode => {
           ))}
           <div style={{ flexGrow: 1 }} />
           <Stack direction="row">
-            <LikeButton blogId={id} likes_count={likes_count} />
+            <Suspense fallback={null}>
+              {isAuth && userData ? (
+                <LikeButton
+                  blogId={id}
+                  likes_count={likes_count}
+                  userData={userData}
+                />
+              ) : null}
+            </Suspense>
             <IconButton
               aria-label="share"
               onClick={(event: h.JSX.TargetedEvent<HTMLInputElement>): void =>
