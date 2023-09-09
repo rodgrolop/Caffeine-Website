@@ -4,7 +4,7 @@ import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import SvgIcon from "@mui/material/SvgIcon";
 import { MainLogo } from "@components";
-import { useTranslation } from "react-i18next";
+import { useT } from "talkr";
 import { Link } from "react-router-dom";
 
 import { footerImages, type FooterImageProps } from "./footer-images";
@@ -13,7 +13,7 @@ import type { VNode } from "preact";
 import { styles } from "./styles";
 
 const Footer = (): VNode => {
-  const { t } = useTranslation();
+  const { T } = useT();
 
   return (
     <Grid
@@ -65,10 +65,10 @@ const Footer = (): VNode => {
           }}
         >
           <Link to="/privacy-policy" style={styles.footerLinks}>
-            {t("privacyPolicy")}
+            {T("privacyPolicy")}
           </Link>
           <Link to="/terms-of-service" style={styles.footerLinks}>
-            {t("termsOfService")}
+            {T("termsOfService")}
           </Link>
         </Grid>
         <Grid

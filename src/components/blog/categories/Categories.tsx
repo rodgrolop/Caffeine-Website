@@ -3,11 +3,11 @@ import { Link as RouterLink } from "react-router-dom";
 import { default as Grid } from "@mui/material/Unstable_Grid2";
 import Chip from "@mui/material/Chip";
 import { ChipsSkelleton, NoResults, QueryError } from "@components";
-import { useTranslation } from "react-i18next";
+import { useT } from "talkr";
 
 import {
   categoriesResponseTransformer,
-  sanitizeLanguage,
+  useSanitizeLanguage,
   singleCategoryProps,
 } from "@utils";
 
@@ -20,13 +20,14 @@ type CategoriesProps = {
 };
 
 const Categories = ({ pathname }: CategoriesProps): VNode => {
-  const { t } = useTranslation();
+  const { T } = useT();
+  const { language } = useSanitizeLanguage();
   const [categories, setCategories] = useState<singleCategoryProps[] | null>(
     null
   );
 
   const { data, error, isFetching } = useGetCategoriesQuery({
-    locale: sanitizeLanguage(),
+    locale: language(),
   });
 
   useEffect(() => {
@@ -44,7 +45,7 @@ const Categories = ({ pathname }: CategoriesProps): VNode => {
       sx={styles.categoriesContainer}
     >
       {isFetching ? <ChipsSkelleton /> : null}
-      {error ? <QueryError message={t("errorCategories")} /> : null}
+      {error ? <QueryError message={T("errorCategories")} /> : null}
       {categories?.length && !isFetching && !error
         ? categories.map(
             (category: singleCategoryProps): VNode => (
@@ -63,7 +64,7 @@ const Categories = ({ pathname }: CategoriesProps): VNode => {
           )
         : null}
       {categories?.length === 0 && !isFetching && !error ? (
-        <NoResults message={t("noResultsCategories")} />
+        <NoResults message={T("noResultsCategories")} />
       ) : null}
     </Grid>
   );

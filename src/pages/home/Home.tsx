@@ -1,7 +1,7 @@
 import { default as Grid } from "@mui/material/Unstable_Grid2";
 import Button from "@mui/material/Button";
 import { Link as RouterLink } from "react-router-dom";
-import { useTranslation } from "react-i18next";
+import { useT } from "talkr";
 
 import { HeroImage, BlogList, PageContainer, DocumentHead } from "@components";
 
@@ -10,7 +10,7 @@ import type { VNode } from "preact";
 import { styles } from "./styles";
 
 const Home = (): VNode => {
-  const { t } = useTranslation();
+  const { T } = useT();
 
   return (
     <>
@@ -35,7 +35,7 @@ const Home = (): VNode => {
             variant="contained"
             color="secondary"
           >
-            {t("seeMoreEntries")}
+            {T("seeMoreEntries")}
           </Button>
         </Grid>
       </PageContainer>

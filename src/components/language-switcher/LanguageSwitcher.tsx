@@ -3,15 +3,15 @@ import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import TranslateIcon from "@mui/icons-material/Translate";
 import { styles } from "./styles";
-import { useTranslation } from "react-i18next";
 import { useState } from "preact/compat";
-import { changeLanguage } from "i18next";
-import { sanitizeLanguage } from "@utils";
+import { useSanitizeLanguage } from "@utils";
+import { useT } from "talkr";
 
 import type { VNode, h } from "preact";
 
 const LanguageSwitcher = (): VNode => {
-  const { t } = useTranslation();
+  const { language } = useSanitizeLanguage();
+  const { T, setLocale } = useT();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const handleMenu = (event: h.JSX.TargetedEvent<HTMLInputElement>) => {
@@ -19,7 +19,7 @@ const LanguageSwitcher = (): VNode => {
   };
 
   const setLang = (lng: string): void => {
-    changeLanguage(lng);
+    setLocale(lng);
     handleClose();
   };
 
@@ -55,17 +55,17 @@ const LanguageSwitcher = (): VNode => {
       >
         <MenuItem
           onClick={(): void => setLang("en")}
-          selected={sanitizeLanguage() === "en"}
+          selected={language() === "en"}
           sx={styles.languageButton}
         >
-          {t("english")}
+          {T("english")}
         </MenuItem>
         <MenuItem
           onClick={(): void => setLang("es")}
-          selected={sanitizeLanguage() === "es"}
+          selected={language() === "es"}
           sx={styles.languageButton}
         >
-          {t("spanish")}
+          {T("spanish")}
         </MenuItem>
       </Menu>
     </>

@@ -1,4 +1,4 @@
-import { useTranslation } from "react-i18next";
+import { useT } from "talkr";
 import { Link } from "react-router-dom";
 import { LoginForm, AuthPageContainer, DocumentHead } from "@components";
 
@@ -13,7 +13,7 @@ import type { VNode } from "preact";
 import { styles } from "./styles";
 
 const Login = (): VNode => {
-  const { t } = useTranslation();
+  const { T } = useT();
 
   return (
     <AuthPageContainer>
@@ -31,7 +31,7 @@ const Login = (): VNode => {
         <LoginForm />
         <Grid>
           <Typography variant="caption" sx={{ marginBottom: 2, marginTop: 2 }}>
-            {t("orLoginWithProvider")}
+            {T("orLoginWithProvider")}
           </Typography>
         </Grid>
         <Grid>
