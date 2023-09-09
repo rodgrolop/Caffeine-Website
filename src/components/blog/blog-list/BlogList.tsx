@@ -70,7 +70,13 @@ const BlogList = ({
   }, [data]);
 
   return (
-    <Grid container spacing={2} justifyContent="center" alignItems="center">
+    <Grid
+      container
+      spacing={2}
+      justifyContent="center"
+      alignItems="center"
+      sx={{ minHeight: "448px" }}
+    >
       {categories && <Categories pathname={pathname} />}
       {isFetching ? <BlogListSkelleton amount={3} /> : null}
       <Suspense fallback={null}>

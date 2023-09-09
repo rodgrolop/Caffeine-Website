@@ -13,29 +13,26 @@
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@fontsource/roboto": "^5.0.8",
-    "@mui/icons-material": "^5.14.7",
-    "@mui/material": "^5.14.7",
-    "@tanstack/react-query": "^4.33.0",
+    "@mui/icons-material": "^5.14.8",
+    "@mui/material": "^5.14.8",
+    "@tanstack/react-query": "^4.35.0",
     "graphql": "^16.8.0",
     "graphql-request": "^6.1.0",
-    "i18next": "^23.4.6",
-    "i18next-browser-languagedetector": "^7.1.0",
     "preact": "10.17.1",
     "preact-markdown": "^2.1.0",
-    "react-i18next": "^13.2.2",
     "react-router-dom": "^6.15.0",
     "talkr": "^3.4.0"
   },
   "devDependencies": {
     "@preact/preset-vite": "2.5.0",
     "@rollup/plugin-terser": "^0.4.3",
-    "@types/node": "^20.5.9",
+    "@types/node": "^20.6.0",
     "@types/react-helmet": "^6.1.6",
     "@vite-pwa/assets-generator": "^0.0.9",
     "rollup-plugin-gzip": "^3.1.0",
-    "terser": "^5.19.3",
+    "terser": "^5.19.4",
     "typescript": "5.2.2",
     "vite": "4.4.9",
-    "vite-plugin-pwa": "^0.16.4"
+    "vite-plugin-pwa": "^0.16.5"
   }
 }
