@@ -1,4 +1,4 @@
-import i18n from "i18next";
+import { useT } from "talkr";
 
 const AVAILABLE_LANGUAGES = ["en", "es"];
 
@@ -8,13 +8,17 @@ const options = {
   day: "numeric" as const,
 };
 
-export const sanitizeLanguage = (): string =>
-  AVAILABLE_LANGUAGES.includes(i18n.language.slice(0, 2))
-    ? i18n.language.slice(0, 2)
-    : "en";
+export const useSanitizeLanguage = (): { language: () => string } => {
+  const { locale } = useT();
+  const language = (): string =>
+    AVAILABLE_LANGUAGES.includes(locale.slice(0, 2))
+      ? locale.slice(0, 2)
+      : "en";
+  return { language };
+};
 
 export const customDateFormat = (date: string): string =>
   new Date(date).toLocaleDateString(
-    sanitizeLanguage() === "es" ? "es-ES" : "en-US",
+    useSanitizeLanguage().language() === "es" ? "es-ES" : "en-US",
     options
   );

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "preact/compat";
 import { DocumentHead, PageContainer, SocialGrid } from "@components";
 import { privacyContentES, privacyContentEN } from "./content";
-import { sanitizeLanguage } from "@utils";
-import { useTranslation } from "react-i18next";
+import { useSanitizeLanguage } from "@utils";
+import { useT } from "talkr";
 import Markdown from "preact-markdown";
 
 import type { VNode } from "preact";
@@ -10,14 +10,15 @@ import type { VNode } from "preact";
 import { styles } from "./styles";
 
 const PrivacyPolicy = (): VNode => {
-  const { i18n } = useTranslation();
+  const { locale } = useT();
+  const { language } = useSanitizeLanguage();
   const [privacyContent, setPrivacyContent] = useState<string>("");
 
   useEffect(() => {
     setPrivacyContent(
-      sanitizeLanguage() === "es" ? privacyContentES : privacyContentEN
+      language() === "es" ? privacyContentES : privacyContentEN
     );
-  }, [i18n.language]);
+  }, [locale]);
 
   return (
     <PageContainer>

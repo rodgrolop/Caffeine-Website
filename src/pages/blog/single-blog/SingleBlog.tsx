@@ -1,6 +1,6 @@
 import { Suspense, useContext, useEffect, useState } from "preact/compat";
 import { useNavigate, useParams } from "react-router-dom";
-import { useTranslation } from "react-i18next";
+import { useT } from "talkr";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import ShareIcon from "@mui/icons-material/Share";
@@ -30,7 +30,7 @@ import { UserContext } from "@context";
 
 const SingleBlog = (): VNode => {
   const user = useContext(UserContext);
-  const { t, i18n } = useTranslation();
+  const { locale, T } = useT();
   const navigate = useNavigate();
   const { blogSlug } = useParams();
   const [blogEntry, setBlogEntry] = useState<singleItemBlogProps | null>(null);
@@ -45,10 +45,10 @@ const SingleBlog = (): VNode => {
 
   useEffect(() => {
     const langSlug = blogEntry?.localizations?.find(
-      (locale: any): any => locale.locale === i18n.language
+      (locale: any): any => locale.locale === locale
     )?.Slug;
     langSlug && navigate(`/blog/${langSlug}`);
-  }, [blogEntry?.localizations, i18n.language, navigate]);
+  }, [blogEntry?.localizations, locale, navigate]);
 
   useEffect(() => {
     if (data) {
@@ -166,7 +166,7 @@ const SingleBlog = (): VNode => {
           </>
         ) : null}
         {isFetching ? <SingleBlogSkelleton /> : null}
-        {error ? <NoResultsWithIcon message={t("errorBlog")} /> : null}
+        {error ? <NoResultsWithIcon message={T("errorBlog")} /> : null}
       </>
     </PageContainer>
   );

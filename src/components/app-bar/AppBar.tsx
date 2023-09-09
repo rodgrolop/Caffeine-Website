@@ -1,5 +1,4 @@
 import { LanguageSwitcher, UserMenu, MainLogo } from "@components";
-import { useTranslation } from "react-i18next";
 
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -15,9 +14,10 @@ import Button from "@mui/material/Button";
 import type { VNode } from "preact";
 import { useContext } from "preact/hooks";
 import { LayoutContext } from "@context";
+import { useT } from "talkr";
 
 const AppBar = (): VNode => {
-  const { t } = useTranslation();
+  const { T } = useT();
   const { toggleDrawer } = useContext(LayoutContext);
 
   return (
@@ -60,7 +60,7 @@ const AppBar = (): VNode => {
                   color: "white",
                 }}
               >
-                {t(name)}
+                {T(name)}
               </Button>
             ))}
           </Box>

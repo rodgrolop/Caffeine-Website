@@ -1,0 +1,21 @@
+{
+  "home": "HOME",
+  "test": "TEST - Private",
+  "login": "LOGIN",
+  "blog": "BLOG",
+  "aboutMe": "ABOUT ME",
+  "seeMoreEntries": "See More Posts",
+  "noResultsBlogs": "No Posts found",
+  "errorBlog": "There was an error fetching the Post",
+  "errorBlogs": "There was an error fetching Posts",
+  "noResultsCategories": "No Categories found",
+  "errorCategories": "There was an error fetching Categories",
+  "spanish": "Spanish",
+  "english": "English",
+  "authenticating": "Authenticating",
+  "somethingHappened": "Something wrong happened",
+  "backLogin": "Back to Login",
+  "orLoginWithProvider": "Sign in with:",
+  "privacyPolicy": "Privacy Policy",
+  "termsOfService": "Terms of Service"
+}

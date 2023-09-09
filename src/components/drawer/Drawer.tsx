@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { useTranslation } from "react-i18next";
+import { useT } from "talkr";
 
 import { default as MuiDrawer } from "@mui/material/Drawer";
 import Box from "@mui/material/Box";
@@ -24,7 +24,7 @@ import { useContext } from "preact/hooks";
 import { LayoutContext } from "@context";
 
 const Drawer = (): VNode => {
-  const { t } = useTranslation();
+  const { T } = useT();
   const { pathname } = useLocation();
   const { isDrawerOpen, toggleDrawer } = useContext(LayoutContext);
 
@@ -55,7 +55,7 @@ const Drawer = (): VNode => {
                   <ListItemIcon>
                     <Icon />
                   </ListItemIcon>
-                  <ListItemText primary={t(name)} />
+                  <ListItemText primary={T(name)} />
                 </ListItemButton>
               </ListItem>
             )
@@ -74,7 +74,7 @@ const Drawer = (): VNode => {
                   <ListItemIcon>
                     <Icon />
                   </ListItemIcon>
-                  <ListItemText primary={t(name)} />
+                  <ListItemText primary={T(name)} />
                 </ListItemButton>
               </ListItem>
             )
@@ -93,7 +93,7 @@ const Drawer = (): VNode => {
                   <ListItemIcon>
                     <Icon />
                   </ListItemIcon>
-                  <ListItemText primary={t(name)} />
+                  <ListItemText primary={T(name)} />
                 </ListItemButton>
               </ListItem>
             )

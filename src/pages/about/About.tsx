@@ -1,24 +1,22 @@
 import { useEffect, useState } from "preact/compat";
 import { DocumentHead, PageContainer, SocialGrid } from "@components";
 import { aboutContentES, aboutContentEN } from "./content";
-import { sanitizeLanguage } from "@utils";
+import { useSanitizeLanguage } from "@utils";
 import Markdown from "preact-markdown";
+import { useT } from "talkr";
 
 import type { VNode } from "preact";
 
 import { styles } from "./styles";
 
-import { useTranslation } from "react-i18next";
-
 const About = (): VNode => {
-  const { i18n } = useTranslation();
+  const { locale } = useT();
+  const { language } = useSanitizeLanguage();
   const [aboutContent, setAboutContent] = useState<string>("");
 
   useEffect(() => {
-    setAboutContent(
-      sanitizeLanguage() === "es" ? aboutContentES : aboutContentEN
-    );
-  }, [i18n.language]);
+    setAboutContent(language() === "es" ? aboutContentES : aboutContentEN);
+  }, [locale]);
 
   return (
     <PageContainer>

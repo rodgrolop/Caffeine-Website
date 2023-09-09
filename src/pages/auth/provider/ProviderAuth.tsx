@@ -5,7 +5,7 @@ import Button from "@mui/material/Button";
 import GoogleIcon from "@mui/icons-material/Google";
 import { Link } from "react-router-dom";
 import { useParams, useSearchParams } from "react-router-dom";
-import { useTranslation } from "react-i18next";
+import { useT } from "talkr";
 import { AuthPageContainer, DocumentHead } from "@components";
 import { useProviderAuthentication } from "@api";
 
@@ -23,7 +23,7 @@ const getProviderLogo = (provider?: string): VNode | null => {
 };
 
 const ProviderAuth = (): VNode => {
-  const { t } = useTranslation();
+  const { T } = useT();
   const { provider } = useParams();
   const [searchParams] = useSearchParams();
   const token = searchParams.get("access_token");
@@ -51,11 +51,11 @@ const ProviderAuth = (): VNode => {
         <Grid>
           {error?.message || providerError?.message ? (
             <Typography variant="h5" component="div">
-              {t("somethingHappened")}
+              {T("somethingHappened")}
             </Typography>
           ) : (
             <Typography variant="h5" component="div">
-              {t("authenticating")}
+              {T("authenticating")}
             </Typography>
           )}
         </Grid>
@@ -76,7 +76,7 @@ const ProviderAuth = (): VNode => {
                 component={Link}
                 to="/auth/login"
               >
-                {t("backLogin")}
+                {T("backLogin")}
               </Button>
             </Grid>
           </>

@@ -7,7 +7,7 @@ import {
   blogListResponseTransformer,
   blogMetaTransformer,
   type metaProps,
-  sanitizeLanguage,
+  useSanitizeLanguage,
   type singleBlogProps,
 } from "@utils";
 
@@ -16,7 +16,7 @@ import type { VNode } from "preact";
 import BlogGrid from "../blog-grid/BlogGrid";
 import Categories from "../categories/Categories";
 import Pagination from "../pagination/Pagination";
-import { useTranslation } from "react-i18next";
+import { useT } from "talkr";
 import { useGetBlogsQuery } from "@api";
 import { UserContext } from "@context";
 
@@ -39,7 +39,8 @@ const BlogList = ({
   pagination = false,
 }: BlogListProps): VNode => {
   const user = useContext(UserContext);
-  const { t } = useTranslation();
+  const { T } = useT();
+  const { language } = useSanitizeLanguage();
   const { pathname } = useLocation();
   const [searchParams] = useSearchParams();
   const [blogEntries, setBlogEntries] = useState<singleBlogProps[] | null>(
@@ -58,7 +59,7 @@ const BlogList = ({
       categoriesParam !== "" && categoriesParam !== "all"
         ? { Categories: { Slug: { eq: categoriesParam } } }
         : null,
-    locale: sanitizeLanguage(),
+    locale: language(),
   });
 
   useEffect(() => {
@@ -73,14 +74,14 @@ const BlogList = ({
       {categories && <Categories pathname={pathname} />}
       {isFetching ? <BlogListSkelleton amount={3} /> : null}
       <Suspense fallback={null}>
-        {error ? <QueryErrorWithIcon message={t("errorBlogs")} /> : null}
+        {error ? <QueryErrorWithIcon message={T("errorBlogs")} /> : null}
       </Suspense>
       {blogEntries?.length && !isFetching && !error ? (
         <BlogGrid blogs={blogEntries} user={user} />
       ) : null}
       <Suspense fallback={null}>
         {blogEntries?.length === 0 && !isFetching && !error ? (
-          <NoResultsWithIcon message={t("noResultsBlogs")} />
+          <NoResultsWithIcon message={T("noResultsBlogs")} />
         ) : null}
       </Suspense>
       {pagination && meta?.pageCount ? (

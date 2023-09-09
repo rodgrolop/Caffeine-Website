@@ -1,0 +1,21 @@
+{
+  "home": "INICIO",
+  "test": "TEST - Privado",
+  "login": "LOGIN",
+  "blog": "BLOG",
+  "aboutMe": "SOBRE MÍ",
+  "seeMoreEntries": "Ver Más Entradas",
+  "noResultsBlogs": "No se han encontrado Posts",
+  "errorBlog": "Hubo un error recuperando el Post",
+  "errorBlogs": "Hubo un error recuperando los Posts",
+  "noResultsCategories": "No se han encontrado categorías",
+  "errorCategories": "Hubo un error recuperando las categorías",
+  "spanish": "Español",
+  "english": "Inglés",
+  "authenticating": "Autentificando",
+  "somethingHappened": "Ha pasado algo",
+  "backLogin": "Volver a Login",
+  "orLoginWithProvider": "Inicia sesión con:",
+  "privacyPolicy": "Política de Privacidad",
+  "termsOfService": "Términos y Condiciones"
+}
