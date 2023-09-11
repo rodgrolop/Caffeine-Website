@@ -1,13 +1,12 @@
-import ApolloIcon from "./../custom-icons/ApolloIcon";
-import CracoIcon from "./../custom-icons/CracoIcon";
+import ReactQueryIcon from "../custom-icons/ReactQueryIcon";
+import ViteIcon from "../custom-icons/ViteIcon";
 import CloudinaryIcon from "./../custom-icons/CloudinaryIcon";
 import DigitalOceanIcon from "./../custom-icons/DigitalOceanIcon";
 import GraphQLIcon from "./../custom-icons/GraphQLIcon";
 import MaterialUIIcon from "./../custom-icons/MaterialUIIcon";
 import PostgreSQLIcon from "./../custom-icons/PostgreSQLIcon";
-import ReactIcon from "./../custom-icons/ReactIcon";
+import PreactIcon from "../custom-icons/PreactIcon";
 import ReactRouterIcon from "./../custom-icons/ReactRouterIcon";
-import RecoilIcon from "./../custom-icons/RecoilIcon";
 import StrapiIcon from "./../custom-icons/StrapiIcon";
 import TypeScriptIcon from "./../custom-icons/TypeScriptIcon";
 
@@ -41,24 +40,19 @@ export const footerImages: FooterImageProps[] = [
     icon: <DigitalOceanIcon />,
   },
   {
-    name: "ReactJS",
-    link: "https://reactjs.org/",
-    icon: <ReactIcon />,
+    name: "PreactJS",
+    link: "https://preactjs.com/",
+    icon: <PreactIcon />,
   },
   {
-    name: "Craco",
-    link: "https://craco.js.org/",
-    icon: <CracoIcon />,
+    name: "Vite",
+    link: "https://vitejs.dev/",
+    icon: <ViteIcon />,
   },
   {
     name: "TypeScript",
     link: "https://www.typescriptlang.org/",
     icon: <TypeScriptIcon />,
-  },
-  {
-    name: "RecoilJS",
-    link: "https://recoiljs.org/",
-    icon: <RecoilIcon />,
   },
   {
     name: "Material UI",
@@ -71,9 +65,9 @@ export const footerImages: FooterImageProps[] = [
     icon: <ReactRouterIcon />,
   },
   {
-    name: "Apollo GraphQL",
-    link: "https://www.apollographql.com/",
-    icon: <ApolloIcon />,
+    name: "React Query",
+    link: "https://tanstack.com/query/latest",
+    icon: <ReactQueryIcon />,
   },
   {
     name: "Cloudinary",
