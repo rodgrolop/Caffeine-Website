@@ -4,18 +4,12 @@
     "paths": {
       "react": ["node_modules/preact/compat/"],
       "react-dom": ["node_modules/preact/compat/"],
-      "@apollo-client": ["src/apollo/index"],
       "@api": ["src/api/index"],
-      "@queries": ["src/graphql/queries/index"],
-      "@mutations": ["src/graphql/mutations/index"],
       "@router":["src/router/index"],
       "@pages": ["src/pages/index"],
       "@components":["src/components/index"],
       "@layout":["src/layout/index"],
       "@theme":["src/theme/index"],
-      "@assets":["src/assets/index"],  
-      "@images":["src/assets/images/index"],
-      "@hooks":["src/hooks/index"], 
       "@utils":["src/utils/index"],
       "@context": ["src/context/index"],
     }

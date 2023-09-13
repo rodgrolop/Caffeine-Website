@@ -92,18 +92,12 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      "@apollo-client": `${path.resolve(__dirname, "src/apollo/index")}`,
       "@api": `${path.resolve(__dirname, "src/api/index")}`,
-      "@queries": `${path.resolve(__dirname, "src/graphql/queries/index")}`,
-      "@mutations": `${path.resolve(__dirname, "src/graphql/mutations/index")}`,
       "@router": `${path.resolve(__dirname, "src/router/index")}`,
       "@pages": `${path.resolve(__dirname, "src/pages/index")}`,
       "@components": `${path.resolve(__dirname, "src/components/index")}`,
       "@layout": `${path.resolve(__dirname, "src/layout/index")}`,
       "@theme": `${path.resolve(__dirname, "src/theme/index")}`,
-      "@assets": `${path.resolve(__dirname, "src/assets/index")}`,
-      "@images": `${path.resolve(__dirname, "src/assets/images/index")}`,
-      "@hooks": `${path.resolve(__dirname, "src/hooks/index")}`,
       "@utils": `${path.resolve(__dirname, "src/utils/index")}`,
       "@context": `${path.resolve(__dirname, "src/context/index")}`,
     },
