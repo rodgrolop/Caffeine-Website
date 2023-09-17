@@ -4,14 +4,12 @@ import { ViewLoader, AppBar, Drawer, Footer } from "@components";
 
 import type { VNode } from "preact";
 
-const GlobalLayout = (): VNode => (
+const GlobalLayout = ({ children }: { children: VNode[] }): VNode => (
   <>
     <AppBar />
     <Drawer />
-    <Suspense fallback={<ViewLoader />}>
-      <Outlet />
-    </Suspense>
-    <Footer />
+    <Suspense fallback={<ViewLoader />}>{children}</Suspense>
+    {/* <Footer /> */}
   </>
 );
 

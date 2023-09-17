@@ -4,7 +4,7 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import { default as MuiAppBar } from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink } from "wouter-preact";
 
 import ElevationScroll from "./ElevationScroll";
 import { appBarLinks } from "./app-bar-links";
@@ -34,7 +34,7 @@ const AppBar = (): VNode => {
           >
             <MenuIcon />
           </IconButton>
-          <RouterLink to="/" aria-label="Caffeine logo">
+          <RouterLink href="/" aria-label="Caffeine logo">
             <MainLogo
               styles={{
                 width: 48,
@@ -52,19 +52,18 @@ const AppBar = (): VNode => {
             }}
           >
             {appBarLinks.map(({ name, path }: AppBarLinksProps) => (
-              <Button
-                key={name}
-                component={RouterLink}
-                to={path}
-                sx={{
-                  color: "white",
-                }}
-              >
-                {T(name)}
-              </Button>
+              <RouterLink href={path} key={name}>
+                <Button
+                  sx={{
+                    color: "white",
+                  }}
+                >
+                  {T(name)}
+                </Button>
+              </RouterLink>
             ))}
           </Box>
-          <UserMenu />
+          {/* <UserMenu /> */}
           <LanguageSwitcher />
         </Toolbar>
       </MuiAppBar>

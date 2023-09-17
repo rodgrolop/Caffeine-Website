@@ -1,16 +1,15 @@
-import { default as Grid } from "@mui/material/Unstable_Grid2";
-import Button from "@mui/material/Button";
-import { Link as RouterLink } from "react-router-dom";
-import { useT } from "talkr";
+import { homeContentES, homeContentEN } from "./content";
+import Markdown from "preact-markdown";
 
-import { HeroImage, BlogList, PageContainer, DocumentHead } from "@components";
+import { HeroImage, PageContainer, DocumentHead } from "@components";
 
 import type { VNode } from "preact";
 
 import { styles } from "./styles";
+import { useSanitizeLanguage } from "@utils";
 
 const Home = (): VNode => {
-  const { T } = useT();
+  const { language } = useSanitizeLanguage();
 
   return (
     <>
@@ -22,22 +21,12 @@ const Home = (): VNode => {
       </DocumentHead>
       <HeroImage />
       <PageContainer>
-        <BlogList />
-        <Grid
-          container
-          justifyContent="center"
-          alignItems="center"
-          sx={styles.seeMoreContainer}
-        >
-          <Button
-            component={RouterLink}
-            to="/blog"
-            variant="contained"
-            color="secondary"
-          >
-            {T("seeMoreEntries")}
-          </Button>
-        </Grid>
+        <div style={styles.markdownContent}>
+          {Markdown(language() === "es" ? homeContentES : homeContentEN, {
+            markupOpts: {},
+            markedOpts: {},
+          })}
+        </div>
       </PageContainer>
     </>
   );

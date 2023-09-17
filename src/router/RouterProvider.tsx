@@ -8,6 +8,7 @@ import type { VNode } from "preact";
 
 import { styles } from "./styles";
 import { useGetMeQuery } from "@api";
+import { Route } from "wouter-preact";
 
 // Auth
 const Login = lazy(() => import("./../pages/auth/login/Login"));
@@ -55,37 +56,37 @@ const router = createBrowserRouter([
       },
     ],
   },
-  {
-    path: "/",
-    element: <GlobalLayout />,
-    children: [
-      {
-        path: "/",
-        element: <Home />,
-        index: true,
-      },
-      {
-        path: "blog",
-        element: <Blog />,
-      },
-      {
-        path: "blog/:blogSlug",
-        element: <SingleBlog />,
-      },
-      {
-        path: "about-me",
-        element: <About />,
-      },
-      {
-        path: "privacy-policy",
-        element: <PrivacyPolicy />,
-      },
-      {
-        path: "terms-of-service",
-        element: <Terms />,
-      },
-    ],
-  },
+  // {
+  //   path: "/",
+  //   element: <GlobalLayout />,
+  //   children: [
+  //     {
+  //       path: "/",
+  //       element: <Home />,
+  //       index: true,
+  //     },
+  //     {
+  //       path: "blog",
+  //       element: <Blog />,
+  //     },
+  //     {
+  //       path: "blog/:blogSlug",
+  //       element: <SingleBlog />,
+  //     },
+  //     {
+  //       path: "about-me",
+  //       element: <About />,
+  //     },
+  //     {
+  //       path: "privacy-policy",
+  //       element: <PrivacyPolicy />,
+  //     },
+  //     {
+  //       path: "terms-of-service",
+  //       element: <Terms />,
+  //     },
+  //   ],
+  // },
 ]);
 
 const RouterProviderWrapper = (): VNode => {
@@ -96,7 +97,17 @@ const RouterProviderWrapper = (): VNode => {
     <MainLoader />
   ) : (
     <div style={styles.routerContainer}>
-      <RouterProvider router={router} />
+      <Route path="/:_*">
+        <GlobalLayout>
+          <Route path="/">
+            <Home />
+          </Route>
+          <Route path="/about-me">
+            <About />
+          </Route>
+        </GlobalLayout>
+      </Route>
+      {/* <RouterProvider router={router} /> */}
     </div>
   );
 };

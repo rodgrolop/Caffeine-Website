@@ -20,7 +20,9 @@
     "preact": "10.17.1",
     "preact-markdown": "^2.1.0",
     "react-router-dom": "^6.15.0",
-    "talkr": "^3.4.0"
+    "talkr": "^3.4.0",
+    "wouter": "^2.11.0",
+    "wouter-preact": "^2.11.0"
   },
   "devDependencies": {
     "@preact/preset-vite": "2.5.0",

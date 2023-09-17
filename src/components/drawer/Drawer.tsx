@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation } from "wouter-preact";
 import { useT } from "talkr";
 
 import { default as MuiDrawer } from "@mui/material/Drawer";
@@ -25,7 +25,7 @@ import { LayoutContext } from "@context";
 
 const Drawer = (): VNode => {
   const { T } = useT();
-  const { pathname } = useLocation();
+  const [location] = useLocation();
   const { isDrawerOpen, toggleDrawer } = useContext(LayoutContext);
 
   const handleClose = (): void => toggleDrawer?.();
@@ -46,18 +46,16 @@ const Drawer = (): VNode => {
         <List disablePadding>
           {drawerLinksGlobal.map(
             ({ name, path, Icon }: DrawerLinksProps): VNode => (
-              <ListItem disablePadding key={name}>
-                <ListItemButton
-                  component={Link}
-                  to={path}
-                  selected={pathname === path}
-                >
-                  <ListItemIcon>
-                    <Icon />
-                  </ListItemIcon>
-                  <ListItemText primary={T(name)} />
-                </ListItemButton>
-              </ListItem>
+              <Link href={path}>
+                <ListItem disablePadding key={name}>
+                  <ListItemButton selected={location === path}>
+                    <ListItemIcon>
+                      <Icon />
+                    </ListItemIcon>
+                    <ListItemText primary={T(name)} />
+                  </ListItemButton>
+                </ListItem>
+              </Link>
             )
           )}
         </List>
@@ -65,18 +63,16 @@ const Drawer = (): VNode => {
         <List disablePadding>
           {drawerLinksProtected.map(
             ({ name, path, Icon }: DrawerLinksProps): VNode => (
-              <ListItem disablePadding key={name}>
-                <ListItemButton
-                  component={Link}
-                  to={path}
-                  selected={pathname === path}
-                >
-                  <ListItemIcon>
-                    <Icon />
-                  </ListItemIcon>
-                  <ListItemText primary={T(name)} />
-                </ListItemButton>
-              </ListItem>
+              <Link href={path}>
+                <ListItem disablePadding key={name}>
+                  <ListItemButton selected={location === path}>
+                    <ListItemIcon>
+                      <Icon />
+                    </ListItemIcon>
+                    <ListItemText primary={T(name)} />
+                  </ListItemButton>
+                </ListItem>
+              </Link>
             )
           )}
         </List>
@@ -84,23 +80,21 @@ const Drawer = (): VNode => {
         <List disablePadding>
           {drawerLinksAuthentication.map(
             ({ name, path, Icon }: DrawerLinksProps): VNode => (
-              <ListItem disablePadding key={name}>
-                <ListItemButton
-                  component={Link}
-                  to={path}
-                  selected={pathname === path}
-                >
-                  <ListItemIcon>
-                    <Icon />
-                  </ListItemIcon>
-                  <ListItemText primary={T(name)} />
-                </ListItemButton>
-              </ListItem>
+              <Link href={path}>
+                <ListItem disablePadding key={name}>
+                  <ListItemButton selected={location === path}>
+                    <ListItemIcon>
+                      <Icon />
+                    </ListItemIcon>
+                    <ListItemText primary={T(name)} />
+                  </ListItemButton>
+                </ListItem>
+              </Link>
             )
           )}
         </List>
       </Box>
-      <SocialGrid />
+      {/* <SocialGrid /> */}
     </MuiDrawer>
   );
 };
