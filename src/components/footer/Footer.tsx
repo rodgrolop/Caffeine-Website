@@ -5,7 +5,7 @@ import IconButton from "@mui/material/IconButton";
 import SvgIcon from "@mui/material/SvgIcon";
 import { MainLogo } from "@components";
 import { useT } from "talkr";
-import { Link } from "react-router-dom";
+import { Link } from "wouter-preact";
 
 import { footerImages, type FooterImageProps } from "./footer-images";
 import type { VNode } from "preact";
@@ -64,10 +64,10 @@ const Footer = (): VNode => {
             paddingBottom: 2,
           }}
         >
-          <Link to="/privacy-policy" style={styles.footerLinks}>
+          <Link href="/privacy-policy" style={styles.footerLinks}>
             {T("privacyPolicy")}
           </Link>
-          <Link to="/terms-of-service" style={styles.footerLinks}>
+          <Link href="/terms-of-service" style={styles.footerLinks}>
             {T("termsOfService")}
           </Link>
         </Grid>

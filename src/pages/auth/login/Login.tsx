@@ -1,5 +1,5 @@
 import { useT } from "talkr";
-import { Link } from "react-router-dom";
+import { Link } from "wouter-preact";
 import { LoginForm, AuthPageContainer, DocumentHead } from "@components";
 
 import { default as Grid } from "@mui/material/Unstable_Grid2";
@@ -35,20 +35,22 @@ const Login = (): VNode => {
           </Typography>
         </Grid>
         <Grid>
-          <Button
-            component={Link}
-            sx={styles.googleButton}
-            size="medium"
-            to={`${import.meta.env.VITE_STRAPI_ENDPOINT}/api/connect/google`}
-            variant="contained"
-            startIcon={
-              <SvgIcon sx={styles.icon}>
-                <GoogleIcon />
-              </SvgIcon>
-            }
+          <a
+            href={`${import.meta.env.VITE_STRAPI_ENDPOINT}/api/connect/google`}
           >
-            Google
-          </Button>
+            <Button
+              sx={styles.googleButton}
+              size="medium"
+              variant="contained"
+              startIcon={
+                <SvgIcon sx={styles.icon}>
+                  <GoogleIcon />
+                </SvgIcon>
+              }
+            >
+              Google
+            </Button>
+          </a>
         </Grid>
       </Grid>
     </AuthPageContainer>

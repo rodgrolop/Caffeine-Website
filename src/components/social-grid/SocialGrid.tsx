@@ -5,7 +5,7 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import EmailIcon from "@mui/icons-material/Email";
 
 import type { VNode } from "preact";
-import { Link } from "react-router-dom";
+import { Link } from "wouter-preact";
 
 const SocialGrid = (): VNode => (
   <Grid
@@ -24,7 +24,7 @@ const SocialGrid = (): VNode => (
       <GitHubIcon />
     </IconButton>
     <IconButton
-      aria-label={"Github"}
+      aria-label={"Linkedin"}
       sx={{ fontSize: 30 }}
       size="large"
       onClick={() =>
@@ -36,15 +36,11 @@ const SocialGrid = (): VNode => (
     >
       <LinkedInIcon />
     </IconButton>
-    <IconButton
-      component={Link}
-      aria-label={"Github"}
-      sx={{ fontSize: 30 }}
-      size="large"
-      to="mailto:rodrigogrosslopez@gmail.com"
-    >
-      <EmailIcon />
-    </IconButton>
+    <Link href="mailto:rodrigogrosslopez@gmail.com">
+      <IconButton aria-label={"Gmail"} sx={{ fontSize: 30 }} size="large">
+        <EmailIcon />
+      </IconButton>
+    </Link>
   </Grid>
 );
 

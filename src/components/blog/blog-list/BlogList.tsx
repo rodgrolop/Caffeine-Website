@@ -1,5 +1,5 @@
 import { Suspense, lazy, useContext, useEffect, useState } from "preact/compat";
-import { useLocation, useSearchParams } from "react-router-dom";
+import { useLocation } from "wouter-preact";
 import { default as Grid } from "@mui/material/Unstable_Grid2";
 import { BlogListSkelleton } from "@components";
 
@@ -41,14 +41,14 @@ const BlogList = ({
   const user = useContext(UserContext);
   const { T } = useT();
   const { language } = useSanitizeLanguage();
-  const { pathname } = useLocation();
-  const [searchParams] = useSearchParams();
+  const [location] = useLocation();
+  const params = new URLSearchParams(window.location.search);
   const [blogEntries, setBlogEntries] = useState<singleBlogProps[] | null>(
     null
   );
   const [meta, setMeta] = useState<metaProps | null>(null);
-  const page = parseInt(searchParams.get("page") ?? "1");
-  const categoriesParam = searchParams.get("categories") ?? "";
+  const page = parseInt(params.get("page") ?? "1");
+  const categoriesParam = params.get("categories") ?? "";
 
   const { data, error, isFetching } = useGetBlogsQuery({
     pagination: {
@@ -77,7 +77,7 @@ const BlogList = ({
       alignItems="center"
       sx={{ minHeight: "448px" }}
     >
-      {categories && <Categories pathname={pathname} />}
+      {categories && <Categories pathname={location} />}
       {isFetching ? <BlogListSkelleton amount={3} /> : null}
       <Suspense fallback={null}>
         {error ? <QueryErrorWithIcon message={T("errorBlogs")} /> : null}
@@ -91,7 +91,7 @@ const BlogList = ({
         ) : null}
       </Suspense>
       {pagination && meta?.pageCount ? (
-        <Pagination meta={meta} pathname={pathname} />
+        <Pagination meta={meta} pathname={location} />
       ) : null}
     </Grid>
   );

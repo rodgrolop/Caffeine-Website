@@ -1,3 +1,3 @@
 export const styles = {
-    cardLink: { textDecoration: 'none' },
-}
+  cardLink: { textDecoration: "none", cursor: "pointer" },
+};

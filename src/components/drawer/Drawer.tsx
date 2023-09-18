@@ -94,7 +94,7 @@ const Drawer = (): VNode => {
           )}
         </List>
       </Box>
-      {/* <SocialGrid /> */}
+      <SocialGrid />
     </MuiDrawer>
   );
 };

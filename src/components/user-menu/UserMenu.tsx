@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from "wouter-preact";
 import { useContext } from "preact/hooks";
 
 import IconButton from "@mui/material/IconButton";
@@ -61,9 +61,9 @@ const UserMenu = (): VNode => {
       </Menu>
     </>
   ) : (
-    <Button component={Link} to="/auth/login" color="inherit">
-      LOGIN
-    </Button>
+    <Link href="/auth/login">
+      <Button color="inherit">LOGIN</Button>
+    </Link>
   );
 };
 

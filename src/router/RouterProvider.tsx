@@ -1,6 +1,6 @@
 import { lazy } from "preact/compat";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { AuthenticationLayout, ProtectedLayout, GlobalLayout } from "@layout";
+// import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { AuthenticationLayout, GlobalLayout } from "@layout";
 
 import { MainLoader } from "@components";
 
@@ -29,65 +29,65 @@ const PrivacyPolicy = lazy(
 const Terms = lazy(() => import("./../pages/legal/terms/Terms"));
 
 // Private
-const Test = lazy(() => import("./../pages/test/Test"));
+// const Test = lazy(() => import("./../pages/test/Test"));
 
-const router = createBrowserRouter([
-  {
-    path: "auth",
-    element: <AuthenticationLayout />,
-    children: [
-      {
-        path: "login",
-        element: <Login />,
-      },
-      {
-        path: "provider/:provider",
-        element: <ProviderAuth />,
-      },
-    ],
-  },
-  {
-    path: "/",
-    element: <ProtectedLayout />,
-    children: [
-      {
-        path: "test",
-        element: <Test />,
-      },
-    ],
-  },
-  // {
-  //   path: "/",
-  //   element: <GlobalLayout />,
-  //   children: [
-  //     {
-  //       path: "/",
-  //       element: <Home />,
-  //       index: true,
-  //     },
-  //     {
-  //       path: "blog",
-  //       element: <Blog />,
-  //     },
-  //     {
-  //       path: "blog/:blogSlug",
-  //       element: <SingleBlog />,
-  //     },
-  //     {
-  //       path: "about-me",
-  //       element: <About />,
-  //     },
-  //     {
-  //       path: "privacy-policy",
-  //       element: <PrivacyPolicy />,
-  //     },
-  //     {
-  //       path: "terms-of-service",
-  //       element: <Terms />,
-  //     },
-  //   ],
-  // },
-]);
+// const router = createBrowserRouter([
+//   {
+//     path: "auth",
+//     element: <AuthenticationLayout />,
+//     children: [
+//       {
+//         path: "login",
+//         element: <Login />,
+//       },
+//       {
+//         path: "provider/:provider",
+//         element: <ProviderAuth />,
+//       },
+//     ],
+//   },
+//   {
+//     path: "/",
+//     element: <ProtectedLayout />,
+//     children: [
+//       {
+//         path: "test",
+//         element: <Test />,
+//       },
+//     ],
+//   },
+//   {
+//     path: "/",
+//     element: <GlobalLayout />,
+//     children: [
+//       {
+//         path: "/",
+//         element: <Home />,
+//         index: true,
+//       },
+//       {
+//         path: "blog",
+//         element: <Blog />,
+//       },
+//       {
+//         path: "blog/:blogSlug",
+//         element: <SingleBlog />,
+//       },
+//       {
+//         path: "about-me",
+//         element: <About />,
+//       },
+//       {
+//         path: "privacy-policy",
+//         element: <PrivacyPolicy />,
+//       },
+//       {
+//         path: "terms-of-service",
+//         element: <Terms />,
+//       },
+//     ],
+//   },
+// ]);
 
 const RouterProviderWrapper = (): VNode => {
   const token = localStorage.getItem("token");
@@ -97,7 +97,7 @@ const RouterProviderWrapper = (): VNode => {
     <MainLoader />
   ) : (
     <div style={styles.routerContainer}>
-      <Route path="/:_*">
+      <Route path="/:_*?/">
         <GlobalLayout>
           <Route path="/">
             <Home />
@@ -105,7 +105,29 @@ const RouterProviderWrapper = (): VNode => {
           <Route path="/about-me">
             <About />
           </Route>
+          <Route path="/blog">
+            <Blog />
+          </Route>
+          <Route path="/blog/:blogSlug">
+            {(params) => <SingleBlog blogSlug={params.blogSlug} />}
+          </Route>
+          <Route path="/privacy-policy">
+            <PrivacyPolicy />
+          </Route>
+          <Route path="/terms-of-service">
+            <Terms />
+          </Route>
         </GlobalLayout>
+      </Route>
+      <Route path="/auth/:_*">
+        <AuthenticationLayout>
+          <Route path="/auth/login">
+            <Login />
+          </Route>
+          <Route path="/auth/provider/:provider">
+            {(params) => <ProviderAuth provider={params.provider} />}
+          </Route>
+        </AuthenticationLayout>
       </Route>
       {/* <RouterProvider router={router} /> */}
     </div>

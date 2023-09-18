@@ -11,7 +11,7 @@ import ShareIcon from "@mui/icons-material/Share";
 
 import { customDateFormat, sharePost, type singleBlogProps } from "@utils";
 
-import { Link } from "react-router-dom";
+import { Link } from "wouter-preact";
 
 import { styles } from "./styles";
 import Stack from "@mui/material/Stack";
@@ -36,11 +36,12 @@ const BlogCard = ({ blog, userData, isAuth }: BlogCardProps): VNode => {
   const [elevation, setElevation] = useState<number>(3);
 
   return (
-    <Link to={`/blog/${Slug}`} style={styles.cardLink}>
+    <Link href={`/blog/${Slug}`}>
       <Card
         onMouseEnter={() => setElevation(6)}
         onMouseLeave={() => setElevation(3)}
         elevation={elevation}
+        style={styles.cardLink}
       >
         <CardHeader
           title={<Typography variant="body1">{Title}</Typography>}

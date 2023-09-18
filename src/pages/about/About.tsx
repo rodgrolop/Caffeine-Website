@@ -23,7 +23,7 @@ const About = (): VNode => {
           markedOpts: {},
         })}
       </div>
-      {/* <SocialGrid /> */}
+      <SocialGrid />
     </PageContainer>
   );
 };

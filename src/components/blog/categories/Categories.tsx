@@ -1,5 +1,5 @@
 import { useState, useEffect } from "preact/compat";
-import { Link as RouterLink } from "react-router-dom";
+import { Link } from "wouter-preact";
 import { default as Grid } from "@mui/material/Unstable_Grid2";
 import Chip from "@mui/material/Chip";
 import { ChipsSkelleton, NoResults, QueryError } from "@components";
@@ -49,17 +49,17 @@ const Categories = ({ pathname }: CategoriesProps): VNode => {
       {categories?.length && !isFetching && !error
         ? categories.map(
             (category: singleCategoryProps): VNode => (
-              <Chip
-                key={category.name}
-                label={category.name}
-                component={RouterLink}
-                sx={{
-                  backgroundColor: category.color,
-                  ...styles.categoryChip,
-                }}
-                to={`${pathname}?categories=${category.slug}`}
-                clickable
-              />
+              <Link href={`${pathname}?categories=${category.slug}`}>
+                <Chip
+                  key={category.name}
+                  label={category.name}
+                  sx={{
+                    backgroundColor: category.color,
+                    ...styles.categoryChip,
+                  }}
+                  clickable
+                />
+              </Link>
             )
           )
         : null}

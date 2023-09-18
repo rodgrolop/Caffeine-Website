@@ -3,8 +3,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import GoogleIcon from "@mui/icons-material/Google";
-import { Link } from "react-router-dom";
-import { useParams, useSearchParams } from "react-router-dom";
+import { Link } from "wouter-preact";
 import { useT } from "talkr";
 import { AuthPageContainer, DocumentHead } from "@components";
 import { useProviderAuthentication } from "@api";
@@ -22,10 +21,9 @@ const getProviderLogo = (provider?: string): VNode | null => {
   }
 };
 
-const ProviderAuth = (): VNode => {
+const ProviderAuth = ({ provider }: { provider: string }): VNode => {
   const { T } = useT();
-  const { provider } = useParams();
-  const [searchParams] = useSearchParams();
+  const searchParams = new URLSearchParams(window.location.search);
   const token = searchParams.get("access_token");
   const { error, isFetching, providerError } = useProviderAuthentication(
     token,
@@ -70,14 +68,11 @@ const ProviderAuth = (): VNode => {
               </Typography>
             </Grid>
             <Grid>
-              <Button
-                variant="contained"
-                color="secondary"
-                component={Link}
-                to="/auth/login"
-              >
-                {T("backLogin")}
-              </Button>
+              <Link href="/auth/login">
+                <Button variant="contained" color="secondary">
+                  {T("backLogin")}
+                </Button>
+              </Link>
             </Grid>
           </>
         ) : null}

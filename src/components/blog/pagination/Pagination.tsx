@@ -1,5 +1,5 @@
 import { default as Grid } from "@mui/material/Unstable_Grid2";
-import { Link } from "react-router-dom";
+import { Link } from "wouter-preact";
 import { default as MUIPagination } from "@mui/material/Pagination";
 import PaginationItem from "@mui/material/PaginationItem";
 
@@ -31,11 +31,9 @@ const Pagination = ({ meta, pathname }: PaginationProps): VNode => {
         page={page}
         boundaryCount={1}
         renderItem={(item) => (
-          <PaginationItem
-            component={Link}
-            to={`${pathname}?page=${item.page}`}
-            {...item}
-          />
+          <Link href={`${pathname}?page=${item.page}`}>
+            <PaginationItem {...item} />
+          </Link>
         )}
       />
     </Grid>
