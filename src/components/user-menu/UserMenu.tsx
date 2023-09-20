@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from "@tanstack/react-router";
 import { useContext } from "preact/hooks";
 
 import IconButton from "@mui/material/IconButton";

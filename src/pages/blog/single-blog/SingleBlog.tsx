@@ -1,5 +1,4 @@
 import { Suspense, useContext, useEffect, useState } from "preact/compat";
-import { useNavigate, useParams } from "react-router-dom";
 import { useT } from "talkr";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
@@ -27,12 +26,13 @@ import type { VNode, h } from "preact";
 import { styles } from "./styles";
 import { useGetSingleBlogQuery } from "@api";
 import { UserContext } from "@context";
+import { useNavigate, useParams } from "@tanstack/react-router";
 
 const SingleBlog = (): VNode => {
   const user = useContext(UserContext);
   const { locale, T } = useT();
   const navigate = useNavigate();
-  const { blogSlug } = useParams();
+  const { blogSlug } = useParams({ from: undefined });
   const [blogEntry, setBlogEntry] = useState<singleItemBlogProps | null>(null);
 
   const { data, error, isFetching } = useGetSingleBlogQuery({
@@ -45,9 +45,9 @@ const SingleBlog = (): VNode => {
 
   useEffect(() => {
     const langSlug = blogEntry?.localizations?.find(
-      (locale: any): any => locale.locale === locale
+      (postLocale: any): any => postLocale.locale === locale
     )?.Slug;
-    langSlug && navigate(`/blog/${langSlug}`);
+    langSlug && navigate({ to: `/blog/${langSlug}` });
   }, [blogEntry?.localizations, locale, navigate]);
 
   useEffect(() => {

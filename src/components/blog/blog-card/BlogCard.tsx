@@ -11,7 +11,7 @@ import ShareIcon from "@mui/icons-material/Share";
 
 import { customDateFormat, sharePost, type singleBlogProps } from "@utils";
 
-import { Link } from "react-router-dom";
+import { Link } from "@tanstack/react-router";
 
 import { styles } from "./styles";
 import Stack from "@mui/material/Stack";

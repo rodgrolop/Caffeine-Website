@@ -1,8 +1,8 @@
 import { Suspense } from "preact/compat";
-import { Outlet } from "react-router-dom";
 import { ViewLoader, AppBar, Drawer, Footer } from "@components";
 
 import type { VNode } from "preact";
+import { Outlet } from "@tanstack/react-router";
 
 const GlobalLayout = (): VNode => (
   <>

@@ -1,6 +1,7 @@
 import { Suspense } from "preact/compat";
-import { Navigate, Outlet, useLocation } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import { useContext } from "preact/hooks";
+import { Outlet } from "@tanstack/react-router";
 
 import { ViewLoader, AppBar, Drawer, Footer } from "@components";
 

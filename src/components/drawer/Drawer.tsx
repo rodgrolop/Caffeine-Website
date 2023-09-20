@@ -1,4 +1,3 @@
-import { Link, useLocation } from "react-router-dom";
 import { useT } from "talkr";
 
 import { default as MuiDrawer } from "@mui/material/Drawer";
@@ -22,10 +21,11 @@ import {
 import type { VNode } from "preact";
 import { useContext } from "preact/hooks";
 import { LayoutContext } from "@context";
+import { Link } from "@tanstack/react-router";
 
 const Drawer = (): VNode => {
   const { T } = useT();
-  const { pathname } = useLocation();
+  const { pathname } = window.location;
   const { isDrawerOpen, toggleDrawer } = useContext(LayoutContext);
 
   const handleClose = (): void => toggleDrawer?.();

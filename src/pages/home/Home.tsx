@@ -1,9 +1,9 @@
 import { default as Grid } from "@mui/material/Unstable_Grid2";
 import Button from "@mui/material/Button";
-import { Link as RouterLink } from "react-router-dom";
+import { Link } from "@tanstack/react-router";
 import { useT } from "talkr";
 
-import { HeroImage, BlogList, PageContainer, DocumentHead } from "@components";
+import { HeroImage, PageContainer, DocumentHead, BlogList } from "@components";
 
 import type { VNode } from "preact";
 
@@ -30,7 +30,7 @@ const Home = (): VNode => {
           sx={styles.seeMoreContainer}
         >
           <Button
-            component={RouterLink}
+            component={Link}
             to="/blog"
             variant="contained"
             color="secondary"

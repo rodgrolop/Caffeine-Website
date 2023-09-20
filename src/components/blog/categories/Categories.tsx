@@ -1,5 +1,5 @@
 import { useState, useEffect } from "preact/compat";
-import { Link as RouterLink } from "react-router-dom";
+import { Link } from "@tanstack/react-router";
 import { default as Grid } from "@mui/material/Unstable_Grid2";
 import Chip from "@mui/material/Chip";
 import { ChipsSkelleton, NoResults, QueryError } from "@components";
@@ -52,7 +52,7 @@ const Categories = ({ pathname }: CategoriesProps): VNode => {
               <Chip
                 key={category.name}
                 label={category.name}
-                component={RouterLink}
+                component={Link}
                 sx={{
                   backgroundColor: category.color,
                   ...styles.categoryChip,

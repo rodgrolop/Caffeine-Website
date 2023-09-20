@@ -1,5 +1,4 @@
 import { Suspense, lazy, useContext, useEffect, useState } from "preact/compat";
-import { useLocation, useSearchParams } from "react-router-dom";
 import { default as Grid } from "@mui/material/Unstable_Grid2";
 import { BlogListSkelleton } from "@components";
 
@@ -19,6 +18,7 @@ import Pagination from "../pagination/Pagination";
 import { useT } from "talkr";
 import { useGetBlogsQuery } from "@api";
 import { UserContext } from "@context";
+import { useSearch } from "@tanstack/react-router";
 
 const NoResultsWithIcon = lazy(
   () => import("./../../no-results/NoResultsWithIcon")
@@ -41,14 +41,14 @@ const BlogList = ({
   const user = useContext(UserContext);
   const { T } = useT();
   const { language } = useSanitizeLanguage();
-  const { pathname } = useLocation();
-  const [searchParams] = useSearchParams();
+  const { pathname } = window.location;
+  const searchParams = useSearch({ from: undefined });
   const [blogEntries, setBlogEntries] = useState<singleBlogProps[] | null>(
     null
   );
   const [meta, setMeta] = useState<metaProps | null>(null);
-  const page = parseInt(searchParams.get("page") ?? "1");
-  const categoriesParam = searchParams.get("categories") ?? "";
+  const page = parseInt(searchParams.page ?? "1");
+  const categoriesParam = searchParams.categories ?? "";
 
   const { data, error, isFetching } = useGetBlogsQuery({
     pagination: {
