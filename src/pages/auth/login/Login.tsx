@@ -1,5 +1,5 @@
 import { useT } from "talkr";
-import { Link } from "react-router-dom";
+import { Link } from "@tanstack/react-router";
 import { LoginForm, AuthPageContainer, DocumentHead } from "@components";
 
 import { default as Grid } from "@mui/material/Unstable_Grid2";

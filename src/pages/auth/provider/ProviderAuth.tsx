@@ -3,8 +3,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import GoogleIcon from "@mui/icons-material/Google";
-import { Link } from "react-router-dom";
-import { useParams, useSearchParams } from "react-router-dom";
+import { Link, useParams, useSearch } from "@tanstack/react-router";
 import { useT } from "talkr";
 import { AuthPageContainer, DocumentHead } from "@components";
 import { useProviderAuthentication } from "@api";
@@ -24,9 +23,9 @@ const getProviderLogo = (provider?: string): VNode | null => {
 
 const ProviderAuth = (): VNode => {
   const { T } = useT();
-  const { provider } = useParams();
-  const [searchParams] = useSearchParams();
-  const token = searchParams.get("access_token");
+  const { provider } = useParams({ from: undefined });
+  const searchParams = useSearch({ from: undefined });
+  const token = searchParams.access_token;
   const { error, isFetching, providerError } = useProviderAuthentication(
     token,
     provider as string

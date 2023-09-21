@@ -21,7 +21,6 @@
     "graphql-request": "^6.1.0",
     "preact": "10.17.1",
     "preact-markdown": "^2.1.0",
-    "react-router-dom": "^6.16.0",
     "talkr": "^3.4.0"
   },
   "devDependencies": {

@@ -82,7 +82,7 @@ export default defineConfig({
           }) as any,
         ],
         manualChunks: {
-          "react-libs": ["preact", "react-router-dom"],
+          "react-libs": ["preact", "@tanstack/react-router"],
           "mui-libs": ["@mui/material"],
         },
         compact: true,

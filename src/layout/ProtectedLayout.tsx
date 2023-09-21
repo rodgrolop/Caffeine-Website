@@ -1,20 +1,18 @@
 import { Suspense } from "preact/compat";
-import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { useContext } from "preact/hooks";
 
 import { ViewLoader, AppBar, Drawer, Footer } from "@components";
 import { UserContext } from "@context";
 
 import type { VNode } from "preact";
+import { Outlet, useNavigate } from "@tanstack/react-router";
 
 const ProtectedLayout = (): VNode => {
-  const location = useLocation();
   const user = useContext(UserContext);
+  const navigate = useNavigate();
 
   if (!user?.authenticated) {
-    return (
-      <Navigate to="/auth/login" replace={true} state={{ from: location }} />
-    );
+    navigate({ to: "/auth/login" });
   }
 
   return (

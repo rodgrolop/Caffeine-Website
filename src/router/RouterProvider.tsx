@@ -1,5 +1,5 @@
 import { lazy } from "preact/compat";
-import { GlobalLayout } from "@layout";
+import { AuthenticationLayout, GlobalLayout, ProtectedLayout } from "@layout";
 
 import { MainLoader } from "@components";
 
@@ -15,10 +15,10 @@ import {
 } from "@tanstack/react-router";
 
 // Auth
-// const Login = lazy(() => import("./../pages/auth/login/Login"));
-// const ProviderAuth = lazy(
-//   () => import("./../pages/auth/provider/ProviderAuth")
-// );
+const Login = lazy(() => import("./../pages/auth/login/Login"));
+const ProviderAuth = lazy(
+  () => import("./../pages/auth/provider/ProviderAuth")
+);
 
 // Public
 const Home = lazy(() => import("./../pages/home/Home"));
@@ -32,66 +32,8 @@ const PrivacyPolicy = lazy(
 );
 const Terms = lazy(() => import("./../pages/legal/terms/Terms"));
 
-// // Private
-// const Test = lazy(() => import("./../pages/test/Test"));
-
-// const router = createBrowserRouter([
-//   {
-//     path: "auth",
-//     element: <AuthenticationLayout />,
-//     children: [
-//       {
-//         path: "login",
-//         element: <Login />,
-//       },
-//       {
-//         path: "provider/:provider",
-//         element: <ProviderAuth />,
-//       },
-//     ],
-//   },
-//   {
-//     path: "/",
-//     element: <ProtectedLayout />,
-//     children: [
-//       {
-//         path: "test",
-//         element: <Test />,
-//       },
-//     ],
-//   },
-//   {
-//     path: "/",
-//     element: <GlobalLayout />,
-//     children: [
-//       {
-//         path: "/",
-//         element: <Home />,
-//         index: true,
-//       },
-//       {
-//         path: "blog",
-//         element: <Blog />,
-//       },
-//       {
-//         path: "blog/:blogSlug",
-//         element: <SingleBlog />,
-//       },
-//       {
-//         path: "about-me",
-//         element: <About />,
-//       },
-//       {
-//         path: "privacy-policy",
-//         element: <PrivacyPolicy />,
-//       },
-//       {
-//         path: "terms-of-service",
-//         element: <Terms />,
-//       },
-//     ],
-//   },
-// ]);
+// Private
+const Test = lazy(() => import("./../pages/test/Test"));
 
 const rootRoute = new RootRoute();
 
@@ -101,18 +43,19 @@ const globalLayoutRoute = new Route({
   id: "global-layout",
 });
 
-// const authenticationLayoutRoute = new Route({
-//   getParentRoute: () => rootRoute,
-//   component: <AuthenticationLayout/>,
-//   id: "authentication-layout",
-// });
+const authenticationLayoutRoute = new Route({
+  getParentRoute: () => rootRoute,
+  component: AuthenticationLayout,
+  id: "authentication-layout",
+});
 
-// const protectedLayoutRoute = new Route({
-//   getParentRoute: () => rootRoute,
-//   component: <ProtectedLayout/>,
-//   id: "protected-layout",
-// });
+const protectedLayoutRoute = new Route({
+  getParentRoute: () => rootRoute,
+  component: ProtectedLayout,
+  id: "protected-layout",
+});
 
+// Global Routes
 const homeRoute = new Route({
   getParentRoute: () => globalLayoutRoute,
   component: Home,
@@ -149,6 +92,26 @@ const singleBlogRoute = new Route({
   path: "blog/$blogSlug",
 });
 
+// Protected Routes
+const testRoute = new Route({
+  getParentRoute: () => protectedLayoutRoute,
+  component: Test,
+  path: "test",
+});
+
+// Authentication Routes
+const loginRoute = new Route({
+  getParentRoute: () => authenticationLayoutRoute,
+  component: Login,
+  path: "auth/login",
+});
+
+const loginProviderRoute = new Route({
+  getParentRoute: () => authenticationLayoutRoute,
+  component: ProviderAuth,
+  path: "auth/provider/$provider",
+});
+
 const routeTree = rootRoute.addChildren([
   globalLayoutRoute.addChildren([
     homeRoute,
@@ -158,15 +121,11 @@ const routeTree = rootRoute.addChildren([
     blogRoute,
     singleBlogRoute,
   ]),
+  authenticationLayoutRoute.addChildren([loginRoute, loginProviderRoute]),
+  protectedLayoutRoute.addChildren([testRoute]),
 ]);
 
 const router = new Router({ routeTree });
-
-// declare module "@tanstack/react-router" {
-//   interface Register {
-//     router: typeof router;
-//   }
-// }
 
 const RouterProviderWrapper = (): VNode => {
   const token = localStorage.getItem("token");
