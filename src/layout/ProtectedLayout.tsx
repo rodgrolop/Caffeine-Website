@@ -21,9 +21,11 @@ const ProtectedLayout = (): VNode => {
     <>
       <AppBar />
       <Drawer />
-      <Suspense fallback={<ViewLoader />}>
-        <Outlet />
-      </Suspense>
+      <div>
+        <Suspense fallback={<ViewLoader />}>
+          <Outlet />
+        </Suspense>
+      </div>
       <Footer />
     </>
   );
