@@ -1,5 +1,6 @@
 import { lazy } from "preact/compat";
 import { AuthenticationLayout, GlobalLayout, ProtectedLayout } from "@layout";
+import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 
 import { MainLoader } from "@components";
 
@@ -12,103 +13,89 @@ import {
   Route,
   Router,
   RouterProvider,
+  lazyRouteComponent,
 } from "@tanstack/react-router";
-
-// Auth
-const Login = lazy(() => import("./../pages/auth/login/Login"));
-const ProviderAuth = lazy(
-  () => import("./../pages/auth/provider/ProviderAuth")
-);
-
-// Public
-const Home = lazy(() => import("./../pages/home/Home"));
-const Blog = lazy(() => import("./../pages/blog/blog/Blog"));
-const About = lazy(() => import("./../pages/about/About"));
-const SingleBlog = lazy(() => import("./../pages/blog/single-blog/SingleBlog"));
-
-// Legal
-const PrivacyPolicy = lazy(
-  () => import("./../pages/legal/privacy/PrivacyPolicy")
-);
-const Terms = lazy(() => import("./../pages/legal/terms/Terms"));
-
-// Private
-const Test = lazy(() => import("./../pages/test/Test"));
 
 const rootRoute = new RootRoute();
 
 const globalLayoutRoute = new Route({
   getParentRoute: () => rootRoute,
   component: GlobalLayout,
-  id: "global-layout",
+  id: "/global-layout",
 });
 
 const authenticationLayoutRoute = new Route({
   getParentRoute: () => rootRoute,
   component: AuthenticationLayout,
-  id: "authentication-layout",
+  id: "/authentication-layout",
 });
 
 const protectedLayoutRoute = new Route({
   getParentRoute: () => rootRoute,
   component: ProtectedLayout,
-  id: "protected-layout",
+  id: "/protected-layout",
 });
 
 // Global Routes
 const homeRoute = new Route({
   getParentRoute: () => globalLayoutRoute,
-  component: Home,
+  component: lazyRouteComponent(() => import("./../pages/home/Home")),
   path: "/",
 });
 
 const aboutRoute = new Route({
   getParentRoute: () => globalLayoutRoute,
-  component: About,
+  component: lazyRouteComponent(() => import("./../pages/about/About")),
   path: "about-me",
 });
 
 const privacyRoute = new Route({
   getParentRoute: () => globalLayoutRoute,
-  component: PrivacyPolicy,
+  component: lazyRouteComponent(
+    () => import("./../pages/legal/privacy/PrivacyPolicy")
+  ),
   path: "privacy-policy",
 });
 
 const termsRoute = new Route({
   getParentRoute: () => globalLayoutRoute,
-  component: Terms,
+  component: lazyRouteComponent(() => import("./../pages/legal/terms/Terms")),
   path: "terms-of-service",
 });
 
 const blogRoute = new Route({
   getParentRoute: () => globalLayoutRoute,
-  component: Blog,
+  component: lazyRouteComponent(() => import("./../pages/blog/blog/Blog")),
   path: "blog",
 });
 
 const singleBlogRoute = new Route({
   getParentRoute: () => globalLayoutRoute,
-  component: SingleBlog,
+  component: lazyRouteComponent(
+    () => import("./../pages/blog/single-blog/SingleBlog")
+  ),
   path: "blog/$blogSlug",
 });
 
 // Protected Routes
 const testRoute = new Route({
   getParentRoute: () => protectedLayoutRoute,
-  component: Test,
+  component: lazyRouteComponent(() => import("./../pages/test/Test")),
   path: "test",
 });
 
 // Authentication Routes
 const loginRoute = new Route({
   getParentRoute: () => authenticationLayoutRoute,
-  component: Login,
+  component: lazyRouteComponent(() => import("./../pages/auth/login/Login")),
   path: "auth/login",
 });
 
 const loginProviderRoute = new Route({
   getParentRoute: () => authenticationLayoutRoute,
-  component: ProviderAuth,
+  component: lazyRouteComponent(
+    () => import("./../pages/auth/provider/ProviderAuth")
+  ),
   path: "auth/provider/$provider",
 });
 
@@ -136,6 +123,7 @@ const RouterProviderWrapper = (): VNode => {
   ) : (
     <div style={styles.routerContainer}>
       <RouterProvider router={router} />
+      <TanStackRouterDevtools router={router} />
     </div>
   );
 };

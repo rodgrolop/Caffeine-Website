@@ -84,6 +84,7 @@ export default defineConfig({
         manualChunks: {
           "react-libs": ["preact", "@tanstack/react-router"],
           "mui-libs": ["@mui/material"],
+          "markdown-lib": ["preact-markdown"],
         },
         compact: true,
         minifyInternalExports: true,
