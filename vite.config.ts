@@ -84,6 +84,7 @@ export default defineConfig({
         manualChunks: {
           "react-libs": ["preact", "react-router-dom"],
           "mui-libs": ["@mui/material"],
+          "md-lib": ["preact-markdown"],
         },
         compact: true,
         minifyInternalExports: true,

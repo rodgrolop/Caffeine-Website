@@ -45,7 +45,7 @@ const SingleBlog = (): VNode => {
 
   useEffect(() => {
     const langSlug = blogEntry?.localizations?.find(
-      (locale: any): any => locale.locale === locale
+      (blogLocale: any): any => blogLocale.locale === locale
     )?.Slug;
     langSlug && navigate(`/blog/${langSlug}`);
   }, [blogEntry?.localizations, locale, navigate]);
